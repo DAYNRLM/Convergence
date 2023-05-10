@@ -1,0 +1,17 @@
+[
+  {
+    "name": "home_nav_graph",
+    "navigationXmlIds": [],
+    "deepLinks": []
+  },
+  {
+    "name": "login_nav_graph",
+    "navigationXmlIds": [],
+    "deepLinks": []
+  },
+  {
+    "name": "mpin_nav_graph",
+    "navigationXmlIds": [],
+    "deepLinks": []
+  }
+]

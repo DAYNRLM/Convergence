@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="black">#FF000000</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="blue_gray_50">#ECEFF1</color>
+    <color name="brown_200">#BCAAA4</color>
+    <color name="colorTextBlack">#263238</color>
+    <color name="colorViewLine">#243F60</color>
+    <color name="colorbtn">#51b5e6</color>
+    <color name="green_200">#A5D6A7</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="green_700">#388E3C</color>
+    <color name="ic_launcher_background">#3DDC84</color>
+    <color name="light_blue_600">#0000FF</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="light_green_50">#DCEDC8</color>
+    <color name="lime_compliment">#cadb00</color>
+    <color name="orange_200">#FFCC80</color>
+    <color name="orange_50">#FFF3E0</color>
+    <color name="orange_500">#ff9800</color>
+    <color name="orange_700">#c66900</color>
+    <color name="orange_dark">#FFD83D0C</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="red_500">#F44336</color>
+    <color name="screen_background">#FFF3E0</color>
+    <color name="screen_gray_background">#FAFAFA</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="teal_a400">#1DE9B6</color>
+    <color name="title_amber_300">#FFD54F</color>
+    <color name="title_light_green_a_200">#B2FF59</color>
+    <color name="title_lime_200">#E6EE9C</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="NO_INTERNET_TITLE">No Internet!</string>
+    <string name="SERVER_ERROR_TITLE">Server Error!</string>
+    <string name="app_name">Convergence App</string>
+    <string name="bank_details"><u>Bank Details</u></string>
+    <string name="belonging_name">Belonging Name :</string>
+    <string name="ben_avail">Beneficiary Availability in Village?</string>
+    <string name="ben_in_shg">Any family member in SHG?</string>
+    <string name="btn_verify_mpin">Verify Mpin</string>
+    <string name="cancel">Cancel</string>
+    <string name="change_language">Change language</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="dialog_btn_signout">sign out</string>
+    <string name="dialog_cancel_btn">cancel</string>
+    <string name="dialog_sign_out_msg">You are signing out of your app on this device.</string>
+    <string name="dialog_sign_out_title">Confirm Sign Out</string>
+    <string name="do_you_want_to_change_the_language">Do you want to change the language?</string>
+    <string name="enter_confirm_first">Enter confirm Mpin first</string>
+    <string name="enter_mpin_first">Enter Mpin first</string>
+    <string name="enter_user_id">Enter user Id</string>
+    <string name="enter_your_mpin">Enter your PIN</string>
+    <string name="father_name">Father\'s Name   :</string>
+    <string name="for_secure_access">For secure access</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="if_no_select_reason_of_discontinue_from_shg">Select Reason to discontinue from SHG.</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="invalid_userid">Invalid user id</string>
+    <string name="list_of_famliy_member">List of Family Members</string>
+    <string name="log_out">Log out</string>
+    <string name="member_name">Select Member</string>
+    <string name="member_names">Enter Member Name</string>
+    <string name="mobile_no">Mobile no  :</string>
+    <string name="mobile_no_belongs_to">Mobile No. belongs to:</string>
+    <string name="mother_name">Mother\'s Name   :</string>
+    <string name="no_internet_dialog">No Internet!</string>
+    <string name="ok">ok</string>
+    <string name="other_member">Other members</string>
+    <string name="password">Password</string>
+    <string name="reason">Select Reason</string>
+    <string name="save">Save</string>
+    <string name="select_beneficiary">Select PMAY Beneficiary</string>
+    <string name="select_gp">Select GP</string>
+    <string name="select_scheme">PMAYG</string>
+    <string name="select_village">Select Village</string>
+    <string name="server_error_dialog">Server Error!</string>
+    <string name="shg_name">Select SHG</string>
+    <string name="sign_in">Sign in  :</string>
+    <string name="toast_success_sign_out">Successfully SignOut</string>
+    <string name="tv_mpin_confirm">Confirm MPIN</string>
+    <string name="tv_mpin_msg">Set new MPIN to Keep your Application safe and secure</string>
+    <string name="tv_mpin_title">We Value Security</string>
+    <string name="whether_member_is_part_of_shg">Whether the member is currently part of SHG?</string>
+    <string name="willing">Willing to join SHG?</string>
+    <string name="wrong_mpin">Entered M-PIN is wrong.</string>
+    <string name="y_n">Y/N</string>
+    <style name="DialogAnimationTheme">
+        <item name="android:windowEnterAnimation">@anim/dialog_style_up</item>
+        <item name="android:windowExitAnimation">@anim/dialog_style_bottem</item>
+    </style>
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/green_500</item>
+        <item name="colorPrimaryDark">@color/orange_500</item>
+        <item name="colorAccent">@color/orange_500</item>
+    </style>
+    <style name="IconTextContainedButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">?attr/textAppearanceButton</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconTint">@color/white</item>
+        <item name="android:backgroundTint">@color/colorbtn</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Theme.ConvergenceApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
+        
+    </style>
+    <style name="Widget.Theme.ConvergenceApp.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+    <style name="Widget.Theme.ConvergenceApp.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+</resources>

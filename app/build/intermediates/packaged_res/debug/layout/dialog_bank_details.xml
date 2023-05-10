@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                                        
+
+   <androidx.cardview.widget.CardView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       app:cardCornerRadius="10dp"
+       android:padding="20dp"
+       android:elevation="10dp" android:tag="layout/dialog_bank_details_0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textSize="18sp"
+           android:textColor="@color/black"
+           android:text="Bank details"
+
+           android:layout_marginLeft="150dp"
+
+
+           />
+
+       <LinearLayout
+
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/tvAcc"
+               android:padding="10dp"
+               android:textSize="18sp"
+               android:layout_marginTop="20dp"
+               android:textColor="@color/black"
+               android:text="accc"
+
+               />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textSize="18sp"
+               android:textColor="@color/black"
+               android:padding="10dp"
+               android:id="@+id/tvBankName"
+               android:text="accc"
+               />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textSize="18sp"
+               android:textColor="@color/black"
+               android:padding="10dp"
+               android:id="@+id/tvBranchName"
+               android:text="accc"
+               />
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/ifsc"
+               android:padding="10dp"
+               android:textSize="18sp"
+
+               android:textColor="@color/black"
+               android:text="IFSCCode"
+               />
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/tvOk"
+               android:padding="15dp"
+               android:layout_marginEnd="20dp"
+               android:layout_gravity="end"
+               android:textSize="18sp"
+               android:textColor="@color/black"
+               android:gravity="center_horizontal"
+               android:text="OK"
+               android:layout_marginVertical="20dp"
+
+               />
+
+       </LinearLayout>
+   </androidx.cardview.widget.CardView>
+
+         

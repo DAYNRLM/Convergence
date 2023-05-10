@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Convergence App</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_mpin_title">हम सुरक्षा को महत्व देते हैं</string>
+    <string name="tv_mpin_msg">अपने एप्लिकेशन को सुरक्षित रखने के लिए नया MPIN सेट करें</string>
+    <string name="tv_mpin_confirm">एमपिन की पुष्टि करें</string>
+    <string name="enter_your_mpin">अपना पिन दर्ज करो</string>
+    <string name="for_secure_access">सुरक्षित पहुंच के लिए</string>
+    <string name="btn_verify_mpin">एमपिन सत्यापित करें</string>
+    <string name="enter_mpin_first">एमपीआईफर्स्ट दर्ज करें</string>
+    <string name="enter_confirm_first">पहले कंफर्म एमपिन डालें</string>
+    <string name="wrong_mpin">दर्ज किया गया एम-पिन गलत है।</string>
+    <string name="server_error_dialog">सर्वर त्रुटि!</string>
+    <string name="NO_INTERNET_TITLE">कोई इंटरनेट नहीं!</string>
+    <string name="invalid_userid">अमान्य उपयोगकर्ता आइ डी</string>
+    <string name="invalid_password">अवैध पासवर्ड</string>
+    <string name="select_gp">जीपी का चयन करें</string>
+    <string name="select_scheme">प्मायग</string>
+    <string name="select_village">गांव का चयन करें</string>
+    <string name="select_beneficiary">लाभार्थी आईडी का चयन करें</string>
+    <string name="bank_details"><u>बैंक विवरण</u></string>
+    <string name="ben_avail">गांव में लाभार्थी उपलब्धता?</string>
+    <string name="ben_in_shg">एसएचजी में परिवार का कोई सदस्य?</string>
+    <string name="shg_name">एसएचजी का चयन करें</string>
+    <string name="member_name">सदस्य का चयन करें</string>
+    <string name="willing">एसएचजी में शामिल होने के इच्छुक हैं?</string>
+    <string name="y_n">हां या नहीं</string>
+    <string name="reason">कारण चुनें</string>
+    <string name="save">सेव</string>
+    <string name="password">पासवर्ड</string>
+    <string name="enter_user_id">उपयोगकर्ता आईडी दर्ज करें</string>
+    <string name="mobile_no">मोबाइल नंबर</string>
+    <string name="sign_in">दाखिल करना :</string>
+    <string name="father_name">पिता का नाम  :</string>
+    <string name="mother_name">मां का नाम   :</string>
+    //new String
+
+    <string name="dialog_sign_out_title">साइन आउट की पुष्टि करें</string>
+    <string name="dialog_btn_signout">साइन आउट</string>
+    <string name="toast_success_sign_out">सफलतापूर्वक साइनआउट करें</string>
+    <string name="dialog_cancel_btn">रद्द करना</string>
+    <string name="dialog_sign_out_msg">आप इस डिवाइस पर अपने ऐप्लिकेशन से साइन आउट कर रहे हैं.</string>
+    <string name="cancel">रद्द करना</string>
+    <string name="do_you_want_to_change_the_language">क्या आप भाषा बदलना चाहते हैं?</string>
+    <string name="ok">ठीक</string>
+    <string name="change_language">भाषा बदलें</string>
+    <string name="log_out">लॉग आउट</string>
+
+
+</resources>

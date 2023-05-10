@@ -1,0 +1,30 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    dependencies {
+        def kotlin_version = "1.4.32"
+        def nav_version = "2.3.1"
+        classpath "com.android.tools.build:gradle:4.1.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'
+    }
+}
+plugins {
+    id 'com.android.application' version '7.1.1' apply false
+    id 'com.android.library' version '7.1.1' apply false
+    id 'androidx.navigation.safeargs' version '2.5.3' apply false
+
+}
+
+ext{
+    retrofit = "2.9.0"
+    okhttpversion = "4.9.1"
+    retrofitScaleConvertor="2.5.0"
+    gsonVersion = "2.8.8"
+    room = "2.5.0"
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
