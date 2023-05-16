@@ -40,12 +40,12 @@
         "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\drawable\\ic_baseline_lock_24.xml"
     },
     {
-        "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\merged_res\\release\\drawable_convergencesplash.jpg.flat",
-        "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\drawable\\convergencesplash.jpg"
-    },
-    {
         "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\merged_res\\release\\layout_server_error_dialog.xml.flat",
         "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\layout\\server_error_dialog.xml"
+    },
+    {
+        "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\merged_res\\release\\drawable_convergencesplash.jpg.flat",
+        "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\drawable\\convergencesplash.jpg"
     },
     {
         "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\merged_res\\release\\drawable_beve.jpg.flat",
@@ -56,12 +56,12 @@
         "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\merged_res\\release\\layout_fragment_member.xml.flat",
-        "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\layout\\fragment_member.xml"
-    },
-    {
         "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\merged_res\\release\\menu_menu.xml.flat",
         "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\menu\\menu.xml"
+    },
+    {
+        "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\merged_res\\release\\layout_fragment_member.xml.flat",
+        "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\layout\\fragment_member.xml"
     },
     {
         "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\merged_res\\release\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",

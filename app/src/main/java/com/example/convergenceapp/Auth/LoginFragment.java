@@ -9,8 +9,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.service.autofill.UserData;
-import android.util.JsonReader;
+
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,18 +20,18 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
+
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.android.volley.VolleyError;
-import com.example.convergenceapp.Mpin.SetMpinFragmentDirections;
+
 import com.example.convergenceapp.MpinActivity;
 import com.example.convergenceapp.R;
 import com.example.convergenceapp.database.AppDatabase;
-import com.example.convergenceapp.database.dbBean.NrlmDataBean;
+
 import com.example.convergenceapp.database.entity.BankMasterEntity;
 import com.example.convergenceapp.database.entity.LoginInfoEntity;
-import com.example.convergenceapp.database.entity.MemberEntryInfoEntity;
+
 import com.example.convergenceapp.database.entity.MemberReasonEntity;
 import com.example.convergenceapp.database.entity.MobileNoBelongsToEntity;
 import com.example.convergenceapp.database.entity.NrlmInfoEntity;
@@ -59,19 +59,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import retrofit2.http.GET;
+
 
 public class LoginFragment extends Fragment {
     public Button loginBtn;
@@ -126,6 +122,7 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+        //handleSSLHandshake();
 
 
 
@@ -910,7 +907,9 @@ public class LoginFragment extends Fragment {
 
                 @Override
                 public void notifyError(String requestType, VolleyError error) {
-                    //      progressDialog.dismiss();
+                          progressDialog.dismiss();
+                    Toast.makeText(getContext(), "No Internet"+error, Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "getLoginAPI: "+error);
 
                 }
             };
@@ -925,9 +924,40 @@ public class LoginFragment extends Fragment {
             progressDialog.dismiss();
             Toast.makeText(getContext(), "No Internet", Toast.LENGTH_SHORT).show();
 
+
+
         }
 
     }
+   /* @SuppressLint("TrulyRandom")
+    public static void handleSSLHandshake() {
+        try {            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+            public X509Certificate[] getAcceptedIssuers() {
+                return new X509Certificate[0];
+            }
+
+            @Override
+            public void checkClientTrusted(X509Certificate[] certs, String authType) {
+            }
+
+            @Override
+            public void checkServerTrusted(X509Certificate[] certs, String authType) {
+            }
+        }};
+
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String arg0, SSLSession arg1) {
+                    return true;
+                }
+            });
+
+        } catch (Exception ignored) {
+        }
+    }*/
 
 }
 

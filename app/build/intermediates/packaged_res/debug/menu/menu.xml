@@ -12,12 +12,18 @@
         android:icon="@drawable/ic_baseline_exit_to_app_24"/>
 
     <item
+        android:id="@+id/unassign"
+        android:title="Unassign Village"
+        android:menuCategory="secondary"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_baseline_logout_24"/>
+
+    <item
         android:id="@+id/logOut"
         android:title="@string/log_out"
         android:menuCategory="secondary"
         app:showAsAction="never"
         android:icon="@drawable/ic_baseline_logout_24"/>
-
 
 
 </menu>

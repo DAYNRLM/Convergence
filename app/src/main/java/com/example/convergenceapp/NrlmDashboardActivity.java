@@ -212,7 +212,7 @@ public class NrlmDashboardActivity extends AppCompatActivity {
                             villageAllotttxt.setText(villageAlloted);
                             surveyComtxt.setText(surveyComplete);
                             surveyPentxt.setText(surveyPending);
-                            String local=  appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry();
+                         //   String local=  appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry();
                             locallySavetxt.setText(appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry());
 
                        //     Toast.makeText(getApplicationContext(),"local" +local ,Toast.LENGTH_LONG).show();

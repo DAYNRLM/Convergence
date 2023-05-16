@@ -219,6 +219,7 @@ id tv_userDetail
 id tv_usermsg
 id txtBankNameShowid
 id txtbranchNameShowid
+id unassign
 id verifyMpinFragment
 id view_seperator
 id village_alloted

@@ -90,7 +90,7 @@ public class VerifyMpinFragment extends Fragment {
                 else {
                     areEqual = enterPin.equals(mPin);
                     if (areEqual) {
-                        callUnassignApi();
+                    //    callUnassignApi();
                         intentToHome();
                     }
                     else {
@@ -249,7 +249,7 @@ public class VerifyMpinFragment extends Fragment {
                         progressDialog.dismiss();
 
                     }
-                    callDeleteAPI();
+                  //  callDeleteAPI();
 
                 }
 
