@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
 public class  AppUtils {
     public static AppUtils utilsInstance;
     public static boolean wantToShow=true;
-    public static String appVersion="1.0.0";
+    public static String appVersion="2.0.0";
 
     public synchronized static AppUtils getInstance() {
         if (utilsInstance == null) {

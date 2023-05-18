@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,7 +60,19 @@ public class NrlmDashboardActivity extends AppCompatActivity {
         surveyComtxt =findViewById(R.id.member_survey_completed);
         surveyPentxt =findViewById(R.id.member_survey_pending);
         locallySavetxt =findViewById(R.id.member_survey_locally_new);
+      ImageView imageView =findViewById(R.id.backarrown);
         appDatabase= AppDatabase.getDatabase(getApplicationContext());
+
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(NrlmDashboardActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,12 +84,6 @@ public class NrlmDashboardActivity extends AppCompatActivity {
 
                     }
                 }, 1000);
-
-
-
-
-
-
 
             }
         });

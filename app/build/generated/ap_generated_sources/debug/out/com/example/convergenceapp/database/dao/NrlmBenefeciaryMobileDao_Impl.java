@@ -268,7 +268,7 @@ public final class NrlmBenefeciaryMobileDao_Impl implements NrlmBenefeciaryMobil
   @Override
   public List<NrlmBenefeciaryMobileBean> getNrlmBenefeciaryMobileDataAcordingSyncFlag(
       final String sycFlag) {
-    final String _sql = "select * from NrlmBenefeciaryMobileEntity where syc_flag=?";
+    final String _sql = "select distinct * from NrlmBenefeciaryMobileEntity where syc_flag=?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
     if (sycFlag == null) {

@@ -72,6 +72,8 @@ id action_homeFragment_to_nrlmDashboardFragment
 id action_memberFragment_to_homeFragment
 id action_setMpinFragment_to_verifyMpinFragment
 id any_family_visib
+id backarrown
+id backarrowp
 id bankShowVisid
 id bank_details
 id ben_allot
@@ -194,6 +196,7 @@ id spinner_scheme
 id spinner_shg_name
 id spinner_village
 id spinner_willing
+id t
 id textVie
 id textVie36
 id textView

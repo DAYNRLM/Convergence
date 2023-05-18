@@ -1,13 +1,13 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.myapp.convergenceapp"
-4    android:versionCode="10"
+4    android:versionCode="11"
 5    android:versionName="1.0.0" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
 8-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml
-9        android:targetSdkVersion="31" />
+9        android:targetSdkVersion="33" />
 9-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -80,7 +80,7 @@
 39-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 40
 41    <application
-41-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:37:5-73:19
+41-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:37:5-72:19
 42        android:allowBackup="false"
 42-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:38:9-36
 43        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -92,59 +92,59 @@
 46        android:label="@string/app_name"
 46-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:41:9-41
 47        android:networkSecurityConfig="@xml/network_security_config"
-47-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:46:9-69
+47-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:42:9-69
 48        android:roundIcon="@mipmap/ic_launcher_round"
-48-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:42:9-54
+48-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:43:9-54
 49        android:supportsRtl="true"
-49-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:43:9-35
+49-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:44:9-35
 50        android:testOnly="true"
 51        android:theme="@style/Theme.ConvergenceApp" >
-51-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:44:9-52
+51-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:45:9-52
 52        <activity
-52-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:49:9-51:40
+52-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:48:9-50:40
 53            android:name="com.example.convergenceapp.PmaygDashboardActivity"
-53-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:50:13-51
+53-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:49:13-51
 54            android:exported="false" />
-54-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:51:13-37
+54-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:50:13-37
 55        <activity
-55-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:52:9-54:40
+55-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:51:9-53:40
 56            android:name="com.example.convergenceapp.NrlmDashboardActivity"
-56-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:53:13-50
+56-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:52:13-50
 57            android:exported="false" />
-57-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:54:13-37
+57-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:53:13-37
 58        <activity
-58-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:55:9-57:40
+58-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:54:9-56:40
 59            android:name="com.example.convergenceapp.HomeActivity"
-59-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:56:13-41
+59-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:55:13-41
 60            android:exported="false" />
-60-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:57:13-37
+60-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:56:13-37
 61        <activity
-61-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:58:9-60:40
+61-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:57:9-59:40
 62            android:name="com.example.convergenceapp.MpinActivity"
-62-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:59:13-41
+62-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:58:13-41
 63            android:exported="false" />
-63-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:60:13-37
+63-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:59:13-37
 64        <activity
-64-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:61:9-63:40
+64-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:60:9-62:40
 65            android:name="com.example.convergenceapp.LoginActivity"
-65-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:62:13-42
+65-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:61:13-42
 66            android:exported="false" />
-66-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:63:13-37
+66-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:62:13-37
 67        <activity
-67-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:64:9-72:20
+67-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:63:9-71:20
 68            android:name="com.example.convergenceapp.SplashScreen"
-68-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:65:13-41
+68-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:64:13-41
 69            android:exported="true" >
-69-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:66:13-36
+69-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:65:13-36
 70            <intent-filter>
-70-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:67:13-71:29
+70-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:66:13-70:29
 71                <action android:name="android.intent.action.MAIN" />
-71-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:68:17-69
-71-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:68:25-66
+71-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:67:17-69
+71-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:67:25-66
 72
 73                <category android:name="android.intent.category.LAUNCHER" />
-73-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:70:17-77
-73-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:70:27-74
+73-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:69:17-77
+73-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:69:27-74
 74            </intent-filter>
 75        </activity>
 76

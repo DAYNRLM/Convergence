@@ -3003,6 +3003,8 @@ int id auto 0x7f09005f
 int id autoComplete 0x7f090060
 int id autoCompleteToEnd 0x7f090061
 int id autoCompleteToStart 0x7f090062
+int id backarrown 0x7f09029e
+int id backarrowp 0x7f09029f
 int id bankShowVisid 0x7f090063
 int id bank_details 0x7f090064
 int id barrier 0x7f090065
@@ -3472,6 +3474,7 @@ int id stretch 0x7f090234
 int id submenuarrow 0x7f090235
 int id submit_area 0x7f090236
 int id supportScrollUp 0x7f090237
+int id t 0x7f0902a0
 int id tabMode 0x7f090238
 int id tag_accessibility_actions 0x7f090239
 int id tag_accessibility_clickable_spans 0x7f09023a

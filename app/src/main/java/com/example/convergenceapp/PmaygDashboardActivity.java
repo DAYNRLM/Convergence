@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,15 +15,16 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.example.convergenceapp.database.AppDatabase;
-import com.example.convergenceapp.database.entity.NrlmInfoEntity;
-import com.example.convergenceapp.request.NrlmMasterRequest;
+
+
 import com.example.convergenceapp.request.PmaygDashboardRequest;
-import com.example.convergenceapp.response.NrlmDashboardResponse;
+
 import com.example.convergenceapp.response.NrlmMasterResponse;
 import com.example.convergenceapp.response.PmaygDashboardResponse;
 import com.example.convergenceapp.utils.AppUtils;
@@ -61,10 +63,19 @@ public class PmaygDashboardActivity extends AppCompatActivity {
         surveyPentxt =findViewById(R.id.ben_survey_pending);
         locallySavetxt =findViewById(R.id.beneficiarysync_locally);
         update=findViewById(R.id.btn_update);
+       ImageView imageView=findViewById(R.id.backarrowp);
         appDatabase= AppDatabase.getDatabase(getApplicationContext());
         locallySave=appDatabase.memberEntryInfoDao().getLocalBenEntry();
 
+imageView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
 
+        Intent intent = new Intent(PmaygDashboardActivity.this, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+});
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override

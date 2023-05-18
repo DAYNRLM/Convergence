@@ -40,7 +40,17 @@ public class PmaygMasterResponse {
         public String beneficiaryname;
         public String familydet_name;
         public String grampanchayatcode;
+        public String nrlm_village_code;
         public String statename;
+
+        public String getNrlm_village_code() {
+            return nrlm_village_code;
+        }
+
+        public void setNrlm_village_code(String nrlm_village_code) {
+            this.nrlm_village_code = nrlm_village_code;
+        }
+
         public String mobileno;
         public String scheme;
         public String flag_sync;

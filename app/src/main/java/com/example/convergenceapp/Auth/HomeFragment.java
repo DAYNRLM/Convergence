@@ -39,6 +39,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.example.convergenceapp.BuildConfig;
 import com.example.convergenceapp.Mpin.SetMpinFragmentDirections;
 import com.example.convergenceapp.R;
 import com.example.convergenceapp.adapter.DataDialogAdapter;
@@ -89,9 +90,9 @@ public class HomeFragment extends Fragment {
 
     ArrayAdapter<String> selectionFromAdapter,otherMemberAdapter,selectionFromAdapter1,gpAdapter,nrlmGpAdapter,nrlmVillageAdapter,shgAdapter,memberAdapter,reasonAdapter,wiilingAdapter,villageAdapter,beneficiaryAdapter;
     Toolbar toolbar_home;
-    List<String> list,list1,gpName,villageName,beneficiaryName,nrlmGpName,nrlmGpCode,nrlmVillageName,nrlmVillageCode,shgName,shgCode,memberName,memberCode,reasonList;
+    List<String> list,list1,gpName,villageName,villageCodep,beneficiaryName,nrlmGpName,nrlmGpCode,nrlmVillageName,nrlmVillageCode,shgName,shgCode,memberName,memberCode,reasonList;
 
-    String selectedGp,selectedVillage,selectedBeneficiary,selectedWIlling
+    String selectedGp,selectedVillage,selectedVillageCodep,selectedBeneficiary,selectedWIlling
             ,selectedInShg,selectedBenAvailable,beneficiaryAccNo,beneficiaryId,selectedReason,selectedLgdCode,selectedLgdVillageCode,
 
     beneficiaryBankName,beneficiaryBranchname,beneficiaryMobileNo, ifscCode,
@@ -198,9 +199,11 @@ public class HomeFragment extends Fragment {
 
             List<VillageBean> villageBeans = appDatabase.pmaygInfoDao().getVillageList(selectedGp);
             villageName = new ArrayList<String>();
+            villageCodep = new ArrayList<String>();
 
             for (int j=0;j<villageBeans.size();j++){
                 villageName.add(villageBeans.get(j).getVillageName());
+                villageCodep.add(villageBeans.get(j).getVillageCode());
                 // Toast.makeText(getContext(), villageBeans.get(j).getVillageName(), Toast.LENGTH_SHORT).show();
 
             }
@@ -275,6 +278,7 @@ public class HomeFragment extends Fragment {
 
         binding.spinnerVillage.setOnItemClickListener((adapterView, view1, i, l) -> {
             selectedVillage= villageName.get(i);
+            selectedVillageCodep= villageCodep.get(i);
             flag=0;
             selectedLgdVillageCode=appDatabase.pmaygInfoDao().getViilageLgdCode(selectedVillage);
 
@@ -654,10 +658,12 @@ public class HomeFragment extends Fragment {
 
             nrlmVillageBeans = appDatabase.nrlmInfoDao().getNrlmVillage(selectedNrlmGpCode);
             nrlmVillageName = new ArrayList<String>();
+            nrlmVillageCode = new ArrayList<String>();
 
 
             for (int j=0;j<nrlmVillageBeans.size();j++){
                 nrlmVillageName.add(nrlmVillageBeans.get(j).getNrlmVillageName());
+                nrlmVillageCode.add(nrlmVillageBeans.get(j).getNrlmVillageCode());
                 //  Toast.makeText(getContext(), beneficiaryBeans.get(i).getBenName(), Toast.LENGTH_SHORT).show();
 
             }
@@ -701,7 +707,7 @@ public class HomeFragment extends Fragment {
 
         binding.spinnerNrlmVillage.setOnItemClickListener((adapterView, view1, i, l) -> {
             selectedNrlmVillage=   nrlmVillageName.get(i);
-            //selectedNrlmVillageCode= nrlmVillageCode.get(i);
+            selectedNrlmVillageCode= nrlmVillageCode.get(i);
 
 
             shgBeans = appDatabase.nrlmInfoDao().getShg(selectedNrlmVillage);
@@ -772,8 +778,6 @@ public class HomeFragment extends Fragment {
             binding.spinnerMemberName.setAdapter(memberAdapter);
             memberAdapter.notifyDataSetChanged();
             if (!selectedShg.equalsIgnoreCase("")) {
-
-
 
                 // set Visibility
 
@@ -979,8 +983,11 @@ public class HomeFragment extends Fragment {
                 this.village_Code = village_Code;
                 this.created_on = created_on;*/
 
+                if (selectedNrlmVillageCode.equalsIgnoreCase("")){
+                    selectedNrlmVillageCode=selectedVillageCodep;
+                }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    appDatabase.memberEntryInfoDao().insert(new MemberEntryInfoEntity(selectedGp,"PMAYG",beneficiaryId,selectedLgdCode,selectedLgdVillageCode,beneficiaryMobileNo,selectedBenAvailable,selectedInShg,selectedWIlling,selectedReason,selectedShgCode,selectedmemberCode,selectedNrlmVillageCode,AppUtils.getInstance().getCurrentDateAndTime(),AppUtils.appVersion,"0"));
+                    appDatabase.memberEntryInfoDao().insert(new MemberEntryInfoEntity(selectedGp,"PMAYG",beneficiaryId,selectedLgdCode,selectedLgdVillageCode,beneficiaryMobileNo,selectedBenAvailable,selectedInShg,selectedWIlling,selectedReason,selectedShgCode,selectedmemberCode,selectedNrlmVillageCode,AppUtils.getInstance().getCurrentDateAndTime(), BuildConfig.VERSION_NAME,"0"));
                 }
                 List<MemberEntryInfoEntity>  membersyncdata=appDatabase.memberEntryInfoDao().getSyncData("0");
 

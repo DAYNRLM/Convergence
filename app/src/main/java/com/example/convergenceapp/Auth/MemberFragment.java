@@ -29,6 +29,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.android.volley.VolleyError;
+import com.example.convergenceapp.BuildConfig;
 import com.example.convergenceapp.HomeActivity;
 import com.example.convergenceapp.NrlmDashboardActivity;
 import com.example.convergenceapp.R;
@@ -703,7 +704,7 @@ public class MemberFragment extends Fragment {
                     beneficiaryDetails.setBranch_code(nrlmBenefeciaryMobileBeans.get(i).getBranch_code());
                     beneficiaryDetails.setAc_no(nrlmBenefeciaryMobileBeans.get(i).getAccount_number());
                     beneficiaryDetails.setReason_id(nrlmBenefeciaryMobileBeans.get(i).getReason_of_discontinue());
-                    beneficiaryDetails.setApp_ver("1.0.0");
+                    beneficiaryDetails.setApp_ver(BuildConfig.VERSION_NAME);
                     beneficiaryDetails.setCreated_on_app(nrlmBenefeciaryMobileBeans.get(i).getEntered_date());
                     nrlmMemberList.add(nrlmBenefeciaryMobileBeans.get(i).getMember_code());
                     Bendata.add(beneficiaryDetails);

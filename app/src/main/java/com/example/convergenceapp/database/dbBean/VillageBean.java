@@ -19,7 +19,7 @@ public class VillageBean {
         this.villageName = villageName;
     }
 
-    @ColumnInfo(name = "village_code")
+    @ColumnInfo(name = "nrlm_village_code")
     private String villageCode;
     @ColumnInfo(name = "village_name")
     private String villageName;

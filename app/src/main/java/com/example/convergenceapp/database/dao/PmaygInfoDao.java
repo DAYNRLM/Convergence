@@ -23,7 +23,7 @@ public interface PmaygInfoDao {
 
     @Query("select distinct gp_code,gp_name from PmaygInfoEntity order by gp_name ASC")
     List<GpBean> getGPList();
-    @Query("select distinct village_code,village_name from PmaygInfoEntity where gp_name=:gpName order by village_name ASC ")
+    @Query("select distinct nrlm_village_code,village_name from PmaygInfoEntity where gp_name=:gpName order by village_name ASC ")
     List<VillageBean> getVillageList(String gpName);
     @Query("select distinct fathername,mothername,beneficiary_id,beneficiary_holder_name,beneficiary_acc_no,beneficiary_bank_name,beneficiary_branch_name,mobile_no,ifsc_code from PmaygInfoEntity where village_name=:villageCode and flag=:flag order by beneficiary_holder_name ASC")
     List<BeneficiaryBean> getBenDetailsList(String villageCode, String flag);

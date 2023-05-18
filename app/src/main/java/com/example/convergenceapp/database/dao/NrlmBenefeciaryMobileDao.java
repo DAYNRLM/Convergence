@@ -14,7 +14,7 @@ public interface NrlmBenefeciaryMobileDao {
     @Insert
     void insert(NrlmBenefeciaryMobileEntity nrlmBenefeciaryMobileEntity);
 
-    @Query("select * from NrlmBenefeciaryMobileEntity where syc_flag=:sycFlag")
+    @Query("select distinct * from NrlmBenefeciaryMobileEntity where syc_flag=:sycFlag")
     List<NrlmBenefeciaryMobileBean> getNrlmBenefeciaryMobileDataAcordingSyncFlag(String sycFlag);
 
     @Query("select mobile_number from NrlmBenefeciaryMobileEntity where NrlmBenefeciaryMobileEntity.village_code =:villageCode and nrlmBenefeciaryMobileEntity.member_code=:memberCode")

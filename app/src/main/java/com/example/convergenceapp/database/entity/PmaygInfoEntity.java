@@ -201,7 +201,17 @@ public class PmaygInfoEntity {
     private String village_name;
     private String scheme;
     private String beneficiary_holder_name;
+
+    public String getNrlm_village_code() {
+        return nrlm_village_code;
+    }
+
+    public void setNrlm_village_code(String nrlm_village_code) {
+        this.nrlm_village_code = nrlm_village_code;
+    }
+
     private String beneficiary_id;
+    private String nrlm_village_code;
 
     private String ifsc_code;
 
@@ -213,11 +223,12 @@ public class PmaygInfoEntity {
         this.ifsc_code = ifsc_code;
     }
 
-    public PmaygInfoEntity(String gp_code, String gp_name, String village_code, String village_name, String scheme, String beneficiary_holder_name, String beneficiary_id, String beneficiary_acc_no, String beneficiary_bank_name, String beneficiary_branch_name, String mobile_no, String member_name, String holder_sync_flag, String mothername, String districtname, String blockcode, String districtcode, String statecode, String fathername, String blockname, String sl_no_member, String ifsc_code,String flag) {
+    public PmaygInfoEntity(String gp_code, String gp_name, String village_code,String nrlm_village_code, String village_name, String scheme, String beneficiary_holder_name, String beneficiary_id, String beneficiary_acc_no, String beneficiary_bank_name, String beneficiary_branch_name, String mobile_no, String member_name, String holder_sync_flag, String mothername, String districtname, String blockcode, String districtcode, String statecode, String fathername, String blockname, String sl_no_member, String ifsc_code,String flag) {
 
         this.gp_code = gp_code;
         this.gp_name = gp_name;
         this.village_code = village_code;
+        this.nrlm_village_code = nrlm_village_code;
         this.village_name = village_name;
         this.scheme = scheme;
         this.beneficiary_holder_name = beneficiary_holder_name;

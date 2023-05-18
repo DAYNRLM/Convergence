@@ -25,6 +25,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.android.volley.VolleyError;
 
+import com.example.convergenceapp.BuildConfig;
 import com.example.convergenceapp.MpinActivity;
 import com.example.convergenceapp.R;
 import com.example.convergenceapp.database.AppDatabase;
@@ -343,11 +344,12 @@ public class LoginFragment extends Fragment {
                                 blockname=pmaygMasterResponse.getData().getAssign_data().get(j).getBlockname();
                                 sl_no_member=pmaygMasterResponse.getData().getAssign_data().get(j).getSl_no_member();
                                 ifsc_code=pmaygMasterResponse.getData().getAssign_data().get(j).getIfsc_code();
+                             String   nrlmVillageCode=pmaygMasterResponse.getData().getAssign_data().get(j).getNrlm_village_code();
                                 flag="0";
 
                                 AppUtils.getInstance().showLog("GPCode"+gp_code, LoginFragment.class);
 
-                                appDatabase.pmaygInfoDao().insert(new PmaygInfoEntity(gp_code,gp_name,village_code
+                                appDatabase.pmaygInfoDao().insert(new PmaygInfoEntity(gp_code,gp_name,village_code,nrlmVillageCode
                                         ,village_name,scheme,beneficiary_holder_name,beneficiary_id
                                         ,beneficiary_acc_no,beneficiary_bank_name,beneficiary_branch_name,mobile_no,member_name,holder_sync_flag,mothername
                                         ,districtname,blockcode,districtcode,statecode,fathername,blockname,sl_no_member,ifsc_code,flag));
@@ -733,11 +735,11 @@ public class LoginFragment extends Fragment {
                 // loginRequest.setUser_password("2c6626b3e420cda7db59a680873f132b8163e302510d2499c1abdd2d61d37219");
                 loginRequest.setImei_no(imeiNo);
                 loginRequest.setDevice_name(AppUtils.getInstance().getDeviceInfo());
-                loginRequest.setApp_version("1.0.0");
+                loginRequest.setApp_version(BuildConfig.VERSION_NAME);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     loginRequest.setDate(AppUtils.getInstance().getCurrentDate());
                 }
-                loginRequest.setAndroid_version("1.0.0");
+                loginRequest.setAndroid_version(BuildConfig.VERSION_NAME);
                 loginRequest.setLocation_coordinate("1232323");
                 loginRequest.setAndroid_api_version("30");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
