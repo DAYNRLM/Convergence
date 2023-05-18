@@ -61,6 +61,7 @@ import com.example.convergenceapp.databinding.FragmentHomeBinding;
 import com.example.convergenceapp.request.BeneficiaryDetails;
 import com.example.convergenceapp.request.LoginRequest;
 import com.example.convergenceapp.request.SyncRequest;
+
 import com.example.convergenceapp.utils.AppUtils;
 import com.example.convergenceapp.utils.Cryptography;
 import com.example.convergenceapp.utils.DialogFactory;
@@ -192,6 +193,7 @@ public class HomeFragment extends Fragment {
 
 
             AppUtils.getInstance().showLog("This is LGD code"+selectedLgdCode, HomeFragment.class);
+
 
 
             //   Toast.makeText(getContext(), selectedGp, Toast.LENGTH_SHORT).show();
@@ -1242,7 +1244,7 @@ public class HomeFragment extends Fragment {
             VolleyService volleyService = VolleyService.getInstance(getContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("Request of sync", "https://nrlm.gov.in/nrlmwebservice/services/convergence/syncdata", plainData, mResultCallBack);
+            volleyService.postDataVolley("Request of sync", AppUtils.buildURL+"syncdata", plainData, mResultCallBack);
 
 
 

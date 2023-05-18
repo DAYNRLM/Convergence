@@ -39,6 +39,7 @@ import com.example.convergenceapp.request.DeleteUnassignRequest;
 import com.example.convergenceapp.request.UnassignRequest;
 import com.example.convergenceapp.response.DeleteUnassignResponse;
 import com.example.convergenceapp.response.UnassignResponse;
+
 import com.example.convergenceapp.utils.AppUtils;
 import com.example.convergenceapp.utils.Cryptography;
 import com.example.convergenceapp.utils.DialogFactory;
@@ -85,6 +86,8 @@ List<String> data;
         NavController navController=navHostFragment.getNavController();
         NavInflater navInflater=navController.getNavInflater();
         NavGraph navGraph=navInflater.inflate(R.navigation.home_nav_graph);
+        appDatabase=AppDatabase.getDatabase(getApplicationContext());
+
 
         nrlmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -337,7 +340,7 @@ List<String> data;
             VolleyService volleyService = VolleyService.getInstance(getApplicationContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("dashboard Nrlm", "https://nrlm.gov.in/nrlmwebservice/services/convergence/unassignvill", plainData, mResultCallBack);
+            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"unassignvill", plainData, mResultCallBack);
 
 
 
@@ -409,7 +412,7 @@ List<String> data;
                 }
                 VillageCode = sb.toString();
 
-                //     Toast.makeText(getContext(), "village"+VillageCode, Toast.LENGTH_SHORT).show();
+                     Toast.makeText(getApplicationContext(), "village"+VillageCode, Toast.LENGTH_SHORT).show();
 
                 deleteUnassignRequest.setVillage_code(VillageCode);
 
@@ -520,7 +523,7 @@ List<String> data;
             VolleyService volleyService = VolleyService.getInstance(getApplicationContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("dashboard Nrlm", "https://nrlm.gov.in/nrlmwebservice/services/convergence/delunassignvill", plainData, mResultCallBack);
+            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"delunassignvill", plainData, mResultCallBack);
 
 
 

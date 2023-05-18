@@ -23,6 +23,7 @@ import com.example.convergenceapp.database.AppDatabase;
 import com.example.convergenceapp.request.PmaygDashboardRequest;
 import com.example.convergenceapp.response.NrlmDashboardResponse;
 import com.example.convergenceapp.response.PmaygDashboardResponse;
+
 import com.example.convergenceapp.utils.AppUtils;
 import com.example.convergenceapp.utils.Cryptography;
 import com.example.convergenceapp.utils.NetworkFactory;
@@ -268,7 +269,7 @@ public class NrlmDashboardActivity extends AppCompatActivity {
             VolleyService volleyService = VolleyService.getInstance(getApplicationContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("dashboard Nrlm", "https://nrlm.gov.in/nrlmwebservice/services/convergence/nrlmdashdata", plainData, mResultCallBack);
+            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"nrlmdashdata", plainData, mResultCallBack);
 
 
 

@@ -45,6 +45,7 @@ import com.example.convergenceapp.request.PmaygMasterRequest;
 import com.example.convergenceapp.response.NrlmMasterResponse;
 
 import com.example.convergenceapp.response.PmaygMasterResponse;
+
 import com.example.convergenceapp.utils.AppUtils;
 import com.example.convergenceapp.utils.Cryptography;
 import com.example.convergenceapp.utils.DialogFactory;
@@ -390,7 +391,7 @@ public class LoginFragment extends Fragment {
             VolleyService  volleyService = VolleyService.getInstance(getContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("masterNrlm", "https://nrlm.gov.in/nrlmwebservice/services/convergence/pmaygassigndata", plainData, mResultCallBack);
+            volleyService.postDataVolley("masterNrlm", AppUtils.buildURL+"pmaygassigndata", plainData, mResultCallBack);
 
 
 
@@ -477,7 +478,7 @@ public class LoginFragment extends Fragment {
                 }
             };
             VolleyService  volleyService = VolleyService.getInstance(getContext());
-            volleyService.postDataVolley("masterNrlm", "https://nrlm.gov.in/nrlmwebservice/services/convergence/bankbranchdata", plainData, mResultCallBack);
+            volleyService.postDataVolley("masterNrlm", AppUtils.buildURL+"bankbranchdata", plainData, mResultCallBack);
 
 
 
@@ -687,7 +688,7 @@ public class LoginFragment extends Fragment {
             VolleyService  volleyService = VolleyService.getInstance(getContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("masterNrlm", "https://nrlm.gov.in/nrlmwebservice/services/convergence/assigndata", plainData, mResultCallBack);
+            volleyService.postDataVolley("masterNrlm", AppUtils.buildURL+"assigndata", plainData, mResultCallBack);
 
 
 
@@ -918,7 +919,7 @@ public class LoginFragment extends Fragment {
             VolleyService  volleyService = VolleyService.getInstance(getContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("loginAPI", "https://nrlm.gov.in/nrlmwebservice/services/convergence/login", plainData, mResultCallBack);
+            volleyService.postDataVolley("loginAPI", AppUtils.buildURL+"login", plainData, mResultCallBack);
 
 
 

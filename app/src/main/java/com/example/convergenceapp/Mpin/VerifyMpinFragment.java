@@ -34,6 +34,7 @@ import com.example.convergenceapp.request.UnassignRequest;
 import com.example.convergenceapp.response.DeleteUnassignResponse;
 import com.example.convergenceapp.response.NrlmDashboardResponse;
 import com.example.convergenceapp.response.UnassignResponse;
+
 import com.example.convergenceapp.utils.AppUtils;
 import com.example.convergenceapp.utils.Cryptography;
 import com.example.convergenceapp.utils.DialogFactory;
@@ -111,172 +112,6 @@ public class VerifyMpinFragment extends Fragment {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-
-    public void callUnassignApi(){
-
-
-        if(NetworkFactory.isInternetOn(getContext()))
-        {
-
-
-         ProgressDialog   progressDialog = new ProgressDialog(getContext());
-            progressDialog.setMessage("Loading...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-
-
-
-          //  *//**//*******make json object is encrypted and *********//**//*
-            JSONObject encryptedObject =new JSONObject();
-            JSONObject plainData=null;
-            try {
-                Cryptography cryptography = new Cryptography();
-
-
-
-
-                @SuppressLint("HardwareIds") String  imeiNo = Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-
-                UnassignRequest unassignRequest=new UnassignRequest();
-                String loginId= PreferenceFactory.getInstance().getSharedPrefrencesData(PreferenceKeyManager.getPrefLoginId(),getContext());
-                String  deviceInfo= AppUtils.getInstance().getDeviceInfo();
-                unassignRequest.setUser_id(loginId);
-                unassignRequest.setImei_no(imeiNo);
-                unassignRequest.setDevice_name(deviceInfo);
-                unassignRequest.setLocation_coordinate("1232323");
-
-
-
-                String data=new Gson().toJson(unassignRequest);
-                plainData=new JSONObject(data);
-                //encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(nrlmMasterRequest)));
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (NoSuchPaddingException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } //catch (InvalidKeyException e) {
-            // e.printStackTrace();
-            // } catch (InvalidAlgorithmParameterException e) {
-            //  e.printStackTrace();
-            //} catch (IllegalBlockSizeException e) {
-            // e.printStackTrace();
-            // } catch (BadPaddingException e) {
-            //e.printStackTrace();
-            // } catch (UnsupportedEncodingException e) {
-            // e.printStackTrace();
-            //}
-         //   *//**//***********************************************//**//*
-
-            // AppUtils.getInstance().showLog("request of NrlmMaster" +encryptedObject, LoginFragment.class);
-            Log.d(TAG, "request of NrlmMaster "+plainData.toString());
-            mResultCallBack = new VolleyResult() {
-                @Override
-                public void notifySuccess(String requestType, JSONObject response) {
-                    progressDialog.dismiss();
-   //*//**//*                 JSONObject jsonObject = null;  //manish comment
-
-                    String objectResponse="";
-                    if(response.has("data")){
-                        try {
-                            objectResponse=response.getString("data");
-                            //   AppUtils.getInstance().showLog("response encrupt"+objectResponse,LoginFragment.class);
-                            Log.d(TAG, "response encrupt "+objectResponse.toString());
-
-
-                        }catch (JSONException e)
-                        {
-                            //    AppUtils.getInstance().showLog("objjjjjjj"+objectResponse,LoginFragment.class);
-                            Log.d(TAG, "objjjjjjj: "+objectResponse.toString());
-                        }
-                    }else {
-                        return;
-                    }
-
-                    try {
-                        JSONObject jsonObject1=new JSONObject(objectResponse);
-                        objectResponse=jsonObject1.getString("data");
-                        //    AppUtils.getInstance().showLog("dashboard"+jsonObject1,LoginFragment.class);
-                        Log.d(TAG, "dashboard: "+jsonObject1.toString());
-
-                    }catch (JSONException e)
-                    {
-                        // AppUtils.getInstance().showLog("exceptionDataOfBlock"+e,LoginFragment.class);
-                        Log.d(TAG, "exceptionDataOfBlock: "+e.toString());
-
-                    }
-                    //*//**//*
-
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        try {
-                            Cryptography cryptography = new Cryptography();
-
-                            Log.d(TAG, "responseJSON: "+response.toString());
-
-                            UnassignResponse unassignResponse = UnassignResponse.jsonToJava(response.toString());
-
-                                 statusCode = unassignResponse.getData().get(0).getVillage_status();
-
-
-                                if (statusCode.equalsIgnoreCase("D")) {
-                                    appDatabase.checkAndDeleteDao().deleteAll();
-                                    for (int i =0; i<unassignResponse.getData().size();i++) {
-
-                                    String VillageCode = unassignResponse.getData().get(i).getVillage_code();
-                                    appDatabase.checkAndDeleteDao().insert(new CheckAndDeleteEntity(VillageCode));
-                                }
-
-
-                            }
-                                else
-                                {
-                               //     Toast.makeText(getContext(),"Not Found For Unassign",Toast.LENGTH_LONG).show();
-                                }
-
-
-
-                          //checkAndDeleteBean   = appDatabase.checkAndDeleteDao().getVillageCodeList().get();
-
-
-                        } catch (Exception e) {
-                            //progressDialog.dismiss();
-                            Log.d(TAG, "notifySuccess: "+e);
-                            //AppUtils.getInstance().showLog("DecryptEx" + e, LoginFragment.class);
-                        }
-
-                        progressDialog.dismiss();
-
-                    }
-                  //  callDeleteAPI();
-
-                }
-
-                @Override
-                public void notifyError(String requestType, VolleyError error) {
-                    progressDialog.dismiss();
-
-                }
-            };
-            VolleyService volleyService = VolleyService.getInstance(getContext());
-
-            //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("dashboard Nrlm", "https://nrlm.gov.in/nrlmwebservice/services/convergence/unassignvill", plainData, mResultCallBack);
-
-
-
-        }
-        else {
-            Log.d(TAG, "Internet: ");
-            Toast.makeText(getContext(),"No internet",Toast.LENGTH_LONG).show();
-
-
-
-        }
-    }
-
-
     public void callDeleteAPI(){
 
 
@@ -410,7 +245,7 @@ public class VerifyMpinFragment extends Fragment {
                            String code = deleteUnassignResponse.getStatus();
                            if (code.equalsIgnoreCase("Success")){
 
-                               appDatabase.checkAndDeleteDao().deleteAll();
+                          //     appDatabase.checkAndDeleteDao().deleteAll();
                                DialogFactory.getInstance().showAlert(getContext(),"Village are Removed Kindly Login next day","Ok");
 
                                logout();
@@ -444,7 +279,7 @@ public class VerifyMpinFragment extends Fragment {
             VolleyService volleyService = VolleyService.getInstance(getContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("dashboard Nrlm", "https://nrlm.gov.in/nrlmwebservice/services/convergence/delunassignvill", plainData, mResultCallBack);
+            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"delunassignvill", plainData, mResultCallBack);
 
 
 

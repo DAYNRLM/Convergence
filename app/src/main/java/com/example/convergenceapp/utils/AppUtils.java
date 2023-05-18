@@ -33,7 +33,10 @@ import java.util.regex.Pattern;
 public class  AppUtils {
     public static AppUtils utilsInstance;
     public static boolean wantToShow=true;
-    public static String appVersion="2.0.0";
+
+    //public static String buildURL = "https://nrlm.gov.in/nrlmwebservice/services/convergence/" ;   //live
+    public static String buildURL = "http://10.197.183.105:8080/nrlmwebservice/services/convergence/" ;   //local
+
 
     public synchronized static AppUtils getInstance() {
         if (utilsInstance == null) {

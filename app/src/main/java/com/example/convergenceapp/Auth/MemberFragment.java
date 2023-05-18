@@ -44,17 +44,11 @@ import com.example.convergenceapp.database.dbBean.NrlmDataBean;
 import com.example.convergenceapp.database.dbBean.NrlmVillageBean;
 import com.example.convergenceapp.database.dbBean.ReasonBean;
 import com.example.convergenceapp.database.dbBean.ShgBean;
-import com.example.convergenceapp.database.entity.MemberEntryInfoEntity;
+
 import com.example.convergenceapp.database.entity.NrlmBenefeciaryMobileEntity;
-import com.example.convergenceapp.database.entity.PmaygInfoEntity;
-import com.example.convergenceapp.databinding.FragmentHomeBinding;
 import com.example.convergenceapp.databinding.FragmentMemberBinding;
-import com.example.convergenceapp.request.BeneficiaryDetails;
 import com.example.convergenceapp.request.BenficiaryDtl;
 import com.example.convergenceapp.request.MemberSyncRequest;
-import com.example.convergenceapp.request.PmaygMasterRequest;
-import com.example.convergenceapp.request.SyncRequest;
-import com.example.convergenceapp.response.PmaygMasterResponse;
 import com.example.convergenceapp.utils.AppUtils;
 import com.example.convergenceapp.utils.Cryptography;
 import com.example.convergenceapp.utils.DialogFactory;
@@ -857,7 +851,7 @@ public class MemberFragment extends Fragment {
             VolleyService  volleyService = VolleyService.getInstance(getContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("Request of sync", "https://nrlm.gov.in/nrlmwebservice/services/convergence/memsyncdata", plainData, mResultCallBack);
+            volleyService.postDataVolley("Request of sync", AppUtils.buildURL+"memsyncdata", plainData, mResultCallBack);
 
 
 
