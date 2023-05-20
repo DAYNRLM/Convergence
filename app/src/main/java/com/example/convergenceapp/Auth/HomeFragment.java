@@ -76,10 +76,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 public class HomeFragment extends Fragment {
@@ -945,11 +950,7 @@ public class HomeFragment extends Fragment {
                     }
 
                 }
-              /*  Toast.makeText(getContext(),selectedGp+selectedVillage+selectedBeneficiary+selectedWIlling
-                        +selectedInShg+selectedBenAvailable+beneficiaryAccNo+beneficiaryId+selectedReason+
-                        beneficiaryBankName+beneficiaryBranchname+beneficiaryMobileNo+ifscCode+
-                        selectedNrlmGpCode+selectedNrlmGp+selectedNrlmVillageCode+selectedNrlmVillage+selectedShg+selectedShgCode+
-                        selectedmemberCode+selectedmember,Toast.LENGTH_LONG).show();*/
+
                 AppUtils.getInstance().showLog("SelecltedGp "+selectedGp, HomeFragment.class);
                 AppUtils.getInstance().showLog("selectedVillage "+selectedVillage, HomeFragment.class);
                 AppUtils.getInstance().showLog("selectedBeneficiary "+selectedBeneficiary, HomeFragment.class);
@@ -1097,7 +1098,7 @@ public class HomeFragment extends Fragment {
 
             //*******make json object is encrypted and *********//*
             JSONObject encryptedObject =new JSONObject();
-            JSONObject plainData=null;
+            //JSONObject plainData=null;
             try {
                 Cryptography cryptography = new Cryptography();
 
@@ -1147,10 +1148,10 @@ public class HomeFragment extends Fragment {
 
 
 
-                String data=new Gson().toJson(syncRequest);
-                plainData=new JSONObject(data);
-                AppUtils.getInstance().showLog("Sync Data"+plainData, HomeFragment.class);
-                //encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(nrlmMasterRequest)));
+                //String data=new Gson().toJson(syncRequest);
+               // plainData=new JSONObject(data);
+                AppUtils.getInstance().showLog("Sync Data"+encryptedObject, HomeFragment.class);
+                encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(syncRequest)));
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             } catch (NoSuchPaddingException e) {
@@ -1158,6 +1159,17 @@ public class HomeFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             } //catch (InvalidKeyException e) {
+            catch (InvalidAlgorithmParameterException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            }
             // e.printStackTrace();
             // } catch (InvalidAlgorithmParameterException e) {
             //  e.printStackTrace();
@@ -1171,7 +1183,7 @@ public class HomeFragment extends Fragment {
             //***********************************************//*
 
             // AppUtils.getInstance().showLog("request of NrlmMaster" +encryptedObject, LoginFragment.class);
-            Log.d(TAG, "request of Sync "+plainData.toString());
+            Log.d(TAG, "request of Sync "+encryptedObject.toString());
             NavController  navController = NavHostFragment.findNavController(this);
             NavDirections navDirections=HomeFragmentDirections.actionHomeFragmentSelf();
 
@@ -1179,10 +1191,47 @@ public class HomeFragment extends Fragment {
             mResultCallBack = new VolleyResult() {
                 @Override
                 public void notifySuccess(String requestType, JSONObject response) {
+                    JSONObject jsonObject = null;
 
+                    String objectResponse="";
+                    if(response.has("data")){
+                        try {
+                            objectResponse=response.getString("data");
+
+                        }catch (JSONException e)
+                        {
+                            AppUtils.getInstance().showLog("ExceptionInVerifyMobile" +
+                                    ""+e,HomeFragment.class);
+                        }
+                    }else {
+                        return;
+                    }
 
                     try {
-                        if(response.getString("message").equalsIgnoreCase("success"))
+                        JSONObject jsonObject1=new JSONObject(objectResponse);
+                        objectResponse=jsonObject1.getString("data");
+                        AppUtils.getInstance().showLog("dataAtSubmit"+jsonObject1,HomeFragment.class);
+                    }catch (JSONException e)
+                    {
+                        AppUtils.getInstance().showLog("exceptionAtSubmit"+e,HomeFragment.class);
+
+                    }
+
+
+                    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        try {
+                            Cryptography cryptography = new Cryptography();
+                            jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Main data of state
+                            AppUtils.getInstance().showLog("responseJSON" + jsonObject.toString(), HomeFragment.class);
+                        } catch (Exception e) {
+                    //        progressDialog.dismiss();
+                           // Toast.makeText(getContext(), "Data not found! " +e , Toast.LENGTH_SHORT).show();
+                            AppUtils.getInstance().showLog("DecryptEx" + e, HomeFragment.class);
+                        }
+                    }
+
+                    try {
+                        if(jsonObject.getString("message").equalsIgnoreCase("success"))
                         {
 
                             //  appDatabase.pmaygInfoDao().updateSyncFlag(beneficiaryId);
@@ -1244,7 +1293,7 @@ public class HomeFragment extends Fragment {
             VolleyService volleyService = VolleyService.getInstance(getContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("Request of sync", AppUtils.buildURL+"syncdata", plainData, mResultCallBack);
+            volleyService.postDataVolley("Request of sync", AppUtils.buildURL+"syncdata", encryptedObject, mResultCallBack);
 
 
 

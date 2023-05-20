@@ -36,8 +36,13 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 public class NrlmDashboardActivity extends AppCompatActivity {
@@ -109,7 +114,7 @@ public class NrlmDashboardActivity extends AppCompatActivity {
 
             /*******make json object is encrypted and *********/
             JSONObject encryptedObject =new JSONObject();
-            JSONObject plainData=null;
+           // JSONObject plainData=null;
             try {
                 Cryptography cryptography = new Cryptography();
 
@@ -129,8 +134,8 @@ public class NrlmDashboardActivity extends AppCompatActivity {
 
 
                 String data=new Gson().toJson(pmaygDashboardRequest);
-                plainData=new JSONObject(data);
-                //encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(nrlmMasterRequest)));
+             //   plainData=new JSONObject(data);
+                encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(pmaygDashboardRequest)));
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             } catch (NoSuchPaddingException e) {
@@ -138,6 +143,17 @@ public class NrlmDashboardActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             } //catch (InvalidKeyException e) {
+            catch (InvalidAlgorithmParameterException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            }
             // e.printStackTrace();
             // } catch (InvalidAlgorithmParameterException e) {
             //  e.printStackTrace();
@@ -151,14 +167,15 @@ public class NrlmDashboardActivity extends AppCompatActivity {
             /***********************************************/
 
             // AppUtils.getInstance().showLog("request of NrlmMaster" +encryptedObject, LoginFragment.class);
-            Log.d(TAG, "request of NrlmMaster "+plainData.toString());
+            Log.d(TAG, "request of NrlmMaster "+encryptedObject.toString());
             mResultCallBack = new VolleyResult() {
                 @Override
                 public void notifySuccess(String requestType, JSONObject response) {
                     progressDialog.dismiss();
-   /*                 JSONObject jsonObject = null;  //manish comment
+                   JSONObject jsonObject = null;  //manish comment
 
-                    String objectResponse="";
+
+                     String objectResponse="";
                     if(response.has("data")){
                         try {
                             objectResponse=response.getString("data");
@@ -186,7 +203,7 @@ public class NrlmDashboardActivity extends AppCompatActivity {
                         // AppUtils.getInstance().showLog("exceptionDataOfBlock"+e,LoginFragment.class);
                         Log.d(TAG, "exceptionDataOfBlock: "+e.toString());
 
-                    }*/
+                    }
 
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -194,8 +211,10 @@ public class NrlmDashboardActivity extends AppCompatActivity {
                             Cryptography cryptography = new Cryptography();
 
                             Log.d(TAG, "responseJSON: "+response.toString());
+                            jsonObject = new JSONObject(cryptography.decrypt(objectResponse));
 
-                            NrlmDashboardResponse nrlmDashboardResponse = NrlmDashboardResponse.jsonToJava(response.toString());
+
+                            NrlmDashboardResponse nrlmDashboardResponse = NrlmDashboardResponse.jsonToJava(jsonObject.toString());
                        //     String statusCode= nrlmDashboardResponse.getStatus();
 
 
@@ -269,7 +288,7 @@ public class NrlmDashboardActivity extends AppCompatActivity {
             VolleyService volleyService = VolleyService.getInstance(getApplicationContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"nrlmdashdata", plainData, mResultCallBack);
+            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"nrlmdashdata", encryptedObject, mResultCallBack);
 
 
 

@@ -13,6 +13,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -42,8 +44,13 @@ public class VolleyService {
             JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.POST, url, sendObj, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    if (mResultCallback != null)
-                        mResultCallback.notifySuccess(requestType, response);
+                    if (mResultCallback != null) {
+                        try {
+                            mResultCallback.notifySuccess(requestType, response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }, new Response.ErrorListener() {
                 @Override

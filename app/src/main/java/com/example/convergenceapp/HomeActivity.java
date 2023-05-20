@@ -53,10 +53,15 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 
@@ -179,6 +184,8 @@ List<String> data;
         appDatabase.reasonInfoDao().deleteAll();
         appDatabase.bankMasterDao().deleteAll();*/
         Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
         startActivity(i);
          PreferenceFactory.getInstance().removeSharedPrefrencesData(PreferenceKeyManager.getPrefKeyMpin(),getApplicationContext());
        /*  NavDirections navDirections= HomeFragmentDirections.actionHomeFragmentToLoginFragment2();
@@ -221,9 +228,9 @@ List<String> data;
 
 
 
-                String data=new Gson().toJson(unassignRequest);
-                plainData=new JSONObject(data);
-                //encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(nrlmMasterRequest)));
+               // String data=new Gson().toJson(unassignRequest);
+              //  plainData=new JSONObject(data);
+                encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(unassignRequest)));
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             } catch (NoSuchPaddingException e) {
@@ -231,6 +238,17 @@ List<String> data;
             } catch (JSONException e) {
                 e.printStackTrace();
             } //catch (InvalidKeyException e) {
+            catch (InvalidAlgorithmParameterException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            }
             // e.printStackTrace();
             // } catch (InvalidAlgorithmParameterException e) {
             //  e.printStackTrace();
@@ -244,7 +262,7 @@ List<String> data;
             //   *//**//***********************************************//**//*
 
             // AppUtils.getInstance().showLog("request of NrlmMaster" +encryptedObject, LoginFragment.class);
-            Log.d(TAG, "request of NrlmMaster "+plainData.toString());
+          //  Log.d(TAG, "request of NrlmMaster "+plainData.toString());
             mResultCallBack = new VolleyResult() {
                 @Override
                 public void notifySuccess(String requestType, JSONObject response) {
@@ -287,9 +305,12 @@ List<String> data;
                         try {
                             Cryptography cryptography = new Cryptography();
 
-                            Log.d(TAG, "responseJSON: "+response.toString());
+                              JSONObject  jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Main data of state
+                                AppUtils.getInstance().showLog("responseJSON" + jsonObject.toString(), HomeActivity.class);
 
-                            UnassignResponse unassignResponse = UnassignResponse.jsonToJava(response.toString());
+                            Log.d(TAG, "responseJSON: "+jsonObject.toString());
+
+                            UnassignResponse unassignResponse = UnassignResponse.jsonToJava(jsonObject.toString());
 
                             statusCode = unassignResponse.getData().get(0).getVillage_status();
 
@@ -340,7 +361,7 @@ List<String> data;
             VolleyService volleyService = VolleyService.getInstance(getApplicationContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"unassignvill", plainData, mResultCallBack);
+            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"unassignvill", encryptedObject, mResultCallBack);
 
 
 
@@ -412,14 +433,14 @@ List<String> data;
                 }
                 VillageCode = sb.toString();
 
-                     Toast.makeText(getApplicationContext(), "village"+VillageCode, Toast.LENGTH_SHORT).show();
+                   //  Toast.makeText(getApplicationContext(), "village"+VillageCode, Toast.LENGTH_SHORT).show();
 
                 deleteUnassignRequest.setVillage_code(VillageCode);
 
 
-                String data=new Gson().toJson(deleteUnassignRequest);
-                plainData=new JSONObject(data);
-                //encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(nrlmMasterRequest)));
+              //  String data=new Gson().toJson(deleteUnassignRequest);
+                //plainData=new JSONObject(data);
+                encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(deleteUnassignRequest)));
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             } catch (NoSuchPaddingException e) {
@@ -427,6 +448,17 @@ List<String> data;
             } catch (JSONException e) {
                 e.printStackTrace();
             } //catch (InvalidKeyException e) {
+            catch (InvalidAlgorithmParameterException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            }
             // e.printStackTrace();
             // } catch (InvalidAlgorithmParameterException e) {
             //  e.printStackTrace();
@@ -440,7 +472,7 @@ List<String> data;
             //  *//**//***********************************************//**//*
 
             // AppUtils.getInstance().showLog("request of NrlmMaster" +encryptedObject, LoginFragment.class);
-            Log.d(TAG, "request of delete "+plainData.toString());
+            Log.d(TAG, "request of delete "+encryptedObject.toString());
             mResultCallBack = new VolleyResult() {
                 @Override
                 public void notifySuccess(String requestType, JSONObject response) {
@@ -483,9 +515,11 @@ List<String> data;
                         try {
                             Cryptography cryptography = new Cryptography();
 
+                        JSONObject    jsonObject = new JSONObject(cryptography.decrypt(objectResponse));
+
                             Log.d(TAG, "responseJSON: "+response.toString());
 
-                            DeleteUnassignResponse deleteUnassignResponse = DeleteUnassignResponse.jsonToJava(response.toString());
+                            DeleteUnassignResponse deleteUnassignResponse = DeleteUnassignResponse.jsonToJava(jsonObject.toString());
                             String code = deleteUnassignResponse.getStatus();
                             if (code.equalsIgnoreCase("Success")){
 
@@ -523,7 +557,7 @@ List<String> data;
             VolleyService volleyService = VolleyService.getInstance(getApplicationContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"delunassignvill", plainData, mResultCallBack);
+            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"delunassignvill", encryptedObject, mResultCallBack);
 
 
 

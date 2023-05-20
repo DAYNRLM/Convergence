@@ -63,6 +63,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -71,6 +74,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 public class MemberFragment extends Fragment {
@@ -658,7 +663,7 @@ public class MemberFragment extends Fragment {
 
             /*******make json object is encrypted and *********/
             JSONObject encryptedObject =new JSONObject();
-            JSONObject plainData=null;
+        //    JSONObject plainData=null;
 
             try {
                 Cryptography cryptography = new Cryptography();
@@ -708,9 +713,9 @@ public class MemberFragment extends Fragment {
                 memberSyncRequest.setBenficiary_dtl(Bendata);
 
 
-                //encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(pmaygMasterRequest)));
-                String plnObj=new Gson().toJson(memberSyncRequest);
-                plainData =new JSONObject(plnObj);
+                encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(memberSyncRequest)));
+               // String plnObj=new Gson().toJson(memberSyncRequest);
+               // plainData =new JSONObject(plnObj);
                 navController = NavHostFragment.findNavController(this);
                 navDirections=MemberFragmentDirections.actionMemberFragmentToHomeFragment();
 
@@ -722,6 +727,17 @@ public class MemberFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             } //catch (InvalidKeyException e) {
+            catch (InvalidAlgorithmParameterException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            }
             // e.printStackTrace();
             // } catch (InvalidAlgorithmParameterException e) {
             // e.printStackTrace();
@@ -735,13 +751,13 @@ public class MemberFragment extends Fragment {
             /***********************************************/
 
             //AppUtils.getInstance().showLog("request of NrlmMaster" +encryptedObject, LoginFragment.class);
-            Log.d(TAG, "request of PmaygMaster "+plainData.toString());
+            Log.d(TAG, "request of PmaygMaster "+encryptedObject.toString());
             mResultCallBack = new VolleyResult() {
                 @Override
                 public void notifySuccess(String requestType, JSONObject response) {
 
                     progressDialog.dismiss();
-              /*      JSONObject jsonObject = null;    //manish commented
+                    JSONObject jsonObject = null;    //manish commented
 
 
 
@@ -749,7 +765,7 @@ public class MemberFragment extends Fragment {
                     if(response.has("data")){
                         try {
                             objectResponse=response.getString("data");
-                          //   AppUtils.getInstance().showLog("response encrupt"+objectResponse,LoginFragment.class);
+                             AppUtils.getInstance().showLog("response encrupt"+objectResponse,LoginFragment.class);
                             Log.d(TAG, "response encrupt "+objectResponse.toString());
 
 
@@ -762,9 +778,9 @@ public class MemberFragment extends Fragment {
 
                     }else {
                         return;
-                    }*/
+                    }
 
-                 /*   try {               //manish commented
+                    try {               //manish commented
                         JSONObject jsonObject1=new JSONObject(objectResponse);
                         objectResponse=jsonObject1.getString("data");
                     //    AppUtils.getInstance().showLog("dashboard"+jsonObject1,LoginFragment.class);
@@ -775,13 +791,14 @@ public class MemberFragment extends Fragment {
                        // AppUtils.getInstance().showLog("exceptionDataOfBlock"+e,LoginFragment.class);
                         Log.d(TAG, "exceptionDataOfBlock: "+e.toString());
 
-                    }*/
+                    }
 
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         try {
+                            Cryptography cryptography = new Cryptography();
 
-                            // jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Manish comment
+                             jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Manish comment
                             //if (jsonObject.getString("E200").equalsIgnoreCase("Success"))
                             // AppUtils.getInstance().showLog("responseJSON" + jsonObject.toString(), LoginFragment.class);
                             Log.d(TAG, "responseJSON: "+response.toString());
@@ -799,7 +816,7 @@ public class MemberFragment extends Fragment {
 
 
 
-                            if(response.getString("message").equalsIgnoreCase("success"))
+                            if(jsonObject.getString("message").equalsIgnoreCase("success"))
                             {
 
                                 //  appDatabase.pmaygInfoDao().updateSyncFlag(beneficiaryId);
@@ -851,7 +868,7 @@ public class MemberFragment extends Fragment {
             VolleyService  volleyService = VolleyService.getInstance(getContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("Request of sync", AppUtils.buildURL+"memsyncdata", plainData, mResultCallBack);
+            volleyService.postDataVolley("Request of sync", AppUtils.buildURL+"memsyncdata", encryptedObject, mResultCallBack);
 
 
 

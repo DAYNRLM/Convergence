@@ -40,8 +40,13 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 public class PmaygDashboardActivity extends AppCompatActivity {
@@ -112,7 +117,7 @@ imageView.setOnClickListener(new View.OnClickListener() {
 
           //  ******make json object is encrypted and ********
             JSONObject encryptedObject =new JSONObject();
-            JSONObject plainData=null;
+           // JSONObject plainData=null;
             try {
                 Cryptography cryptography = new Cryptography();
 
@@ -132,8 +137,8 @@ imageView.setOnClickListener(new View.OnClickListener() {
 
 
                 String data=new Gson().toJson(pmaygDashboardRequest);
-                plainData=new JSONObject(data);
-                //encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(nrlmMasterRequest)));
+           //     plainData=new JSONObject(data);
+                encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(pmaygDashboardRequest)));
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             } catch (NoSuchPaddingException e) {
@@ -141,6 +146,17 @@ imageView.setOnClickListener(new View.OnClickListener() {
             } catch (JSONException e) {
                 e.printStackTrace();
             } //catch (InvalidKeyException e) {
+            catch (InvalidAlgorithmParameterException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            }
             // e.printStackTrace();
             // } catch (InvalidAlgorithmParameterException e) {
             //  e.printStackTrace();
@@ -154,7 +170,7 @@ imageView.setOnClickListener(new View.OnClickListener() {
          //   *********************************************
 
             // AppUtils.getInstance().showLog("request of NrlmMaster" +encryptedObject, LoginFragment.class);
-            Log.d(TAG, "request of NrlmMaster "+plainData.toString());
+            Log.d(TAG, "request of NrlmMaster "+encryptedObject.toString());
             mResultCallBack = new VolleyResult() {
                 @Override
                 public void notifySuccess(String requestType, JSONObject response) {
@@ -167,7 +183,7 @@ imageView.setOnClickListener(new View.OnClickListener() {
                     if(response.has("data")){
                         try {
                             objectResponse=response.getString("data");
-                            //   AppUtils.getInstance().showLog("response encrupt"+objectResponse,LoginFragment.class);
+                               //AppUtils.getInstance().showLog("response encrupt"+objectResponse,PmaygDashboardActivity.class);
                             Log.d(TAG, "response encrupt "+objectResponse.toString());
 
 
@@ -200,8 +216,9 @@ imageView.setOnClickListener(new View.OnClickListener() {
 
                             Log.d(TAG, "responseJSON: "+response.toString());
 
+                            jsonObject = new JSONObject(cryptography.decrypt(objectResponse));
 
-                            PmaygDashboardResponse pmaygDashboardResponse = PmaygDashboardResponse.jsonToJava(response.toString());
+                            PmaygDashboardResponse pmaygDashboardResponse = PmaygDashboardResponse.jsonToJava(jsonObject.toString());
                         //    String statusCode= nrlmDashboardResponse.getStatus();
 
 
@@ -272,7 +289,7 @@ imageView.setOnClickListener(new View.OnClickListener() {
             VolleyService volleyService = VolleyService.getInstance(getApplicationContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"pmaygdashdata", plainData, mResultCallBack);
+            volleyService.postDataVolley("dashboard Nrlm", AppUtils.buildURL+"pmaygdashdata", encryptedObject, mResultCallBack);
 
 
 
