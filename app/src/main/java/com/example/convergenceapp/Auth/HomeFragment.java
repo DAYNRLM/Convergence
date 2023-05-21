@@ -990,6 +990,9 @@ public class HomeFragment extends Fragment {
                     selectedNrlmVillageCode=selectedVillageCodep;
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    if (beneficiaryMobileNo.equalsIgnoreCase("NULL")){
+                        beneficiaryMobileNo="NA";
+                    }
                     appDatabase.memberEntryInfoDao().insert(new MemberEntryInfoEntity(selectedGp,"PMAYG",beneficiaryId,selectedLgdCode,selectedLgdVillageCode,beneficiaryMobileNo,selectedBenAvailable,selectedInShg,selectedWIlling,selectedReason,selectedShgCode,selectedmemberCode,selectedNrlmVillageCode,AppUtils.getInstance().getCurrentDateAndTime(), BuildConfig.VERSION_NAME,"0"));
                 }
                 List<MemberEntryInfoEntity>  membersyncdata=appDatabase.memberEntryInfoDao().getSyncData("0");

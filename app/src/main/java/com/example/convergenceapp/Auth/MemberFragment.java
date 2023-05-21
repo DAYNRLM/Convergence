@@ -15,8 +15,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,6 +39,7 @@ import com.example.convergenceapp.database.AppDatabase;
 import com.example.convergenceapp.database.dbBean.BankMasterBean;
 import com.example.convergenceapp.database.dbBean.BankNameAndBranchName;
 import com.example.convergenceapp.database.dbBean.MemberBean;
+import com.example.convergenceapp.database.dbBean.MemberCodeBean;
 import com.example.convergenceapp.database.dbBean.MemberReasonBean;
 import com.example.convergenceapp.database.dbBean.MobileBelongsToBean;
 import com.example.convergenceapp.database.dbBean.NrlmBenefeciaryMobileBean;
@@ -108,6 +111,7 @@ public class MemberFragment extends Fragment {
     List<ReasonBean> reasonBeanList;
     private FragmentMemberBinding binding;
     List<NrlmBenefeciaryMobileBean>  nrlmBenefeciaryMobileBeans;
+    List<MemberCodeBean>  memberCodeBeanslist;
 
     int iPartOfShg=0;
     String mobNo;
@@ -295,6 +299,7 @@ public class MemberFragment extends Fragment {
             }
 
             memberAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_text,memberName);
+
             binding.spinnerMemberName.setAdapter(memberAdapter);
             memberAdapter.notifyDataSetChanged();
             if (!selectedShg.equalsIgnoreCase("")) {
@@ -333,6 +338,20 @@ public class MemberFragment extends Fragment {
         });
         //  select member
 
+     /*   AdapterView.OnItemSelectedListener listener=new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)adapterView.getChildAt(0)).setTextColor(requireContext().getColor(R.color.brown_200));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        };
+        binding.spinnerMemberName.setOnItemSelectedListener(listener);
+
+      */
         binding.spinnerMemberName.setOnItemClickListener((adapterView, view1, i, l) -> {
             selectedmember = memberName.get(i);
             selectedmemberCode = memberCode.get(i);
@@ -616,24 +635,54 @@ public class MemberFragment extends Fragment {
                 else{
                     String enteredDate = getCurrentDateTimefordatabaseStorage();
 
-                    //       syncAPI(selectedShgCode,selectedmemberCode,selectedNrlmVillageCode,selectedMobileBelogCode,binding.etMobile.getText().toString(),selectedBankCode,selectedBranchCode,binding.etAccountNumber.getText().toString(), String.valueOf(selectedDisContinueReasonCode),enteredDate);
 
                     String userId = appDatabase.loginInfoDao().getLoginId();
-                    {
 
 
 
-                        appDatabase.nrlmBenefeciaryMobileDao().insert(
-                                new NrlmBenefeciaryMobileEntity(selectedNrlmGpCode, selectedNrlmVillageCode, selectedShgCode,
-                                        selectedmemberCode, binding.etMobile.getText().toString(), selectedMobileBelogCode, String.valueOf(iPartOfShg), String.valueOf(selectedDisContinueReasonCode),
-                                        selectedBankCode, selectedBranchCode, binding.tvIfscCode.getText().toString(), binding.etAccountNumber.getText().toString(),
-                                        userId, enteredDate, "0", ""
-                                ));
-                        syncApi();
-                        //DialogFactory.getInstance().showAlert(getContext(),"Data has been saved successfully.","Ok");
 
-                    }
-                    //     Log.d(TAG, "onClick:Data "+ appDatabase.nrlmBenefeciaryMobileDao().getNrlmBenefeciaryMobileData());
+
+
+                    memberCodeBeanslist=appDatabase.nrlmBenefeciaryMobileDao().getNrlmMemberCode();
+                        String element="";
+                        Boolean check=false;
+
+
+                            for (int i=0;i<memberCodeBeanslist.size();i++){
+                                element=memberCodeBeanslist.get(i).getMemberCode();
+                                if (element.contains(selectedmemberCode)){
+
+                                     check= true;
+
+                                }
+                            }
+                            if (check){
+                                DialogFactory.getInstance().showAlert(getContext(),"Mobile number and bank details are already entered.","Ok");
+
+                            }
+
+                        else {
+                            String memberMobileNo = binding.etMobile.getText().toString();
+                            String ifscCode = binding.tvIfscCode.getText().toString();
+                            String acNo = binding.etAccountNumber.getText().toString();
+                            if (iPartOfShg==2){
+                                memberMobileNo="";
+                                ifscCode="";
+                                acNo="";
+                                selectedMobileBelogCode="";
+                                selectedBankCode="";
+                                selectedBranchCode="";
+
+                            }
+
+                                appDatabase.nrlmBenefeciaryMobileDao().insert(
+                                        new NrlmBenefeciaryMobileEntity(selectedNrlmGpCode, selectedNrlmVillageCode, selectedShgCode,
+                                                selectedmemberCode,memberMobileNo, selectedMobileBelogCode, String.valueOf(iPartOfShg), String.valueOf(selectedDisContinueReasonCode),
+                                                selectedBankCode, selectedBranchCode,ifscCode ,acNo ,
+                                                userId, enteredDate, "0", ""
+                                        ));
+                            syncApi();
+                        }
 
 
                 }
@@ -663,8 +712,6 @@ public class MemberFragment extends Fragment {
 
             /*******make json object is encrypted and *********/
             JSONObject encryptedObject =new JSONObject();
-        //    JSONObject plainData=null;
-
             try {
                 Cryptography cryptography = new Cryptography();
 
@@ -692,8 +739,6 @@ public class MemberFragment extends Fragment {
 
                     BenficiaryDtl beneficiaryDetails=new BenficiaryDtl();
 
-
-
                     beneficiaryDetails.setShg_code(nrlmBenefeciaryMobileBeans.get(i).getShg_code());
                     beneficiaryDetails.setShg_member_code(nrlmBenefeciaryMobileBeans.get(i).getMember_code());
                     beneficiaryDetails.setEntity_code(nrlmBenefeciaryMobileBeans.get(i).getVillage_code());
@@ -707,7 +752,6 @@ public class MemberFragment extends Fragment {
                     beneficiaryDetails.setCreated_on_app(nrlmBenefeciaryMobileBeans.get(i).getEntered_date());
                     nrlmMemberList.add(nrlmBenefeciaryMobileBeans.get(i).getMember_code());
                     Bendata.add(beneficiaryDetails);
-
 
                 }
                 memberSyncRequest.setBenficiary_dtl(Bendata);

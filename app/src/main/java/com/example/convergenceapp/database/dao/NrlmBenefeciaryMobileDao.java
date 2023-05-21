@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.example.convergenceapp.database.dbBean.MemberCodeBean;
 import com.example.convergenceapp.database.dbBean.NrlmBenefeciaryMobileBean;
 import com.example.convergenceapp.database.entity.NrlmBenefeciaryMobileEntity;
 
@@ -29,6 +30,10 @@ public interface NrlmBenefeciaryMobileDao {
 
     @Query("select count(*) from(select * from nrlmbenefeciarymobileentity where syc_flag is 0 )")
     String getLocalMobileEntry();
+
+
+    @Query("select distinct member_code from NrlmBenefeciaryMobileEntity")
+    List<MemberCodeBean> getNrlmMemberCode();
 
 
 }

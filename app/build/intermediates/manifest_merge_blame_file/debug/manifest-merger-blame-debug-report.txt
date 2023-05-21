@@ -6,177 +6,177 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml
+8-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="33" />
-9-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml
+9-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.BLUETOOTH" />
-11-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:6:5-68
-11-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:6:22-65
+11-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:6:5-68
+11-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:6:22-65
 12    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-12-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:7:5-76
-12-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:7:22-73
+12-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:7:5-76
+12-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:7:22-73
 13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-13-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:8:5-79
-13-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:8:22-76
+13-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:8:5-79
+13-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:8:22-76
 14    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-14-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:9:5-81
-14-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:9:22-78
+14-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:9:5-81
+14-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:9:22-78
 15    <uses-permission android:name="android.permission.ACCESS_GPS" />
-15-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:10:5-69
-15-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:10:22-66
+15-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:10:5-69
+15-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:10:22-66
 16    <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
-16-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:11:5-78
-16-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:11:22-75
+16-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:11:5-78
+16-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:11:22-75
 17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-17-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:12:5-79
-17-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:12:22-76
+17-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:12:5-79
+17-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:12:22-76
 18    <uses-permission android:name="android.permission.INTERNET" />
-18-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:13:5-67
-18-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:13:22-64
+18-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:13:5-67
+18-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:13:22-64
 19    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-19-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:14:5-75
-19-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:14:22-72
+19-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:14:5-75
+19-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:14:22-72
 20    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
-20-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:15:5-17:47
-20-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:16:9-70
+20-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:15:5-17:47
+20-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:16:9-70
 21    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-21-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:18:5-20:48
-21-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:19:9-65
+21-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:18:5-20:48
+21-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:19:9-65
 22    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-22-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:21:5-80
-22-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:21:22-77
+22-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:21:5-80
+22-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:21:22-77
 23    <uses-permission android:name="android.permission.CAMERA" />
-23-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:22:5-65
-23-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:22:22-62
+23-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:22:5-65
+23-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:22:22-62
 24
 25    <permission
-25-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:24:5-27:51
+25-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:24:5-27:51
 26        android:name="android.permission.WRITE_SETTINGS"
-26-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:25:9-57
+26-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:25:9-57
 27        android:protectionLevel="signature" />
-27-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:26:9-44
+27-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:26:9-44
 28
 29    <uses-feature
-29-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:29:5-31:36
+29-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:29:5-31:36
 30        android:name="android.hardware.camera"
-30-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:30:9-47
+30-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:30:9-47
 31        android:required="false" />
-31-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:31:9-33
+31-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:31:9-33
 32
 33    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
-33-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:15:5-17:47
-33-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:16:9-70
+33-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:15:5-17:47
+33-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:16:9-70
 34
 35    <permission
-35-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+35-->[androidx.core:core:1.9.0] C:\Users\hp\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
 36        android:name="com.myapp.convergenceapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-36-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+36-->[androidx.core:core:1.9.0] C:\Users\hp\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
 37        android:protectionLevel="signature" />
-37-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+37-->[androidx.core:core:1.9.0] C:\Users\hp\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
 38
 39    <uses-permission android:name="com.myapp.convergenceapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-39-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
-39-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+39-->[androidx.core:core:1.9.0] C:\Users\hp\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+39-->[androidx.core:core:1.9.0] C:\Users\hp\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 40
 41    <application
-41-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:37:5-72:19
+41-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:37:5-72:19
 42        android:allowBackup="false"
-42-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:38:9-36
+42-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:38:9-36
 43        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-43-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+43-->[androidx.core:core:1.9.0] C:\Users\hp\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 44        android:debuggable="true"
-44-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:39:9-35
+44-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:39:9-35
 45        android:icon="@mipmap/ic_launcher"
-45-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:40:9-43
+45-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:40:9-43
 46        android:label="@string/app_name"
-46-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:41:9-41
+46-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:41:9-41
 47        android:networkSecurityConfig="@xml/network_security_config"
-47-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:42:9-69
+47-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:42:9-69
 48        android:roundIcon="@mipmap/ic_launcher_round"
-48-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:43:9-54
+48-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:43:9-54
 49        android:supportsRtl="true"
-49-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:44:9-35
+49-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:44:9-35
 50        android:testOnly="true"
 51        android:theme="@style/Theme.ConvergenceApp" >
-51-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:45:9-52
+51-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:45:9-52
 52        <activity
-52-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:48:9-50:40
+52-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:48:9-50:40
 53            android:name="com.example.convergenceapp.PmaygDashboardActivity"
-53-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:49:13-51
+53-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:49:13-51
 54            android:exported="false" />
-54-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:50:13-37
+54-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:50:13-37
 55        <activity
-55-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:51:9-53:40
+55-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:51:9-53:40
 56            android:name="com.example.convergenceapp.NrlmDashboardActivity"
-56-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:52:13-50
+56-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:52:13-50
 57            android:exported="false" />
-57-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:53:13-37
+57-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:53:13-37
 58        <activity
-58-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:54:9-56:40
+58-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:54:9-56:40
 59            android:name="com.example.convergenceapp.HomeActivity"
-59-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:55:13-41
+59-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:55:13-41
 60            android:exported="false" />
-60-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:56:13-37
+60-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:56:13-37
 61        <activity
-61-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:57:9-59:40
+61-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:57:9-59:40
 62            android:name="com.example.convergenceapp.MpinActivity"
-62-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:58:13-41
+62-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:58:13-41
 63            android:exported="false" />
-63-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:59:13-37
+63-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:59:13-37
 64        <activity
-64-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:60:9-62:40
+64-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:60:9-62:40
 65            android:name="com.example.convergenceapp.LoginActivity"
-65-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:61:13-42
+65-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:61:13-42
 66            android:exported="false" />
-66-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:62:13-37
+66-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:62:13-37
 67        <activity
-67-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:63:9-71:20
+67-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:63:9-71:20
 68            android:name="com.example.convergenceapp.SplashScreen"
-68-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:64:13-41
+68-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:64:13-41
 69            android:exported="true" >
-69-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:65:13-36
+69-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:65:13-36
 70            <intent-filter>
-70-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:66:13-70:29
+70-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:66:13-70:29
 71                <action android:name="android.intent.action.MAIN" />
-71-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:67:17-69
-71-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:67:25-66
+71-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:67:17-69
+71-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:67:25-66
 72
 73                <category android:name="android.intent.category.LAUNCHER" />
-73-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:69:17-77
-73-->D:\Convergence App\ConvergenceApp\app\src\main\AndroidManifest.xml:69:27-74
+73-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:69:17-77
+73-->C:\Users\hp\AndroidStudioProjects\Convergencenew\app\src\main\AndroidManifest.xml:69:27-74
 74            </intent-filter>
 75        </activity>
 76
 77        <service
-77-->[androidx.room:room-runtime:2.5.0] C:\Users\DELL\.gradle\caches\transforms-3\d9462bb4ef948c1e8b5aecd9ba44746a\transformed\room-runtime-2.5.0\AndroidManifest.xml:24:9-28:63
+77-->[androidx.room:room-runtime:2.5.0] C:\Users\hp\.gradle\caches\transforms-3\d9462bb4ef948c1e8b5aecd9ba44746a\transformed\room-runtime-2.5.0\AndroidManifest.xml:24:9-28:63
 78            android:name="androidx.room.MultiInstanceInvalidationService"
-78-->[androidx.room:room-runtime:2.5.0] C:\Users\DELL\.gradle\caches\transforms-3\d9462bb4ef948c1e8b5aecd9ba44746a\transformed\room-runtime-2.5.0\AndroidManifest.xml:25:13-74
+78-->[androidx.room:room-runtime:2.5.0] C:\Users\hp\.gradle\caches\transforms-3\d9462bb4ef948c1e8b5aecd9ba44746a\transformed\room-runtime-2.5.0\AndroidManifest.xml:25:13-74
 79            android:directBootAware="true"
-79-->[androidx.room:room-runtime:2.5.0] C:\Users\DELL\.gradle\caches\transforms-3\d9462bb4ef948c1e8b5aecd9ba44746a\transformed\room-runtime-2.5.0\AndroidManifest.xml:26:13-43
+79-->[androidx.room:room-runtime:2.5.0] C:\Users\hp\.gradle\caches\transforms-3\d9462bb4ef948c1e8b5aecd9ba44746a\transformed\room-runtime-2.5.0\AndroidManifest.xml:26:13-43
 80            android:exported="false" />
-80-->[androidx.room:room-runtime:2.5.0] C:\Users\DELL\.gradle\caches\transforms-3\d9462bb4ef948c1e8b5aecd9ba44746a\transformed\room-runtime-2.5.0\AndroidManifest.xml:27:13-37
+80-->[androidx.room:room-runtime:2.5.0] C:\Users\hp\.gradle\caches\transforms-3\d9462bb4ef948c1e8b5aecd9ba44746a\transformed\room-runtime-2.5.0\AndroidManifest.xml:27:13-37
 81
 82        <provider
-82-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+82-->[androidx.emoji2:emoji2:1.2.0] C:\Users\hp\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
 83            android:name="androidx.startup.InitializationProvider"
-83-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+83-->[androidx.emoji2:emoji2:1.2.0] C:\Users\hp\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
 84            android:authorities="com.myapp.convergenceapp.androidx-startup"
-84-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+84-->[androidx.emoji2:emoji2:1.2.0] C:\Users\hp\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
 85            android:exported="false" >
-85-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+85-->[androidx.emoji2:emoji2:1.2.0] C:\Users\hp\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
 86            <meta-data
-86-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+86-->[androidx.emoji2:emoji2:1.2.0] C:\Users\hp\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
 87                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-87-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+87-->[androidx.emoji2:emoji2:1.2.0] C:\Users\hp\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
 88                android:value="androidx.startup" />
-88-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+88-->[androidx.emoji2:emoji2:1.2.0] C:\Users\hp\.gradle\caches\transforms-3\0d7aeeb9f0dcff1711000bb8d2a09f14\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
 89            <meta-data
-89-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\DELL\.gradle\caches\transforms-3\161cd51b97526345a23326c1ab3fef06\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+89-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\hp\.gradle\caches\transforms-3\161cd51b97526345a23326c1ab3fef06\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
 90                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-90-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\DELL\.gradle\caches\transforms-3\161cd51b97526345a23326c1ab3fef06\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+90-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\hp\.gradle\caches\transforms-3\161cd51b97526345a23326c1ab3fef06\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
 91                android:value="androidx.startup" />
-91-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\DELL\.gradle\caches\transforms-3\161cd51b97526345a23326c1ab3fef06\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+91-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\hp\.gradle\caches\transforms-3\161cd51b97526345a23326c1ab3fef06\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
 92        </provider>
 93    </application>
 94
