@@ -1,26 +1,26 @@
 [
     {
-        "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_verify_mpin.xml",
-        "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\layout\\fragment_verify_mpin.xml"
+        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_verify_mpin.xml",
+        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\fragment_verify_mpin.xml"
     },
     {
-        "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_home.xml",
-        "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\layout\\fragment_home.xml"
+        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_member.xml",
+        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\fragment_member.xml"
     },
     {
-        "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_set_mpin.xml",
-        "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\layout\\fragment_set_mpin.xml"
+        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_set_mpin.xml",
+        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\fragment_set_mpin.xml"
     },
     {
-        "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\dialog_bank_details.xml",
-        "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\layout\\dialog_bank_details.xml"
+        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\dialog_bank_details.xml",
+        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\dialog_bank_details.xml"
     },
     {
-        "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_change_language.xml",
-        "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\layout\\fragment_change_language.xml"
+        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_change_language.xml",
+        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\fragment_change_language.xml"
     },
     {
-        "merged": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_member.xml",
-        "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\layout\\fragment_member.xml"
+        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\fragment_home.xml"
     }
 ]

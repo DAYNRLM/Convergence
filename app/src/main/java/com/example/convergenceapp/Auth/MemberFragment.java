@@ -370,26 +370,13 @@ public class MemberFragment extends Fragment {
                 selectedBankCode=bankNameAndBranchNamesList.get(j).getBankCode();
                 indexOfBankName = bankNameList.indexOf(selectedBankName);
                 indexOfBranchName = bankNameList.indexOf(selectedBranchName);
-                Toast.makeText(getContext(),"Bank"+indexOfBranchName+indexOfBankName,Toast.LENGTH_LONG).show();
-                //   Toast.makeText(getContext(),"Bank"+selectedBranchName+selectedBankName,Toast.LENGTH_LONG).show();
                 binding.txtbranchNameShowid.setText(selectedBranchName);
                 binding.txtBankNameShowid.setText(selectedBankName);
-                //   containsString()
 
 
                 binding.spinnerBank.setText(selectedBankName);
             }
-          /*  if (!selectedBankCodes.equalsIgnoreCase("NA")){
-                for (int j =0; j<bankNameAndBranchNamesList.size();j++){
-                    selecteDBankBranchCode=bankNameAndBranchNamesList.get(j).getBranchCode();
-                    selectedBankName=bankNameAndBranchNamesList.get(j).getBankName();
-                    selectedBranchName=bankNameAndBranchNamesList.get(j).getBranchCode();
-                    binding.spinnerBank.setSelection(j);
-                }
-               // binding.spinnerBranch.setText(selectedBranchName);
 
-            }*/
-            //   selectedBankCode = memberActNameList.get(i);
             if (!selectedmember.equalsIgnoreCase("")) {
 
                 binding.tvSpouseName.setText(selectedMemberSpouse);

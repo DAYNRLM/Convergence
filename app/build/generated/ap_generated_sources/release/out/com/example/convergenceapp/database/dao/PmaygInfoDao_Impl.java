@@ -35,7 +35,7 @@ public final class PmaygInfoDao_Impl implements PmaygInfoDao {
     this.__insertionAdapterOfPmaygInfoEntity = new EntityInsertionAdapter<PmaygInfoEntity>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR ABORT INTO `PmaygInfoEntity` (`id`,`gp_code`,`flag`,`gp_name`,`village_code`,`village_name`,`scheme`,`beneficiary_holder_name`,`beneficiary_id`,`ifsc_code`,`beneficiary_acc_no`,`beneficiary_bank_name`,`beneficiary_branch_name`,`mobile_no`,`member_name`,`holder_sync_flag`,`mothername`,`districtname`,`blockcode`,`districtcode`,`statecode`,`fathername`,`blockname`,`sl_no_member`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR ABORT INTO `PmaygInfoEntity` (`id`,`gp_code`,`flag`,`gp_name`,`village_code`,`village_name`,`scheme`,`beneficiary_holder_name`,`beneficiary_id`,`nrlm_village_code`,`ifsc_code`,`beneficiary_acc_no`,`beneficiary_bank_name`,`beneficiary_branch_name`,`mobile_no`,`member_name`,`holder_sync_flag`,`mothername`,`districtname`,`blockcode`,`districtcode`,`statecode`,`fathername`,`blockname`,`sl_no_member`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -81,80 +81,85 @@ public final class PmaygInfoDao_Impl implements PmaygInfoDao {
         } else {
           stmt.bindString(9, value.getBeneficiary_id());
         }
-        if (value.getIfsc_code() == null) {
+        if (value.getNrlm_village_code() == null) {
           stmt.bindNull(10);
         } else {
-          stmt.bindString(10, value.getIfsc_code());
+          stmt.bindString(10, value.getNrlm_village_code());
         }
-        if (value.getBeneficiary_acc_no() == null) {
+        if (value.getIfsc_code() == null) {
           stmt.bindNull(11);
         } else {
-          stmt.bindString(11, value.getBeneficiary_acc_no());
+          stmt.bindString(11, value.getIfsc_code());
         }
-        if (value.getBeneficiary_bank_name() == null) {
+        if (value.getBeneficiary_acc_no() == null) {
           stmt.bindNull(12);
         } else {
-          stmt.bindString(12, value.getBeneficiary_bank_name());
+          stmt.bindString(12, value.getBeneficiary_acc_no());
         }
-        if (value.getBeneficiary_branch_name() == null) {
+        if (value.getBeneficiary_bank_name() == null) {
           stmt.bindNull(13);
         } else {
-          stmt.bindString(13, value.getBeneficiary_branch_name());
+          stmt.bindString(13, value.getBeneficiary_bank_name());
         }
-        if (value.getMobile_no() == null) {
+        if (value.getBeneficiary_branch_name() == null) {
           stmt.bindNull(14);
         } else {
-          stmt.bindString(14, value.getMobile_no());
+          stmt.bindString(14, value.getBeneficiary_branch_name());
         }
-        if (value.getMember_name() == null) {
+        if (value.getMobile_no() == null) {
           stmt.bindNull(15);
         } else {
-          stmt.bindString(15, value.getMember_name());
+          stmt.bindString(15, value.getMobile_no());
         }
-        if (value.getHolder_sync_flag() == null) {
+        if (value.getMember_name() == null) {
           stmt.bindNull(16);
         } else {
-          stmt.bindString(16, value.getHolder_sync_flag());
+          stmt.bindString(16, value.getMember_name());
         }
-        if (value.getMothername() == null) {
+        if (value.getHolder_sync_flag() == null) {
           stmt.bindNull(17);
         } else {
-          stmt.bindString(17, value.getMothername());
+          stmt.bindString(17, value.getHolder_sync_flag());
         }
-        if (value.getDistrictname() == null) {
+        if (value.getMothername() == null) {
           stmt.bindNull(18);
         } else {
-          stmt.bindString(18, value.getDistrictname());
+          stmt.bindString(18, value.getMothername());
         }
-        if (value.getBlockcode() == null) {
+        if (value.getDistrictname() == null) {
           stmt.bindNull(19);
         } else {
-          stmt.bindString(19, value.getBlockcode());
+          stmt.bindString(19, value.getDistrictname());
         }
-        if (value.getDistrictcode() == null) {
+        if (value.getBlockcode() == null) {
           stmt.bindNull(20);
         } else {
-          stmt.bindString(20, value.getDistrictcode());
+          stmt.bindString(20, value.getBlockcode());
         }
-        if (value.getStatecode() == null) {
+        if (value.getDistrictcode() == null) {
           stmt.bindNull(21);
         } else {
-          stmt.bindString(21, value.getStatecode());
+          stmt.bindString(21, value.getDistrictcode());
         }
-        if (value.getFathername() == null) {
+        if (value.getStatecode() == null) {
           stmt.bindNull(22);
         } else {
-          stmt.bindString(22, value.getFathername());
+          stmt.bindString(22, value.getStatecode());
         }
-        if (value.getBlockname() == null) {
+        if (value.getFathername() == null) {
           stmt.bindNull(23);
         } else {
-          stmt.bindString(23, value.getBlockname());
+          stmt.bindString(23, value.getFathername());
         }
-        if (value.getSl_no_member() == null) {
+        if (value.getBlockname() == null) {
           stmt.bindNull(24);
         } else {
-          stmt.bindString(24, value.getSl_no_member());
+          stmt.bindString(24, value.getBlockname());
+        }
+        if (value.getSl_no_member() == null) {
+          stmt.bindNull(25);
+        } else {
+          stmt.bindString(25, value.getSl_no_member());
         }
       }
     };
@@ -258,7 +263,7 @@ public final class PmaygInfoDao_Impl implements PmaygInfoDao {
 
   @Override
   public List<VillageBean> getVillageList(final String gpName) {
-    final String _sql = "select distinct village_code,village_name from PmaygInfoEntity where gp_name=? order by village_name ASC ";
+    final String _sql = "select distinct nrlm_village_code,village_name from PmaygInfoEntity where gp_name=? order by village_name ASC ";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
     if (gpName == null) {

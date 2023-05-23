@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
@@ -45,6 +46,7 @@ import com.example.convergenceapp.R;
 import com.example.convergenceapp.adapter.DataDialogAdapter;
 import com.example.convergenceapp.database.AppDatabase;
 import com.example.convergenceapp.database.dbBean.BeneficiaryBean;
+import com.example.convergenceapp.database.dbBean.BenifIdBean;
 import com.example.convergenceapp.database.dbBean.GpBean;
 import com.example.convergenceapp.database.dbBean.MemberBean;
 import com.example.convergenceapp.database.dbBean.NrlmDataBean;
@@ -372,10 +374,14 @@ public class HomeFragment extends Fragment {
 
             otherMemberData=appDatabase.pmaygInfoDao().getMemberData(beneficiaryId); //uper se niche le aana
             familyMemberNames=new ArrayList<>();
+          String mem=  otherMemberData.get(0).getMembersName();
+          if (!mem.equalsIgnoreCase("NULL")){
             for(int j=0;j<otherMemberData.size();j++)
             {
+
                 familyMemberNames.add(otherMemberData.get(j).getMembersName());
             }
+          }
             familyMemberNames.add("NOT IN THE LIST");
 
 
@@ -937,6 +943,7 @@ public class HomeFragment extends Fragment {
 
 
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
@@ -971,20 +978,7 @@ public class HomeFragment extends Fragment {
                 AppUtils.getInstance().showLog("selectedmemberCode "+selectedmemberCode, HomeFragment.class);
                 AppUtils.getInstance().showLog("selectedmember "+selectedmember, HomeFragment.class);
 
-                /*this.gp_Name = gp_Name;
-                this.scheme_Name = scheme_Name;
-                this.ben_Id = ben_Id;
-                this.lgd_GpCode = lgd_GpCode;
-                this.lgd_Villagecode = lgd_Villagecode;
-                this.mobile_no = mobile_no;
-                this.ben_availability = ben_availability;
-                this.any_Familyinshg = any_Familyinshg;
-                this.willing_joinshg = willing_joinshg;
-                this.reason = reason;
-                this.shg_Code = shg_Code;
-                this.member_Code = member_Code;
-                this.village_Code = village_Code;
-                this.created_on = created_on;*/
+
 
                 if (selectedNrlmVillageCode.equalsIgnoreCase("")){
                     selectedNrlmVillageCode=selectedVillageCodep;
@@ -993,34 +987,61 @@ public class HomeFragment extends Fragment {
                     if (beneficiaryMobileNo.equalsIgnoreCase("NULL")){
                         beneficiaryMobileNo="NA";
                     }
-                    appDatabase.memberEntryInfoDao().insert(new MemberEntryInfoEntity(selectedGp,"PMAYG",beneficiaryId,selectedLgdCode,selectedLgdVillageCode,beneficiaryMobileNo,selectedBenAvailable,selectedInShg,selectedWIlling,selectedReason,selectedShgCode,selectedmemberCode,selectedNrlmVillageCode,AppUtils.getInstance().getCurrentDateAndTime(), BuildConfig.VERSION_NAME,"0"));
                 }
                 List<MemberEntryInfoEntity>  membersyncdata=appDatabase.memberEntryInfoDao().getSyncData("0");
 
 
-                //appDatabase.memberEntryInfoDao().insert();
+              //  memberCodeBeanslist=appDatabase.nrlmBenefeciaryMobileDao().getNrlmMemberCode();
+               List<BenifIdBean> BenifIdBean =appDatabase.memberEntryInfoDao().getbenifIdMemberCode();
+                appDatabase.pmaygInfoDao().updateSyncFlag(beneficiaryId);
+                appDatabase.memberEntryInfoDao().insert(new MemberEntryInfoEntity(selectedGp,"PMAYG",beneficiaryId,selectedLgdCode,selectedLgdVillageCode,beneficiaryMobileNo,selectedBenAvailable,selectedInShg,selectedWIlling,selectedReason,selectedShgCode,selectedmemberCode,selectedNrlmVillageCode,AppUtils.getInstance().getCurrentDateAndTime(), BuildConfig.VERSION_NAME,"0"));
 
-                if(NetworkFactory.isInternetOn(getContext())) {
+
+
+             /*   String element="";
+                Boolean check=false;
+
+
+                for (int i=0;i<BenifIdBean.size();i++){
+                    element=BenifIdBean.get(i).getBenId();
+                    if (element.contains(beneficiaryId)){
+
+                        check= true;
+
+                    }
+                }
+                if (check){
+                    DialogFactory.getInstance().showAlert(getContext(),"This beneficiary id is already saved in local db","Ok");
+
+                }
+                else {
+                    appDatabase.memberEntryInfoDao().insert(new MemberEntryInfoEntity(selectedGp,"PMAYG",beneficiaryId,selectedLgdCode,selectedLgdVillageCode,beneficiaryMobileNo,selectedBenAvailable,selectedInShg,selectedWIlling,selectedReason,selectedShgCode,selectedmemberCode,selectedNrlmVillageCode,AppUtils.getInstance().getCurrentDateAndTime(), BuildConfig.VERSION_NAME,"0"));
+
+                }*/
+
+
+               if(NetworkFactory.isInternetOn(getContext())) {
                     String userid=PreferenceFactory.getInstance().getSharedPrefrencesData(PreferenceKeyManager.getPrefLoginId(),getContext());
                     String imei= PreferenceFactory.getInstance().getSharedPrefrencesData(PreferenceKeyManager.getPrefImeiNo(),getContext());
                     String deviceInfo= AppUtils.getInstance().getDeviceInfo();
 
                     syncAPI(userid,imei ,deviceInfo, "1232323", membersyncdata);
 
-                }else {
+                }
+              else {
                     //DialogFactory.getInstance().showAlertDialog(getContext(),1,"Alert!","Data saved Offline...","Ok",true);
                     DialogFactory.getInstance().showAlertDialog(getContext(), 1, "Alert!", "Data saved offlinee...", "ok", new DialogInterface.OnClickListener() {
+
+
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             refresh();
                         }
                     },null,null,true);
 
-                }
+            }
             }
         });
-
-
 
 
 
@@ -1057,37 +1078,6 @@ public class HomeFragment extends Fragment {
 
 
     }
-    public  void SyncApi(String userid,String imei, String device, String location, String scheme, String reg, String lgdgp, String lgdvill, String mobile, String beniavai,String familymem,String join, String rsn,String shgcd,String shgmemcod, String entity, String appvr,String cretedon ){
-        BeneficiaryDetails beneficiaryDetails=new BeneficiaryDetails();
-
-        beneficiaryDetails.setScheme_name(scheme);
-        beneficiaryDetails.setReg_no(reg);
-        beneficiaryDetails.setLgd_gp_cd(lgdgp);
-        beneficiaryDetails.setLgd_vill_cd(lgdvill);
-        beneficiaryDetails.setMobile_no(mobile);
-        beneficiaryDetails.setBenif_avail(beniavai);
-        beneficiaryDetails.setFamily_mem_shg(familymem);
-        beneficiaryDetails.setJoin_shg(join);
-        beneficiaryDetails.setReason(rsn);
-        beneficiaryDetails.setShg_code(shgcd);
-        beneficiaryDetails.setShg_member_code(shgmemcod);
-        beneficiaryDetails.setEntity_code(entity);
-        beneficiaryDetails.setApp_ver(appvr);
-        beneficiaryDetails.setCreated_on_app(cretedon);
-        ArrayList<BeneficiaryDetails> Bendata = new ArrayList<>();
-        Bendata.add(beneficiaryDetails);
-
-
-        SyncRequest syncRequest =new SyncRequest();
-        syncRequest.setUser_id(userid);
-        syncRequest.setImei_no(imei);
-        syncRequest.setDevice_name(device);
-        syncRequest.setLocation_coordinate(location);
-        syncRequest.setBenficiary_dtl(Bendata);
-        String data = new Gson().toJson(syncRequest);
-        AppUtils.getInstance().showLog("Actual Data-----"+data, HomeFragment.class);
-
-    }
     public void syncAPI(String userid,String imei, String device, String location,List<MemberEntryInfoEntity> memberSyncData )
     {
         if(NetworkFactory.isInternetOn(getContext()))
@@ -1099,7 +1089,7 @@ public class HomeFragment extends Fragment {
             progressDialog.show();
             List<String> benIdList=new ArrayList<>();
 
-            //*******make json object is encrypted and *********//*
+
             JSONObject encryptedObject =new JSONObject();
             //JSONObject plainData=null;
             try {
@@ -1142,17 +1132,6 @@ public class HomeFragment extends Fragment {
                 syncRequest.setBenficiary_dtl(Bendata);
 
 
-
-
-                // String loginId=PreferenceFactory.getInstance().getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyLoginid(),getCurrentContext());
-
-
-
-
-
-
-                //String data=new Gson().toJson(syncRequest);
-               // plainData=new JSONObject(data);
                 AppUtils.getInstance().showLog("Sync Data"+encryptedObject, HomeFragment.class);
                 encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(syncRequest)));
             } catch (NoSuchAlgorithmException e) {
@@ -1173,19 +1152,7 @@ public class HomeFragment extends Fragment {
             } catch (InvalidKeyException e) {
                 e.printStackTrace();
             }
-            // e.printStackTrace();
-            // } catch (InvalidAlgorithmParameterException e) {
-            //  e.printStackTrace();
-            //} catch (IllegalBlockSizeException e) {
-            // e.printStackTrace();
-            // } catch (BadPaddingException e) {
-            //e.printStackTrace();
-            // } catch (UnsupportedEncodingException e) {
-            // e.printStackTrace();
-            //}
-            //***********************************************//*
 
-            // AppUtils.getInstance().showLog("request of NrlmMaster" +encryptedObject, LoginFragment.class);
             Log.d(TAG, "request of Sync "+encryptedObject.toString());
             NavController  navController = NavHostFragment.findNavController(this);
             NavDirections navDirections=HomeFragmentDirections.actionHomeFragmentSelf();
@@ -1227,8 +1194,7 @@ public class HomeFragment extends Fragment {
                             jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Main data of state
                             AppUtils.getInstance().showLog("responseJSON" + jsonObject.toString(), HomeFragment.class);
                         } catch (Exception e) {
-                    //        progressDialog.dismiss();
-                           // Toast.makeText(getContext(), "Data not found! " +e , Toast.LENGTH_SHORT).show();
+
                             AppUtils.getInstance().showLog("DecryptEx" + e, HomeFragment.class);
                         }
                     }
@@ -1237,7 +1203,6 @@ public class HomeFragment extends Fragment {
                         if(jsonObject.getString("message").equalsIgnoreCase("success"))
                         {
 
-                            //  appDatabase.pmaygInfoDao().updateSyncFlag(beneficiaryId);
                             for (int i=0;i<benIdList.size();i++)
                             {
                                 String benId=benIdList.get(i);
@@ -1255,16 +1220,13 @@ public class HomeFragment extends Fragment {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             try {
                                 Cryptography cryptography = new Cryptography();
-                                //jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Manish comment
-                                //if (jsonObject.getString("E200").equalsIgnoreCase("Success"))
-                                // AppUtils.getInstance().showLog("responseJSON" + jsonObject.toString(), LoginFragment.class);
+
                                 JSONObject viewData=response;
                                 Log.d(TAG, "responseJSON: "+viewData.toString());
 
 
 
 
-                                // nrlmMasterResponse.getData();
 
 
 
@@ -1272,19 +1234,15 @@ public class HomeFragment extends Fragment {
                             } catch (Exception e) {
                                 //progressDialog.dismiss();
                                 Log.d(TAG, "notifySuccess: "+e);
-                                //AppUtils.getInstance().showLog("DecryptEx" + e, LoginFragment.class);
                             }
 
-                            // progressDialog.dismiss();
-                            // intentToMpin();
-                            //callNrlmMasterAPI();
-                            //  callPmaygMasterAPI();
+
                         }
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
 
-//progressDialog.dismiss();
+
                 }
 
                 @Override
@@ -1301,11 +1259,12 @@ public class HomeFragment extends Fragment {
 
 
         }else {
-            //progressDialog.dismiss();
+           // progressDialog.dismiss();
             //Log.d(TAG, "Internet: ");*//*
 
-        }
-    }
+
+        }}
+
     private void showOtherMemberDialog()
     {
         Dialog dialog = new Dialog(getContext());
@@ -1349,26 +1308,7 @@ public class HomeFragment extends Fragment {
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
     }
-    /*  public void logout(){
-          navController = NavHostFragment.findNavController(this);
-          appDatabase.pmaygInfoDao().deleteAll();
-          appDatabase.nrlmInfoDao().deleteAll();
-          appDatabase.loginInfoDao().deleteAll();
-          appDatabase.reasonInfoDao().deleteAll();
-          PreferenceFactory.getInstance().removeSharedPrefrencesData(PreferenceKeyManager.getPrefLoginId(),getContext());
-        //  PreferenceFactory.getInstance().removeSharedPrefrencesData(PreferenceKeyManager.getPrefKeyMpin(),getContext());
 
-          NavDirections navDirections= HomeFragmentDirections.actionHomeFragmentToLoginFragment();
-          navController.navigate(navDirections);
-      }
-
-      public void changeLanguage()
-      {
-          navController = NavHostFragment.findNavController(this);
-          NavDirections navDirections=HomeFragmentDirections.actionHomeFragmentToChangeLanguageFragment();
-          navController.navigate(navDirections);
-
-      }*/
     public void refresh ()
     {
         NavController  navController = NavHostFragment.findNavController(this);
@@ -1377,35 +1317,4 @@ public class HomeFragment extends Fragment {
 
 
     }
-/*    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // Do something that differs the Activity's menu here
-        menu.clear();
-
-        inflater.inflate(R.menu.menu, menu);
-
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.logOut:
-              //  Toast.makeText(getContext(), "Working", Toast.LENGTH_SHORT).show();
-                logout();
-
-                // Not implemented here
-                return true;
-            case R.id.changeLanguage:
-                changeLanguage();
-
-                return true;
-
-            default:
-                break;
-        }
-
-        return false;
-    }*/
 }

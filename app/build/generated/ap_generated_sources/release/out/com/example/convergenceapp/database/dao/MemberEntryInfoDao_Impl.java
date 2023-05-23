@@ -8,6 +8,7 @@ import androidx.room.SharedSQLiteStatement;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
+import com.example.convergenceapp.database.dbBean.BenifIdBean;
 import com.example.convergenceapp.database.entity.MemberEntryInfoEntity;
 import java.lang.Class;
 import java.lang.Override;
@@ -341,6 +342,34 @@ public final class MemberEntryInfoDao_Impl implements MemberEntryInfoDao {
         _result = _tmp;
       } else {
         _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public List<BenifIdBean> getbenifIdMemberCode() {
+    final String _sql = "select distinct ben_Id from MemberEntryInfoEntity";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfBenId = 0;
+      final List<BenifIdBean> _result = new ArrayList<BenifIdBean>(_cursor.getCount());
+      while(_cursor.moveToNext()) {
+        final BenifIdBean _item;
+        _item = new BenifIdBean();
+        final String _tmpBenId;
+        if (_cursor.isNull(_cursorIndexOfBenId)) {
+          _tmpBenId = null;
+        } else {
+          _tmpBenId = _cursor.getString(_cursorIndexOfBenId);
+        }
+        _item.setBenId(_tmpBenId);
+        _result.add(_item);
       }
       return _result;
     } finally {

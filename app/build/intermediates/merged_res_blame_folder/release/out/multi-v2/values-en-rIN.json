@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-en-rIN\\values-en-rIN.xml",
+            "outputFile": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-en-rIN\\values-en-rIN.xml",
             "map": [
                 {
                     "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-3\\c65f1c8e24c99bb4b7a9476a8f9cefc8\\transformed\\core-1.9.0\\res\\values-en-rIN\\values-en-rIN.xml",

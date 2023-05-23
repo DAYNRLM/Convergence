@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
+            "outputFile": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
             "map": [
                 {
                     "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-3\\5f496cd27f03c071c311e0af94ce320a\\transformed\\material-1.8.0\\res\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",

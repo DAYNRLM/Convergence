@@ -74,6 +74,57 @@ public class PreferenceKeyManager {
     private static final String PREF_KEY_LOGINID = "loginid";
     private static final String PREF_KEY_Demo = "Demo";
     private static final String PREF_KEY_month = "month";
+    private static final String PREF_KEY_NRLMMEMALOT = "nrlmmemberalot";
+    private static final String PREF_KEY_PMAYGBENALOT = "pmaygmemberalot";
+    private static final String PREF_KEY_NRLMGPALOT= "nrlmgpalot";
+    private static final String PREF_KEY_PMAYGGPALOT= "pmayggpalot";
+    private static final String PREF_KEY_NRLMVILLAGEALOT= "nrlmvillagealot";
+
+    public static String getPrefKeyNrlmmemalot() {
+        return PREF_KEY_NRLMMEMALOT;
+    }
+
+    public static String getPrefKeyPmaygbenalot() {
+        return PREF_KEY_PMAYGBENALOT;
+    }
+
+    public static String getPrefKeyNrlmgpalot() {
+        return PREF_KEY_NRLMGPALOT;
+    }
+
+    public static String getPrefKeyPmayggpalot() {
+        return PREF_KEY_PMAYGGPALOT;
+    }
+
+    public static String getPrefKeyNrlmvillagealot() {
+        return PREF_KEY_NRLMVILLAGEALOT;
+    }
+
+    public static String getPrefKeyPmaygvillagealot() {
+        return PREF_KEY_PMAYGVILLAGEALOT;
+    }
+
+    public static String getPrefKeyNrlmsurveycom() {
+        return PREF_KEY_NRLMSURVEYCOM;
+    }
+
+    public static String getPrefKeyPmaygsurveycom() {
+        return PREF_KEY_PMAYGSURVEYCOM;
+    }
+
+    public static String getPrefKeyNrlmsurveypen() {
+        return PREF_KEY_NRLMSURVEYPEN;
+    }
+
+    public static String getPrefKeyPmaygsurveypen() {
+        return PREF_KEY_PMAYGSURVEYPEN;
+    }
+
+    private static final String PREF_KEY_PMAYGVILLAGEALOT= "pmaygvillagealot";
+    private static final String PREF_KEY_NRLMSURVEYCOM= "nrlmcomplete";
+    private static final String PREF_KEY_PMAYGSURVEYCOM= "pmaygcomplete";
+    private static final String PREF_KEY_NRLMSURVEYPEN= "nrlmcomplete";
+    private static final String PREF_KEY_PMAYGSURVEYPEN= "pmaygcomplete";
 
     public static String getPrefKeyLanguageId() {
         return PREF_KEY_LANGUAGE_ID;

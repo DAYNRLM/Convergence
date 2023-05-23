@@ -78,7 +78,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `LoginInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `login_id` TEXT, `password` TEXT, `mobile_number` TEXT, `state_code` TEXT, `state_short_name` TEXT, `server_date_time` TEXT, `language_id` TEXT, `login_attempt` TEXT, `logout_days` TEXT, `user_name` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `CheckAndDeleteEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `village_code` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `NrlmInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gp_code` TEXT, `mem_branch_code` TEXT, `mem_bank_code` TEXT, `lgd_gp_code` TEXT, `gp_name` TEXT, `village_code` TEXT, `village_name` TEXT, `shg_name` TEXT, `shg_code` TEXT, `member_name` TEXT, `member_code` TEXT, `user_id` TEXT, `block_name` TEXT, `lgd_state_code` TEXT, `state_name` TEXT, `state_code` TEXT, `block_code` TEXT, `district_name` TEXT, `lgd_district_code` TEXT, `lgd_block_code` TEXT, `mobile_number` TEXT, `belonging_name` TEXT, `act_num` TEXT)");
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `PmaygInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gp_code` TEXT, `flag` TEXT, `gp_name` TEXT, `village_code` TEXT, `village_name` TEXT, `scheme` TEXT, `beneficiary_holder_name` TEXT, `beneficiary_id` TEXT, `ifsc_code` TEXT, `beneficiary_acc_no` TEXT, `beneficiary_bank_name` TEXT, `beneficiary_branch_name` TEXT, `mobile_no` TEXT, `member_name` TEXT, `holder_sync_flag` TEXT, `mothername` TEXT, `districtname` TEXT, `blockcode` TEXT, `districtcode` TEXT, `statecode` TEXT, `fathername` TEXT, `blockname` TEXT, `sl_no_member` TEXT)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `PmaygInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gp_code` TEXT, `flag` TEXT, `gp_name` TEXT, `village_code` TEXT, `village_name` TEXT, `scheme` TEXT, `beneficiary_holder_name` TEXT, `beneficiary_id` TEXT, `nrlm_village_code` TEXT, `ifsc_code` TEXT, `beneficiary_acc_no` TEXT, `beneficiary_bank_name` TEXT, `beneficiary_branch_name` TEXT, `mobile_no` TEXT, `member_name` TEXT, `holder_sync_flag` TEXT, `mothername` TEXT, `districtname` TEXT, `blockcode` TEXT, `districtcode` TEXT, `statecode` TEXT, `fathername` TEXT, `blockname` TEXT, `sl_no_member` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `ReasonInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `reason` TEXT, `reasonCode` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `MemberEntryInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gp_Name` TEXT, `scheme_Name` TEXT, `ben_Id` TEXT, `lgd_GpCode` TEXT, `lgd_Villagecode` TEXT, `mobile_no` TEXT, `ben_availability` TEXT, `any_Familyinshg` TEXT, `willing_joinshg` TEXT, `reason` TEXT, `shg_Code` TEXT, `member_Code` TEXT, `village_Code` TEXT, `created_on` TEXT, `appVersion` TEXT, `syncFlag` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `NrlmBenefeciaryMobileEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gp_code` TEXT, `village_code` TEXT, `shg_code` TEXT, `member_code` TEXT, `mobile_number` TEXT, `mobile_belongs_to` TEXT, `whether_part_of_shg` TEXT, `reason_of_discontinue` TEXT, `bank_code` TEXT, `branch_code` TEXT, `ifsc_code` TEXT, `account_number` TEXT, `entered_by` TEXT, `entered_date` TEXT, `syc_flag` TEXT, `updated_date` TEXT)");
@@ -86,7 +86,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `MobileNoBelongsToEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id` TEXT, `type_name` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `MemberReasonEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `reason_id` INTEGER NOT NULL, `reason_name` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '02544c3e43deac1714cd183374bcc858')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9a65cfe2865b0616236039e193ca6153')");
       }
 
       @Override
@@ -206,7 +206,7 @@ public final class AppDatabase_Impl extends AppDatabase {
                   + " Expected:\n" + _infoNrlmInfoEntity + "\n"
                   + " Found:\n" + _existingNrlmInfoEntity);
         }
-        final HashMap<String, TableInfo.Column> _columnsPmaygInfoEntity = new HashMap<String, TableInfo.Column>(24);
+        final HashMap<String, TableInfo.Column> _columnsPmaygInfoEntity = new HashMap<String, TableInfo.Column>(25);
         _columnsPmaygInfoEntity.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPmaygInfoEntity.put("gp_code", new TableInfo.Column("gp_code", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPmaygInfoEntity.put("flag", new TableInfo.Column("flag", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -216,6 +216,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         _columnsPmaygInfoEntity.put("scheme", new TableInfo.Column("scheme", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPmaygInfoEntity.put("beneficiary_holder_name", new TableInfo.Column("beneficiary_holder_name", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPmaygInfoEntity.put("beneficiary_id", new TableInfo.Column("beneficiary_id", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsPmaygInfoEntity.put("nrlm_village_code", new TableInfo.Column("nrlm_village_code", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPmaygInfoEntity.put("ifsc_code", new TableInfo.Column("ifsc_code", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPmaygInfoEntity.put("beneficiary_acc_no", new TableInfo.Column("beneficiary_acc_no", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPmaygInfoEntity.put("beneficiary_bank_name", new TableInfo.Column("beneficiary_bank_name", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -352,7 +353,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "02544c3e43deac1714cd183374bcc858", "6895de55d3181f8795df6c8e08e6d849");
+    }, "9a65cfe2865b0616236039e193ca6153", "627440fd419dba65acec1beeba8da53a");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)

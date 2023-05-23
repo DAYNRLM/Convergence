@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Convergence App\\ConvergenceApp\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
                     "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-3\\5f496cd27f03c071c311e0af94ce320a\\transformed\\material-1.8.0\\res\\values-night-v8\\values-night-v8.xml",
@@ -38,14 +38,14 @@
                     }
                 },
                 {
-                    "source": "D:\\Convergence App\\ConvergenceApp\\app\\src\\main\\res\\values-night\\themes.xml",
+                    "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\values-night\\themes.xml",
                     "from": {
                         "startLines": "16,2",
                         "startColumns": "4,4",
-                        "startOffsets": "827,100",
+                        "startOffsets": "843,102",
                         "endLines": "23,14",
                         "endColumns": "12,12",
-                        "endOffsets": "1304,821"
+                        "endOffsets": "1327,835"
                     },
                     "to": {
                         "startLines": "2,17",

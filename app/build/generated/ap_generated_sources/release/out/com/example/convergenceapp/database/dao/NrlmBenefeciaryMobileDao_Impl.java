@@ -8,6 +8,7 @@ import androidx.room.SharedSQLiteStatement;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
+import com.example.convergenceapp.database.dbBean.MemberCodeBean;
 import com.example.convergenceapp.database.dbBean.NrlmBenefeciaryMobileBean;
 import com.example.convergenceapp.database.entity.NrlmBenefeciaryMobileEntity;
 import java.lang.Class;
@@ -268,7 +269,7 @@ public final class NrlmBenefeciaryMobileDao_Impl implements NrlmBenefeciaryMobil
   @Override
   public List<NrlmBenefeciaryMobileBean> getNrlmBenefeciaryMobileDataAcordingSyncFlag(
       final String sycFlag) {
-    final String _sql = "select * from NrlmBenefeciaryMobileEntity where syc_flag=?";
+    final String _sql = "select distinct * from NrlmBenefeciaryMobileEntity where syc_flag=?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
     if (sycFlag == null) {
@@ -471,6 +472,34 @@ public final class NrlmBenefeciaryMobileDao_Impl implements NrlmBenefeciaryMobil
         _result = _tmp;
       } else {
         _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public List<MemberCodeBean> getNrlmMemberCode() {
+    final String _sql = "select distinct member_code from NrlmBenefeciaryMobileEntity";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfMemberCode = 0;
+      final List<MemberCodeBean> _result = new ArrayList<MemberCodeBean>(_cursor.getCount());
+      while(_cursor.moveToNext()) {
+        final MemberCodeBean _item;
+        _item = new MemberCodeBean();
+        final String _tmpMemberCode;
+        if (_cursor.isNull(_cursorIndexOfMemberCode)) {
+          _tmpMemberCode = null;
+        } else {
+          _tmpMemberCode = _cursor.getString(_cursorIndexOfMemberCode);
+        }
+        _item.setMemberCode(_tmpMemberCode);
+        _result.add(_item);
       }
       return _result;
     } finally {

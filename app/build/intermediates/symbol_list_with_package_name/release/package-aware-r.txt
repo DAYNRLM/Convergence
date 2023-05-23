@@ -3004,6 +3004,8 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id backarrown
+id backarrowp
 id bankShowVisid
 id bank_details
 id barrier
@@ -3032,6 +3034,8 @@ id btn_nrlm_update
 id btn_pmayg_dashboard
 id btn_save
 id btn_setMpin
+id btn_syncn
+id btn_syncp
 id btn_update
 id btn_verify
 id buttonPanel
@@ -3473,6 +3477,7 @@ id stretch
 id submenuarrow
 id submit_area
 id supportScrollUp
+id t
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans

@@ -26,7 +26,12 @@ public interface LoginInfoDao {
     LoginInfoEntity getLoginData();
     @Query("select distinct login_id from loginInfoEntity")
     String getLoginId();
+    @Query("select distinct server_date_time from loginInfoEntity")
+    String getServerDate();
 
+
+    @Query("select count(*) from(select * from logininfoentity)")
+    String getLocalCount();
 
 
 }

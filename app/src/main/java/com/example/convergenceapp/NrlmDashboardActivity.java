@@ -3,6 +3,7 @@ package com.example.convergenceapp;
 import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -19,7 +20,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.example.convergenceapp.Auth.HomeFragment;
+import com.example.convergenceapp.Auth.LoginFragment;
+import com.example.convergenceapp.Auth.MemberFragmentDirections;
 import com.example.convergenceapp.database.AppDatabase;
+import com.example.convergenceapp.database.dbBean.NrlmBenefeciaryMobileBean;
+import com.example.convergenceapp.database.entity.MemberEntryInfoEntity;
+import com.example.convergenceapp.request.BenficiaryDtl;
+import com.example.convergenceapp.request.MemberSyncRequest;
 import com.example.convergenceapp.request.PmaygDashboardRequest;
 import com.example.convergenceapp.response.NrlmDashboardResponse;
 import com.example.convergenceapp.response.PmaygDashboardResponse;
@@ -40,6 +48,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -51,8 +62,9 @@ public class NrlmDashboardActivity extends AppCompatActivity {
     public VolleyResult mResultCallBack = null;
     AppDatabase appDatabase;
 
-    String totalmemberAllotted,gpAlotted,villageAlloted,surveyComplete,surveyPending;
+    String totalmemberAllotted,gpAlotted,villageAlloted,surveyComplete,surveyPending,locallySave;
     TextView gpAllottxt,villageAllotttxt,memAllottxt,surveyComtxt,surveyPentxt,locallySavetxt;
+    List<NrlmBenefeciaryMobileBean>  nrlmBenefeciaryMobileBeans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +72,7 @@ public class NrlmDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nrlm_dashboard);
 
         update =findViewById(R.id.btn_nrlm_update);
+       Button sync =findViewById(R.id.btn_syncn);
         gpAllottxt =findViewById(R.id.gp_nrlm_number);
         villageAllotttxt =findViewById(R.id.village_nrlm_alloted);
         memAllottxt = findViewById(R.id.member_allotted_new);
@@ -68,7 +81,23 @@ public class NrlmDashboardActivity extends AppCompatActivity {
         locallySavetxt =findViewById(R.id.member_survey_locally_new);
       ImageView imageView =findViewById(R.id.backarrown);
         appDatabase= AppDatabase.getDatabase(getApplicationContext());
+        callNrlmDashboardApi();
 
+        locallySave=appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry();
+
+        locallySavetxt.setText(appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry());
+        sync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!locallySave.equalsIgnoreCase("0")){
+
+                        syncApi();
+
+                }
+
+
+            }
+        });
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,13 +257,7 @@ public class NrlmDashboardActivity extends AppCompatActivity {
                             villageAlloted= nrlmDashboardResponse.getData().getVillage_allot();
                             surveyComplete= nrlmDashboardResponse.getData().getCompleted();
                             surveyPending= nrlmDashboardResponse.getData().getPending();
-/*
-                            Toast.makeText(getApplicationContext(),"total"+totalmemberAllotted ,Toast.LENGTH_LONG).show();
-                            Toast.makeText(getApplicationContext(),"gp"+gpAlotted ,Toast.LENGTH_LONG).show();
-                            Toast.makeText(getApplicationContext(),"vil"+villageAlloted ,Toast.LENGTH_LONG).show();
-                            Toast.makeText(getApplicationContext(),"com"+surveyComplete ,Toast.LENGTH_LONG).show();
-                            Toast.makeText(getApplicationContext(),"pen"+surveyPending +appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry(),Toast.LENGTH_LONG).show();
-                 */
+
                             memAllottxt.setText(totalmemberAllotted);
                             gpAllottxt.setText(gpAlotted);
                             villageAllotttxt.setText(villageAlloted);
@@ -243,9 +266,15 @@ public class NrlmDashboardActivity extends AppCompatActivity {
                          //   String local=  appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry();
                             locallySavetxt.setText(appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry());
 
-                       //     Toast.makeText(getApplicationContext(),"local" +local ,Toast.LENGTH_LONG).show();
 
 
+
+
+                            PreferenceFactory.getInstance().saveSharedPrefrecesData(PreferenceKeyManager.getPrefKeyNrlmmemalot(),totalmemberAllotted , getApplicationContext());
+                            PreferenceFactory.getInstance().saveSharedPrefrecesData(PreferenceKeyManager.getPrefKeyNrlmgpalot(),gpAlotted, getApplicationContext());
+                            PreferenceFactory.getInstance().saveSharedPrefrecesData(PreferenceKeyManager.getPrefKeyNrlmvillagealot(),villageAlloted , getApplicationContext());
+                            PreferenceFactory.getInstance().saveSharedPrefrecesData(PreferenceKeyManager.getPrefKeyNrlmsurveycom(),surveyComplete , getApplicationContext());
+                            PreferenceFactory.getInstance().saveSharedPrefrecesData(PreferenceKeyManager.getPrefKeyNrlmsurveypen(),surveyPending , getApplicationContext());
 
 
 
@@ -280,7 +309,7 @@ public class NrlmDashboardActivity extends AppCompatActivity {
                     villageAllotttxt.setText("0");
                     surveyComtxt.setText("0");
                     surveyPentxt.setText("0");
-                    locallySavetxt.setText("0");
+                    locallySavetxt.setText(appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry());
                     memAllottxt.setText("0");
 
                 }
@@ -296,18 +325,242 @@ public class NrlmDashboardActivity extends AppCompatActivity {
         else {
             Log.d(TAG, "Internet: ");
             Toast.makeText(getApplicationContext(),"No internet",Toast.LENGTH_LONG).show();
+            //progressDialog.dismiss();
+            String memberAlotted = Objects.requireNonNull(PreferenceFactory.getInstance()).getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyNrlmmemalot(),getApplicationContext());
+            String gpAlotted = Objects.requireNonNull(PreferenceFactory.getInstance()).getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyNrlmgpalot(), getApplicationContext());
+            String villageAlotted = Objects.requireNonNull(PreferenceFactory.getInstance()).getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyNrlmvillagealot(), getApplicationContext());
+            String surveyCom = Objects.requireNonNull(PreferenceFactory.getInstance()).getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyNrlmsurveycom(), getApplicationContext());
+            String surveyPen = Objects.requireNonNull(PreferenceFactory.getInstance()).getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyNrlmsurveypen(), getApplicationContext());
 
-            progressDialog.dismiss();
-            gpAllottxt.setText("0");
-            villageAllotttxt.setText("0");
-            surveyComtxt.setText("0");
-            surveyPentxt.setText("0");
-            locallySavetxt.setText("0");
-            memAllottxt.setText("0");
+
+            gpAllottxt.setText(gpAlotted);
+            villageAllotttxt.setText(villageAlotted);
+            surveyComtxt.setText(surveyCom);
+            surveyPentxt.setText(surveyPen);
+            locallySavetxt.setText(appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry());
+            memAllottxt.setText(memberAlotted);
 
 
 
         }
+    }
+
+    public void syncApi(){
+
+
+
+        if(NetworkFactory.isInternetOn(getApplicationContext()))
+        {
+
+            ProgressDialog   progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Loading...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
+
+
+
+            /*******make json object is encrypted and *********/
+            JSONObject encryptedObject =new JSONObject();
+            try {
+                Cryptography cryptography = new Cryptography();
+
+
+
+
+                @SuppressLint("HardwareIds") String  imeiNo = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+
+                MemberSyncRequest memberSyncRequest=new MemberSyncRequest();
+
+                String  loginId= PreferenceFactory.getInstance().getSharedPrefrencesData(PreferenceKeyManager.getPrefLoginId(),getApplicationContext());
+                String  deviceInfo=AppUtils.getInstance().getDeviceInfo();
+                memberSyncRequest.setUser_id(loginId);
+                memberSyncRequest.setImei_no(imeiNo);
+                memberSyncRequest.setDevice_name(deviceInfo);
+                memberSyncRequest.setLocation_coordinate("1232323");
+                nrlmBenefeciaryMobileBeans=appDatabase.nrlmBenefeciaryMobileDao().getNrlmBenefeciaryMobileDataAcordingSyncFlag("0");
+                List<String> nrlmMemberList=new ArrayList<>();
+
+                ArrayList<BenficiaryDtl> Bendata = new ArrayList<>();
+
+                for (int i=0;i<nrlmBenefeciaryMobileBeans.size();i++){
+
+
+
+                    BenficiaryDtl beneficiaryDetails=new BenficiaryDtl();
+
+                    beneficiaryDetails.setShg_code(nrlmBenefeciaryMobileBeans.get(i).getShg_code());
+                    beneficiaryDetails.setShg_member_code(nrlmBenefeciaryMobileBeans.get(i).getMember_code());
+                    beneficiaryDetails.setEntity_code(nrlmBenefeciaryMobileBeans.get(i).getVillage_code());
+                    beneficiaryDetails.setMob_no_belongs_to(nrlmBenefeciaryMobileBeans.get(i).getMobile_belongs_to());
+                    beneficiaryDetails.setMob_no(nrlmBenefeciaryMobileBeans.get(i).getMobile_number());
+                    beneficiaryDetails.setBank_code(nrlmBenefeciaryMobileBeans.get(i).getBank_code());
+                    beneficiaryDetails.setBranch_code(nrlmBenefeciaryMobileBeans.get(i).getBranch_code());
+                    beneficiaryDetails.setAc_no(nrlmBenefeciaryMobileBeans.get(i).getAccount_number());
+                    beneficiaryDetails.setReason_id(nrlmBenefeciaryMobileBeans.get(i).getReason_of_discontinue());
+                    beneficiaryDetails.setApp_ver(BuildConfig.VERSION_NAME);
+                    beneficiaryDetails.setCreated_on_app(nrlmBenefeciaryMobileBeans.get(i).getEntered_date());
+                    nrlmMemberList.add(nrlmBenefeciaryMobileBeans.get(i).getMember_code());
+                    Bendata.add(beneficiaryDetails);
+
+                }
+                memberSyncRequest.setBenficiary_dtl(Bendata);
+
+
+                encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(memberSyncRequest)));
+
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (NoSuchPaddingException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } //catch (InvalidKeyException e) {
+            catch (InvalidAlgorithmParameterException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            }
+            // e.printStackTrace();
+            // } catch (InvalidAlgorithmParameterException e) {
+            // e.printStackTrace();
+            //} catch (IllegalBlockSizeException e) {
+            //  e.printStackTrace();
+            // } catch (BadPaddingException e) {
+            // e.printStackTrace();
+            // } catch (UnsupportedEncodingException e) {
+            //   e.printStackTrace();
+            // }
+            /***********************************************/
+
+            //AppUtils.getInstance().showLog("request of NrlmMaster" +encryptedObject, LoginFragment.class);
+            Log.d(TAG, "request of PmaygMaster "+encryptedObject.toString());
+            mResultCallBack = new VolleyResult() {
+                @Override
+                public void notifySuccess(String requestType, JSONObject response) {
+
+                    progressDialog.dismiss();
+                    JSONObject jsonObject = null;    //manish commented
+
+
+
+                    String objectResponse="";
+                    if(response.has("data")){
+                        try {
+                            objectResponse=response.getString("data");
+                            AppUtils.getInstance().showLog("response encrupt"+objectResponse, LoginFragment.class);
+                            Log.d(TAG, "response encrupt "+objectResponse.toString());
+
+
+                        }catch (JSONException e)
+                        {
+                            //    AppUtils.getInstance().showLog("objjjjjjj"+objectResponse,LoginFragment.class);
+                            Log.d(TAG, "objjjjjjj: "+objectResponse.toString());
+                        }
+
+
+                    }else {
+                        return;
+                    }
+
+                    try {               //manish commented
+                        JSONObject jsonObject1=new JSONObject(objectResponse);
+                        objectResponse=jsonObject1.getString("data");
+                        //    AppUtils.getInstance().showLog("dashboard"+jsonObject1,LoginFragment.class);
+                        Log.d(TAG, "dashboard: "+jsonObject1.toString());
+
+                    }catch (JSONException e)
+                    {
+                        // AppUtils.getInstance().showLog("exceptionDataOfBlock"+e,LoginFragment.class);
+                        Log.d(TAG, "exceptionDataOfBlock: "+e.toString());
+
+                    }
+
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        try {
+                            Cryptography cryptography = new Cryptography();
+
+                            jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Manish comment
+                            //if (jsonObject.getString("E200").equalsIgnoreCase("Success"))
+                            // AppUtils.getInstance().showLog("responseJSON" + jsonObject.toString(), LoginFragment.class);
+                            Log.d(TAG, "responseJSON: "+response.toString());
+
+                            //       AppUtils.getInstance().showLog("responseJSON" +message), LoginFragment.class);
+
+
+                           /* if (code==200){
+
+
+
+                                }*/
+
+
+
+
+
+                            if(jsonObject.getString("message").equalsIgnoreCase("success"))
+                            {
+
+                                //  appDatabase.pmaygInfoDao().updateSyncFlag(beneficiaryId);
+                                for (int i=0;i<nrlmBenefeciaryMobileBeans.size();i++)
+                                {
+                                    String memCode=nrlmBenefeciaryMobileBeans.get(i).getMember_code();
+                                    appDatabase.nrlmBenefeciaryMobileDao().setUpdateSyncFlag(memCode);
+                                    // appDatabase.pmaygInfoDao().updateSyncFlag(benId);
+                                }
+                                progressDialog.dismiss();
+                                Toast.makeText(getApplicationContext(),"Synced successfully",Toast.LENGTH_LONG).show();
+                                locallySavetxt.setText(appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry());
+                                AppUtils.getInstance().showLog("Synced", HomeFragment.class);
+
+                            }
+
+
+
+
+
+                        } catch (Exception e) {
+                            //    progressDialog.dismiss();
+                            // Log.d(TAG, "notifySuccess: "+e);
+                            AppUtils.getInstance().showLog("DecryptEx" + e, LoginFragment.class);
+                        }
+                    }
+
+
+                }
+
+                @Override
+                public void notifyError(String requestType, VolleyError error) {
+                    progressDialog.dismiss();
+
+
+
+                }
+            };
+            VolleyService  volleyService = VolleyService.getInstance(getApplicationContext());
+
+            //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
+            volleyService.postDataVolley("Request of sync", AppUtils.buildURL+"memsyncdata", encryptedObject, mResultCallBack);
+
+
+
+        }
+        else {
+            //   progressDialog.dismiss();
+            Toast.makeText(getApplicationContext(),"No Internet ",Toast.LENGTH_LONG).show();
+
+
+
+
+        }
+
     }
 
 

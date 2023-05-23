@@ -3034,6 +3034,8 @@ id btn_nrlm_update
 id btn_pmayg_dashboard
 id btn_save
 id btn_setMpin
+id btn_syncn
+id btn_syncp
 id btn_update
 id btn_verify
 id buttonPanel

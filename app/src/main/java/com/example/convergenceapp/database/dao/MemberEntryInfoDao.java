@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.example.convergenceapp.database.dbBean.BenifIdBean;
 import com.example.convergenceapp.database.entity.MemberEntryInfoEntity;
 
 import java.util.List;
@@ -25,5 +26,11 @@ public interface MemberEntryInfoDao {
 
     @Query("select count(*) from(select * from MemberEntryInfoEntity where syncFlag is 0)")
     String getLocalBenEntry();
+
+
+    @Query("select distinct ben_Id from MemberEntryInfoEntity")
+            List<BenifIdBean> getbenifIdMemberCode();
+
+
 
 }

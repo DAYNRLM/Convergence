@@ -286,6 +286,56 @@ public final class LoginInfoDao_Impl implements LoginInfoDao {
     }
   }
 
+  @Override
+  public String getServerDate() {
+    final String _sql = "select distinct server_date_time from loginInfoEntity";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final String _result;
+      if(_cursor.moveToFirst()) {
+        if (_cursor.isNull(0)) {
+          _result = null;
+        } else {
+          _result = _cursor.getString(0);
+        }
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public String getLocalCount() {
+    final String _sql = "select count(*) from(select * from logininfoentity)";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final String _result;
+      if(_cursor.moveToFirst()) {
+        final String _tmp;
+        if (_cursor.isNull(0)) {
+          _tmp = null;
+        } else {
+          _tmp = _cursor.getString(0);
+        }
+        _result = _tmp;
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
   public static List<Class<?>> getRequiredConverters() {
     return Collections.emptyList();
   }
