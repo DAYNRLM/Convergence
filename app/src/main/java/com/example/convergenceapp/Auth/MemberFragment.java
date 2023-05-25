@@ -558,9 +558,7 @@ public class MemberFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
-                mobNo= binding.etMobile.getText().toString();
-
+                   mobNo= binding.etMobile.getText().toString();
 
 
                 Log.d(TAG, "onClick: village_code ::"+selectedNrlmVillageCode+
@@ -612,11 +610,76 @@ public class MemberFragment extends Fragment {
                     binding.etAccountNumber.setError("Invalid Entry");
                     DialogFactory.getInstance().showAlert(getContext(),"Please enter  Account Number.","Ok");
                 }
-                else if(iPartOfShg==1 && !binding.etAccountNumber.getText().toString().isEmpty() && !selectedActNumLength.isEmpty() &&  !isValidActNum(binding.etAccountNumber.getText().toString().trim().length(),selectedActNumLength) ) {
-                    binding.etAccountNumber.setError("Invalid Entry");
-                    DialogFactory.getInstance().showAlert(getContext(),"Please enter valid  Account Number.","Ok");
+                else if (iPartOfShg==1 && !selectedActNumLength.equalsIgnoreCase("NA")){
+                     if (!binding.etAccountNumber.getText().toString().isEmpty() && !selectedActNumLength.isEmpty() &&
+                             !isValidActNum(binding.etAccountNumber.getText().toString().trim().length(),selectedActNumLength) ) {
+                        binding.etAccountNumber.setError("Invalid Entry");
+                        DialogFactory.getInstance().showAlert(getContext(),"Please enter valid  Account Number.","Ok");
+                    }
+                       else if(iPartOfShg==2 && selectedDisContinueReasonCode==0 )
+                         DialogFactory.getInstance().showAlert(getContext(),"Please select Reason of discontinue.","Ok");
+
+                     else{
+                         String enteredDate = getCurrentDateTimefordatabaseStorage();
+
+
+                         String userId = appDatabase.loginInfoDao().getLoginId();
+
+
+
+
+
+
+                         memberCodeBeanslist=appDatabase.nrlmBenefeciaryMobileDao().getNrlmMemberCode();
+                         String element="";
+                         Boolean check=false;
+
+
+                         for (int i=0;i<memberCodeBeanslist.size();i++){
+                             element=memberCodeBeanslist.get(i).getMemberCode();
+                             if (element.contains(selectedmemberCode)){
+
+                                 check= true;
+
+                             }
+                         }
+                         if (check){
+                             DialogFactory.getInstance().showAlert(getContext(),"Mobile number and bank details are already entered.","Ok");
+
+                         }
+
+                         else {
+                             String memberMobileNo = binding.etMobile.getText().toString();
+                             String ifscCode = binding.tvIfscCode.getText().toString();
+                             String acNo = binding.etAccountNumber.getText().toString();
+                             if (iPartOfShg==2){
+                                 memberMobileNo="";
+                                 ifscCode="";
+                                 acNo="";
+                                 selectedMobileBelogCode="";
+                                 selectedBankCode="";
+                                 selectedBranchCode="";
+
+                             }
+
+                             appDatabase.nrlmBenefeciaryMobileDao().insert(
+                                     new NrlmBenefeciaryMobileEntity(selectedNrlmGpCode, selectedNrlmVillageCode, selectedShgCode,
+                                             selectedmemberCode,memberMobileNo, selectedMobileBelogCode, String.valueOf(iPartOfShg), String.valueOf(selectedDisContinueReasonCode),
+                                             selectedBankCode, selectedBranchCode,ifscCode ,acNo ,
+                                             userId, enteredDate, "0", ""
+                                     ));
+                             syncApi();
+                         }
+
+
+                     }
+
                 }
-                else  if(iPartOfShg==2 && selectedDisContinueReasonCode==0 )
+
+
+
+
+               else if(iPartOfShg==2 && selectedDisContinueReasonCode==0 )
                     DialogFactory.getInstance().showAlert(getContext(),"Please select Reason of discontinue.","Ok");
 
                 else{
