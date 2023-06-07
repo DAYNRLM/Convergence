@@ -48,6 +48,7 @@ import com.example.convergenceapp.database.dbBean.NrlmVillageBean;
 import com.example.convergenceapp.database.dbBean.ReasonBean;
 import com.example.convergenceapp.database.dbBean.ShgBean;
 
+import com.example.convergenceapp.database.entity.MobileNoBelongsToEntity;
 import com.example.convergenceapp.database.entity.NrlmBenefeciaryMobileEntity;
 import com.example.convergenceapp.databinding.FragmentMemberBinding;
 import com.example.convergenceapp.request.BenficiaryDtl;
@@ -95,13 +96,13 @@ public class MemberFragment extends Fragment {
     Integer selectedDisContinueReasonCode=0;
     String selectedNrlmGpCode="",  selectedNrlmVillageCode="",selectedShgCode="",selectedmemberCode="",selectedMobileBelogCode="",selectedBankCode="",selectedBranchCode="",selectedActName="",
             selectedNrlmGp, selectedNrlmVillage, selectedShg,  selectedmember,selectedMobileBelogToName,selectedBankName,selectedBranchName,selectedActNumLength="",selectedMemberSpouse, selectedMemberMobile,
-            selectedDisContinueReasonName,selectedBankCodes,selecteDBankBranchCode;
+            selectedDisContinueReasonName,selectedBankCodes,selecteDBankBranchCode, bankFlag,selectedIfscCode;
 
 
     int indexOfBankName,indexOfBranchName;
     public NavController navController;
-    AppDatabase appDatabase;
     NavDirections navDirections;
+    AppDatabase appDatabase;
     List<NrlmVillageBean> nrlmVillageBeans;
     List<BankNameAndBranchName> bankNameAndBranchNamesList;
     List<ShgBean> shgBeans;
@@ -360,6 +361,7 @@ public class MemberFragment extends Fragment {
             selectedActName = memberActNameList.get(i);
             selecteDBankBranchCode= appDatabase.nrlmInfoDao().getMemberbranchCode(selectedmemberCode);
             bankNameAndBranchNamesList= appDatabase.bankMasterDao().getBankNameAndBranchName(selecteDBankBranchCode);
+            bankFlag= appDatabase.nrlmInfoDao().getMemberbankFlag(selectedmemberCode);
 
             selectedBankCodes=appDatabase.nrlmInfoDao().getMemberbankCode(selectedmemberCode);
             //  selectedBankCode=appDatabase.nrlmInfoDao().getMemberbankCode(selectedmemberCode);
@@ -367,7 +369,9 @@ public class MemberFragment extends Fragment {
                 //  selectedBankCodes=bankNameAndBranchNamesList.get(j).getBranchCode();
                 selectedBankName=bankNameAndBranchNamesList.get(j).getBankName();
                 selectedBranchName=bankNameAndBranchNamesList.get(j).getBranchName();
+                selectedBranchCode=bankNameAndBranchNamesList.get(j).getBranchCode();
                 selectedBankCode=bankNameAndBranchNamesList.get(j).getBankCode();
+                selectedIfscCode=bankNameAndBranchNamesList.get(j).getIfsc_code();
                 indexOfBankName = bankNameList.indexOf(selectedBankName);
                 indexOfBranchName = bankNameList.indexOf(selectedBranchName);
                 binding.txtbranchNameShowid.setText(selectedBranchName);
@@ -377,7 +381,28 @@ public class MemberFragment extends Fragment {
                 binding.spinnerBank.setText(selectedBankName);
             }
 
-            if (!selectedmember.equalsIgnoreCase("")) {
+            if (!selectedmember.equalsIgnoreCase("") && (bankFlag.equalsIgnoreCase("Y"))) {
+
+                binding.tvSpouseName.setText(selectedMemberSpouse);
+                binding.llSpouseName.setVisibility(View.VISIBLE);
+                binding.etMobile.setText(selectedMemberMobile);
+                binding.etAccountNumber.setText(selectedActName);
+
+                selectedMobileBelogCode = "";
+                selectedMobileBelogToName = "";
+                binding.spinnerMobileBelongsTo.setText("");
+
+                iPartOfShg=0;
+                binding.rgPartOfShg.clearCheck();
+
+                selectedDisContinueReasonCode = 0;
+                selectedDisContinueReasonName = "";
+                binding.spinnerDisContinueReason.setText("");
+
+
+            }
+
+            if (!selectedmember.equalsIgnoreCase("") && (bankFlag.equalsIgnoreCase("N"))) {
 
                 binding.tvSpouseName.setText(selectedMemberSpouse);
                 binding.llSpouseName.setVisibility(View.VISIBLE);
@@ -404,8 +429,8 @@ public class MemberFragment extends Fragment {
                 binding.spinnerBranch.setText("");
                 binding.tvIfscCode.setText("");
                 binding.llIfscCode.setVisibility(View.GONE);
-                // binding.etAccountNumber.setText("");
             }
+
 
         });
 
@@ -451,7 +476,7 @@ public class MemberFragment extends Fragment {
         binding.rgPartOfShg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged (RadioGroup group,int checkedId){
-                if (checkedId == R.id.rbPartOfShgYes) {
+                if (checkedId == R.id.rbPartOfShgYes && bankFlag.equalsIgnoreCase("N")) {
                     iPartOfShg=1;
                     binding.llReason.setVisibility(View.GONE);
                     binding.llBank.setVisibility(View.VISIBLE);
@@ -461,10 +486,29 @@ public class MemberFragment extends Fragment {
                     binding.llAccountNumber.setVisibility(View.VISIBLE);
                     binding.llMobile.setVisibility(View.VISIBLE);
                     binding.llMobileBelongsTo.setVisibility(View.VISIBLE);
-
-
                     selectedDisContinueReasonCode=0;
-                } else if (checkedId == R.id.rbPartOfShgNo) {
+                }
+                else if (checkedId == R.id.rbPartOfShgYes && bankFlag.equalsIgnoreCase("Y")) {
+                    iPartOfShg=1;
+                    binding.llReason.setVisibility(View.GONE);
+                    binding.llBank.setVisibility(View.GONE);
+                    binding.llBranch.setVisibility(View.GONE);
+                    binding.llIfscCode.setVisibility(View.GONE);
+                    binding.llAccountNumber.setVisibility(View.GONE);
+                    binding.llMobile.setVisibility(View.VISIBLE);
+                    binding.llMobileBelongsTo.setVisibility(View.VISIBLE);
+                    selectedDisContinueReasonCode=0;
+
+                }
+
+
+
+
+
+
+
+
+                else if (checkedId == R.id.rbPartOfShgNo) {
                     iPartOfShg=2;
                     binding.llReason.setVisibility(View.VISIBLE);
                     binding.llBank.setVisibility(View.GONE);
@@ -543,6 +587,7 @@ public class MemberFragment extends Fragment {
             selectedBranchName = branchNameList.get(i);
             selectedBranchCode = branchCodeList.get(i);
             selectedActNumLength=actNumLengthList.get(i);
+            selectedIfscCode=ifscCodeList.get(i);
             binding.tvIfscCode.setText(ifscCodeList.get(i));
             binding.llIfscCode.setVisibility(View.VISIBLE);
         });
@@ -602,11 +647,47 @@ public class MemberFragment extends Fragment {
                     DialogFactory.getInstance().showAlert(getContext(),"Please select Mobile No. belogns to.","Ok");
                 else  if(iPartOfShg==0)
                     DialogFactory.getInstance().showAlert(getContext(),"Please select Whether member is part of SHG.","Ok");
+
+//                       -------check flag--------
+
+             /*   else if (iPartOfShg==1 && bankFlag.equalsIgnoreCase("N")){
+                    if( selectedBankCode.isEmpty() )
+                        DialogFactory.getInstance().showAlert(getContext(),"Please select Bank Name.","Ok");
+                    else  if(selectedBranchCode.isEmpty())
+                        DialogFactory.getInstance().showAlert(getContext(),"Please select Branch Name.","Ok");
+                    else if(binding.etAccountNumber.getText().toString().isEmpty()) {
+                        binding.etAccountNumber.setError("Invalid Entry");
+                        DialogFactory.getInstance().showAlert(getContext(),"Please enter  Account Number.","Ok");
+                    }
+                    else if(iPartOfShg==1 && (binding.etAccountNumber.getText().toString().equalsIgnoreCase("NA") )) {
+                        binding.etAccountNumber.setError("Invalid Entry");
+                        DialogFactory.getInstance().showAlert(getContext(),"Please enter  Account Number.","Ok");
+                    }
+                    else if (iPartOfShg==1 && !selectedActNumLength.equalsIgnoreCase("NA")){
+                        if (!binding.etAccountNumber.getText().toString().isEmpty() && !selectedActNumLength.isEmpty() &&
+                                !isValidActNum(binding.etAccountNumber.getText().toString().trim().length(),selectedActNumLength) ) {
+                            binding.etAccountNumber.setError("Invalid Entry");
+                            DialogFactory.getInstance().showAlert(getContext(),"Please enter valid  Account Number.","Ok");
+                        }
+                }*/
+
+
+//---------------------------main--------------------------
+
                 else  if(iPartOfShg==1 && selectedBankCode.isEmpty() )
+                    DialogFactory.getInstance().showAlert(getContext(),"Please select Bank Name.","Ok");
+                else  if(iPartOfShg==1 && selectedBankCode.equalsIgnoreCase("NA") )
                     DialogFactory.getInstance().showAlert(getContext(),"Please select Bank Name.","Ok");
                 else  if(iPartOfShg==1 && selectedBranchCode.isEmpty())
                     DialogFactory.getInstance().showAlert(getContext(),"Please select Branch Name.","Ok");
+                else  if(iPartOfShg==1 && selectedBranchCode.equalsIgnoreCase("NA"))
+                    DialogFactory.getInstance().showAlert(getContext(),"Please select Branch Name.","Ok");
                 else if(iPartOfShg==1 && binding.etAccountNumber.getText().toString().isEmpty()) {
+                    binding.etAccountNumber.setError("Invalid Entry");
+                    DialogFactory.getInstance().showAlert(getContext(),"Please enter  Account Number.","Ok");
+                }
+
+                else if(iPartOfShg==1 && (binding.etAccountNumber.getText().toString().equalsIgnoreCase("NA") )) {
                     binding.etAccountNumber.setError("Invalid Entry");
                     DialogFactory.getInstance().showAlert(getContext(),"Please enter  Account Number.","Ok");
                 }
@@ -621,7 +702,6 @@ public class MemberFragment extends Fragment {
 
                      else{
                          String enteredDate = getCurrentDateTimefordatabaseStorage();
-
 
                          String userId = appDatabase.loginInfoDao().getLoginId();
 
@@ -650,8 +730,11 @@ public class MemberFragment extends Fragment {
 
                          else {
                              String memberMobileNo = binding.etMobile.getText().toString();
-                             String ifscCode = binding.tvIfscCode.getText().toString();
-                             String acNo = binding.etAccountNumber.getText().toString();
+
+                             String ifscCode = selectedIfscCode;
+                             String acNo =  binding.etAccountNumber.getText().toString();
+
+
                              if (iPartOfShg==2){
                                  memberMobileNo="";
                                  ifscCode="";
@@ -662,12 +745,19 @@ public class MemberFragment extends Fragment {
 
                              }
 
-                             appDatabase.nrlmBenefeciaryMobileDao().insert(
-                                     new NrlmBenefeciaryMobileEntity(selectedNrlmGpCode, selectedNrlmVillageCode, selectedShgCode,
-                                             selectedmemberCode,memberMobileNo, selectedMobileBelogCode, String.valueOf(iPartOfShg), String.valueOf(selectedDisContinueReasonCode),
-                                             selectedBankCode, selectedBranchCode,ifscCode ,acNo ,
-                                             userId, enteredDate, "0", ""
-                                     ));
+
+
+                                     appDatabase.nrlmBenefeciaryMobileDao().insert(
+                                             new NrlmBenefeciaryMobileEntity(selectedNrlmGpCode, selectedNrlmVillageCode, selectedShgCode,
+                                                     selectedmemberCode,memberMobileNo, selectedMobileBelogCode, String.valueOf(iPartOfShg), String.valueOf(selectedDisContinueReasonCode),
+                                                     selectedBankCode, selectedBranchCode,ifscCode ,acNo ,
+                                                     userId, enteredDate, "0", ""
+                                             ));
+
+
+
+
+
                              syncApi();
                          }
 
@@ -712,8 +802,9 @@ public class MemberFragment extends Fragment {
                             }
 
                         else {
+
                             String memberMobileNo = binding.etMobile.getText().toString();
-                            String ifscCode = binding.tvIfscCode.getText().toString();
+                            String ifscCode = selectedIfscCode;
                             String acNo = binding.etAccountNumber.getText().toString();
                             if (iPartOfShg==2){
                                 memberMobileNo="";

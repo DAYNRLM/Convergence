@@ -16,16 +16,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 
+import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.android.volley.VolleyError;
 
 import com.example.convergenceapp.BuildConfig;
+import com.example.convergenceapp.Mpin.SetMpinFragmentDirections;
 import com.example.convergenceapp.MpinActivity;
 import com.example.convergenceapp.R;
 import com.example.convergenceapp.database.AppDatabase;
@@ -145,9 +148,22 @@ public class LoginFragment extends Fragment {
         navController = NavHostFragment.findNavController(this);
         loginBtn = (Button) view.findViewById(R.id.btn_login);
         loginIdEt = (TextInputEditText) view.findViewById(R.id.et_userId);
+      //  TextView forgotPassword = (TextView) view.findViewById(R.id.forgotpass);
         loginPassEt = (TextInputEditText) view.findViewById(R.id.et_password);
         navController = NavHostFragment.findNavController(this);
         // String mPin =   PreferenceFactory.getInstance().getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyMpin(), getContext());
+
+/*
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavDirections navDirections= LoginFragmentDirections.actionLoginFragment2ToForgotPasswordFragment();
+                navController.navigate(navDirections);
+            }
+        });
+*/
+
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +173,8 @@ public class LoginFragment extends Fragment {
                 progressDialog.setMessage("Loading...");
                 progressDialog.setCancelable(false);
                 progressDialog.show();
+               // progressDialog.dismiss();
+
 
                 String password = loginPassEt.getText().toString();
                 AppUtils.getInstance().showLog("Password"+password, LoginFragment.class);
@@ -205,15 +223,6 @@ public class LoginFragment extends Fragment {
         if(NetworkFactory.isInternetOn(getContext()))
         {
 
-/*
-            progressDialog = new ProgressDialog(getContext());
-            progressDialog.setMessage("Loading...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();*/
-
-
-
-
             /*******make json object is encrypted and *********/
             JSONObject encryptedObject =new JSONObject();
             JSONObject plainData=null;
@@ -258,20 +267,10 @@ public class LoginFragment extends Fragment {
             } catch (InvalidKeyException e) {
                 e.printStackTrace();
             }
-            // e.printStackTrace();
-            // } catch (InvalidAlgorithmParameterException e) {
-            // e.printStackTrace();
-            //} catch (IllegalBlockSizeException e) {
-            //  e.printStackTrace();
-            // } catch (BadPaddingException e) {
-            // e.printStackTrace();
-            // } catch (UnsupportedEncodingException e) {
-            //   e.printStackTrace();
-            // }
+
             /***********************************************/
 
-            //AppUtils.getInstance().showLog("request of NrlmMaster" +encryptedObject, LoginFragment.class);
-         //   Log.d(TAG, "request of PmaygMaster "+plainData.toString());
+
             mResultCallBack = new VolleyResult() {
                 @Override
                 public void notifySuccess(String requestType, JSONObject response) {
@@ -326,20 +325,13 @@ public class LoginFragment extends Fragment {
 
                             pmaygMasterResponse = PmaygMasterResponse.jsonToJava(jsonObject.toString());
                             pmaygCode= pmaygMasterResponse.getStatus();
-                            //       AppUtils.getInstance().showLog("responseJSON" +message), LoginFragment.class);
-
-
-                           /* if (code==200){
 
 
 
-                                }*/
 
                             appDatabase.pmaygInfoDao().deleteAll();
 
-                            //  progressDialog.dismiss();
 
-                            // nrlmMasterResponse.getData();
                             for(int j=0;j<pmaygMasterResponse.getData().getAssign_data().size();j++){
                                 gp_code=pmaygMasterResponse.getData().getAssign_data().get(j).getGrampanchayatcode();
                                 gp_name=pmaygMasterResponse.getData().getAssign_data().get(j).getGrampanchayatname();
@@ -366,12 +358,19 @@ public class LoginFragment extends Fragment {
                              String   nrlmVillageCode=pmaygMasterResponse.getData().getAssign_data().get(j).getNrlm_village_code();
                                 flag="0";
 
-                                AppUtils.getInstance().showLog("GPCode"+gp_code, LoginFragment.class);
 
-                                appDatabase.pmaygInfoDao().insert(new PmaygInfoEntity(gp_code,gp_name,village_code,nrlmVillageCode
-                                        ,village_name,scheme,beneficiary_holder_name,beneficiary_id
-                                        ,beneficiary_acc_no,beneficiary_bank_name,beneficiary_branch_name,mobile_no,member_name,holder_sync_flag,mothername
-                                        ,districtname,blockcode,districtcode,statecode,fathername,blockname,sl_no_member,ifsc_code,flag));
+                                AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        appDatabase.pmaygInfoDao().insert(new PmaygInfoEntity(gp_code,gp_name,village_code,nrlmVillageCode
+                                                ,village_name,scheme,beneficiary_holder_name,beneficiary_id
+                                                ,beneficiary_acc_no,beneficiary_bank_name,beneficiary_branch_name,mobile_no,member_name,holder_sync_flag,mothername
+                                                ,districtname,blockcode,districtcode,statecode,fathername,blockname,sl_no_member,ifsc_code,flag));
+
+                                    }
+                                });
+
+
                                 String beneficiaryname= pmaygMasterResponse.getData().getAssign_data().get(j).getBeneficiaryname();
                                 //   Toast.makeText(getContext(),beneficiaryname,Toast.LENGTH_LONG).show();
 
@@ -696,6 +695,7 @@ public class LoginFragment extends Fragment {
                                 nrlmDistrictcode=nrlmMasterResponse.getData().getAssign_data().get(j).getDistrict_code();
                                 nrlm_mem_bank_code=nrlmMasterResponse.getData().getAssign_data().get(j).getMem_bank_code();
                                 String memBranchCode =nrlmMasterResponse.getData().getAssign_data().get(j).getMem_branch_code();
+                                String bankFlag =nrlmMasterResponse.getData().getAssign_data().get(j).getBank_flag();
                                 // Toast.makeText(getContext(),"branchCode"+memBranchCode,Toast.LENGTH_LONG).show();
 
                                 String nrlm_mobile_number=nrlmMasterResponse.getData().getAssign_data().get(j).getMobile_number();
@@ -706,7 +706,7 @@ public class LoginFragment extends Fragment {
                                 appDatabase.nrlmInfoDao().insert(new NrlmInfoEntity(nrlmgp_code,memBranchCode,nrlm_mem_bank_code,nrlmlgd_gp_code,nrlmgp_name
                                         ,nrlmvillage_code,nrlmvillage_name,nrlmshg_name,nrlmshg_code
                                         ,nrlmmember_name,nrlmmember_code,nrlmuser_id,nrlmblock_name,nrlmlgd_state_code,nrlmstate_name
-                                        ,nrlmstate_code,nrlmblock_code,nrlmdistrict_name,nrlmlgd_district_code,nrlmlgd_block_code,nrlm_mobile_number,nrlm_belonging_name,actNum));
+                                        ,nrlmstate_code,nrlmblock_code,nrlmdistrict_name,nrlmlgd_district_code,nrlmlgd_block_code,nrlm_mobile_number,nrlm_belonging_name,actNum,bankFlag));
 
 
 
@@ -732,7 +732,7 @@ public class LoginFragment extends Fragment {
 
 
                             }
-                        }, 10000);
+                        }, 1000);
 
                     }
 
@@ -869,8 +869,7 @@ public class LoginFragment extends Fragment {
                         try {
                             Cryptography cryptography = new Cryptography();
                             jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Manish comment
-                            //if (jsonObject.getString("E200").equalsIgnoreCase("Success"))
-                            // AppUtils.getInstance().showLog("responseJSON" + jsonObject.toString(), LoginFragment.class);
+
                             JSONObject viewData=response;
                             Log.d(TAG, "responseJSON: "+viewData.toString());
 

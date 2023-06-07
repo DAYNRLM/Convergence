@@ -30,7 +30,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class  AppUtils {
+    public class  AppUtils {
     public static AppUtils utilsInstance;
     public static boolean wantToShow=true;
 

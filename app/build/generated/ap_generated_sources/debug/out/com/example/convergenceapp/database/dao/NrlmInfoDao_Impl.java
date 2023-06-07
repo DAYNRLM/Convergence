@@ -33,7 +33,7 @@ public final class NrlmInfoDao_Impl implements NrlmInfoDao {
     this.__insertionAdapterOfNrlmInfoEntity = new EntityInsertionAdapter<NrlmInfoEntity>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR ABORT INTO `NrlmInfoEntity` (`id`,`gp_code`,`mem_branch_code`,`mem_bank_code`,`lgd_gp_code`,`gp_name`,`village_code`,`village_name`,`shg_name`,`shg_code`,`member_name`,`member_code`,`user_id`,`block_name`,`lgd_state_code`,`state_name`,`state_code`,`block_code`,`district_name`,`lgd_district_code`,`lgd_block_code`,`mobile_number`,`belonging_name`,`act_num`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR ABORT INTO `NrlmInfoEntity` (`id`,`gp_code`,`mem_branch_code`,`mem_bank_code`,`lgd_gp_code`,`gp_name`,`village_code`,`village_name`,`shg_name`,`shg_code`,`member_name`,`member_code`,`user_id`,`block_name`,`lgd_state_code`,`state_name`,`state_code`,`block_code`,`district_name`,`lgd_district_code`,`lgd_block_code`,`mobile_number`,`belonging_name`,`act_num`,`bank_flag`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -153,6 +153,11 @@ public final class NrlmInfoDao_Impl implements NrlmInfoDao {
           stmt.bindNull(24);
         } else {
           stmt.bindString(24, value.getAct_num());
+        }
+        if (value.getBank_flag() == null) {
+          stmt.bindNull(25);
+        } else {
+          stmt.bindString(25, value.getBank_flag());
         }
       }
     };
@@ -404,6 +409,36 @@ public final class NrlmInfoDao_Impl implements NrlmInfoDao {
   @Override
   public String getMemberbankCode(final String memCode) {
     final String _sql = "select distinct mem_bank_code from NrlmInfoEntity where NrlmInfoEntity.member_code =? order by member_name ASC";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    if (memCode == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, memCode);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final String _result;
+      if(_cursor.moveToFirst()) {
+        if (_cursor.isNull(0)) {
+          _result = null;
+        } else {
+          _result = _cursor.getString(0);
+        }
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public String getMemberbankFlag(final String memCode) {
+    final String _sql = "select distinct bank_flag from NrlmInfoEntity where NrlmInfoEntity.member_code =? order by member_name ASC";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
     if (memCode == null) {

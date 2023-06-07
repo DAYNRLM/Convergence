@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-74:12
+ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-77:12
+INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-77:12
+INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-77:12
+INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-77:12
 MERGED from [androidx.databinding:databinding-adapters:7.1.1] C:\Users\DELL\.gradle\caches\transforms-3\b2887655a41942bb7a2e64a7c063b862\transformed\databinding-adapters-7.1.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.databinding:databinding-runtime:7.1.1] C:\Users\DELL\.gradle\caches\transforms-3\6b9302102fd18921ad96e53a9a9388e0\transformed\databinding-runtime-7.1.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\DELL\.gradle\caches\transforms-3\8069945316a190dac05dfa37535e07d2\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -63,22 +63,22 @@ MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\DELL\.gradle\caches
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\DELL\.gradle\caches\transforms-3\50520daf62bf12be99ef45542fde9212\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\DELL\.gradle\caches\transforms-3\f221d012c6c0b693a2ea450cdf38f705\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\DELL\.gradle\caches\transforms-3\206e5250fcfcefc8e1e679cae28ea786\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-74:12
+INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-77:12
+INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-77:12
+INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-77:12
 	package
 		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:4:5-41
 		INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-74:12
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-77:12
 		INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-74:12
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:1-77:12
 		INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:2:11-69
@@ -153,7 +153,7 @@ ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\Andr
 	android:name
 		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:30:9-47
 application
-ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:37:5-72:19
+ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:37:5-75:19
 MERGED from [com.google.android.material:material:1.8.0] C:\Users\DELL\.gradle\caches\transforms-3\5f496cd27f03c071c311e0af94ce320a\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.8.0] C:\Users\DELL\.gradle\caches\transforms-3\5f496cd27f03c071c311e0af94ce320a\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\DELL\.gradle\caches\transforms-3\9bc58d61d823f3e5b5d2b25a8755cf0a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -170,74 +170,80 @@ MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\DELL\.gradle\c
 MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\DELL\.gradle\caches\transforms-3\161cd51b97526345a23326c1ab3fef06\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:25:5-35:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\DELL\.gradle\caches\transforms-3\50520daf62bf12be99ef45542fde9212\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\DELL\.gradle\caches\transforms-3\50520daf62bf12be99ef45542fde9212\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+	tools:ignore
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:48:9-42
+	android:roundIcon
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:45:9-54
+	android:largeHeap
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:42:9-33
+	android:icon
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:41:9-43
+	android:networkSecurityConfig
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:44:9-69
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\c65f1c8e24c99bb4b7a9476a8f9cefc8\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:44:9-35
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:46:9-35
 	android:label
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:41:9-41
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:43:9-41
+	android:hardwareAccelerated
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:40:9-44
 	android:debuggable
 		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:39:9-35
-	tools:ignore
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:46:9-42
-	android:roundIcon
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:43:9-54
-	android:icon
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:40:9-43
+	tools:targetApi
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:50:9-28
 	android:allowBackup
 		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:38:9-36
 	android:theme
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:45:9-52
-	android:networkSecurityConfig
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:42:9-69
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:47:9-52
 	tools:replace
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:47:9-44
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:49:9-44
 activity#com.example.convergenceapp.PmaygDashboardActivity
-ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:48:9-50:40
-	android:exported
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:50:13-37
-	android:name
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:49:13-51
-activity#com.example.convergenceapp.NrlmDashboardActivity
 ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:51:9-53:40
 	android:exported
 		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:53:13-37
 	android:name
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:52:13-50
-activity#com.example.convergenceapp.HomeActivity
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:52:13-51
+activity#com.example.convergenceapp.NrlmDashboardActivity
 ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:54:9-56:40
 	android:exported
 		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:56:13-37
 	android:name
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:55:13-41
-activity#com.example.convergenceapp.MpinActivity
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:55:13-50
+activity#com.example.convergenceapp.HomeActivity
 ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:57:9-59:40
 	android:exported
 		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:59:13-37
 	android:name
 		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:58:13-41
-activity#com.example.convergenceapp.LoginActivity
+activity#com.example.convergenceapp.MpinActivity
 ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:60:9-62:40
 	android:exported
 		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:62:13-37
 	android:name
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:61:13-42
-activity#com.example.convergenceapp.SplashScreen
-ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:63:9-71:20
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:61:13-41
+activity#com.example.convergenceapp.LoginActivity
+ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:63:9-65:40
 	android:exported
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:65:13-36
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:65:13-37
 	android:name
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:64:13-41
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:64:13-42
+activity#com.example.convergenceapp.SplashScreen
+ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:66:9-74:20
+	android:exported
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:68:13-36
+	android:name
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:67:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:66:13-70:29
+ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:69:13-73:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:67:17-69
+ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:70:17-69
 	android:name
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:67:25-66
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:70:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:69:17-77
+ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:72:17-77
 	android:name
-		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:69:27-74
+		ADDED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml:72:27-74
 uses-sdk
 INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\DELL\AndroidStudioProjects\ConvergenceMain\app\src\main\AndroidManifest.xml

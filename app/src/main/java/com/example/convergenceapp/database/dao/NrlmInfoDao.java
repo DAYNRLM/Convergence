@@ -35,6 +35,8 @@ public interface NrlmInfoDao {
     String getMemberbranchCode(String memCode);
     @Query("select distinct mem_bank_code from NrlmInfoEntity where NrlmInfoEntity.member_code =:memCode order by member_name ASC")
     String getMemberbankCode(String memCode);
+    @Query("select distinct bank_flag from NrlmInfoEntity where NrlmInfoEntity.member_code =:memCode order by member_name ASC")
+    String getMemberbankFlag(String memCode);
 
 
     @Query("delete from NrlmInfoEntity")

@@ -21,7 +21,7 @@ public interface BankMasterDao {
     @Query("select distinct bank_branch_code,bank_branch_name,ifsc_code,alength from BankMasterEntity where BankMasterEntity.bank_code =:bankCode order by bank_branch_name ASC")
     List<BankMasterBean> getBranchList(String bankCode);
 
-    @Query("select distinct bank_branch_name,bank_name,bank_code from BankMasterEntity where BankMasterEntity.bank_branch_code =:bankCode order by bank_branch_name ASC")
+    @Query("select distinct bank_branch_name,bank_name,bank_code,bank_branch_code, ifsc_code from BankMasterEntity where BankMasterEntity.bank_branch_code =:bankCode order by bank_branch_name ASC")
     List<BankNameAndBranchName> getBankNameAndBranchName(String bankCode);
 
     @Query("delete from BankMasterEntity")

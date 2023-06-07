@@ -52,6 +52,7 @@
     <string name="dialog_sign_out_title">Confirm Sign Out</string>
     <string name="do_you_want_to_change_the_language">Do you want to change the language?</string>
     <string name="enter_confirm_first">Enter confirm Mpin first</string>
+    <string name="enter_mob" translatable="false">Enter Mobile no</string>
     <string name="enter_mpin_first">Enter Mpin first</string>
     <string name="enter_user_id">Enter user Id</string>
     <string name="enter_your_mpin">Enter your PIN</string>
@@ -107,17 +108,17 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
     <style name="Theme.ConvergenceApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
+        
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
+        
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
+        
         <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        
     </style>
     <style name="Widget.Theme.ConvergenceApp.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>

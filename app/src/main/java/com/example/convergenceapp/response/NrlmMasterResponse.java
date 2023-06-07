@@ -195,7 +195,15 @@ public class NrlmMasterResponse {
         public String district_name;
         public String block_name;
         public String ac_no;
+        public String bank_flag;
 
+        public String getBank_flag() {
+            return bank_flag;
+        }
+
+        public void setBank_flag(String bank_flag) {
+            this.bank_flag = bank_flag;
+        }
 
         public String getMobile_number() {
             return mobile_number;

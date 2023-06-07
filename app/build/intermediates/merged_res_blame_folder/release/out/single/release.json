@@ -8,6 +8,10 @@
         "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\generated\\res\\pngs\\release\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
     },
     {
+        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\layout_fragment_forgot_password.xml.flat",
+        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\fragment_forgot_password.xml"
+    },
+    {
         "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
@@ -44,12 +48,12 @@
         "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\dialog_bank_details.xml"
     },
     {
-        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\drawable_arrow_forward.xml.flat",
-        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\drawable\\arrow_forward.xml"
-    },
-    {
         "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\layout_activity_nrlm_dashboard.xml.flat",
         "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\activity_nrlm_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\drawable_arrow_forward.xml.flat",
+        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\drawable\\arrow_forward.xml"
     },
     {
         "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\drawable_ic_baseline_exit_to_app_24.xml.flat",
@@ -176,6 +180,10 @@
         "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\drawable\\ic_baseline_arrow_forward_24.xml"
     },
     {
+        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\layout_fragment_otp.xml.flat",
+        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\fragment_otp.xml"
+    },
+    {
         "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
         "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_foreground.png"
     },
@@ -218,6 +226,10 @@
     {
         "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\drawable_main.png.flat",
         "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\drawable\\main.png"
+    },
+    {
+        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\drawable_logo.jpg.flat",
+        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\drawable\\logo.jpg"
     },
     {
         "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\drawable-xhdpi_navigation_gradian.png.flat",

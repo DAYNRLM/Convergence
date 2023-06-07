@@ -48,7 +48,14 @@
         android:id="@+id/loginFragment2"
         android:name="com.example.convergenceapp.Auth.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment2_self"
+            app:destination="@id/loginFragment2" />
+        <action
+            android:id="@+id/action_loginFragment2_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/changeLanguageFragment"
         android:name="com.example.convergenceapp.Auth.ChangeLanguageFragment"
@@ -59,4 +66,22 @@
         android:name="com.example.convergenceapp.Auth.NrlmDashboardFragment"
         android:label="fragment_nrlm_dashboard"
         tools:layout="@layout/fragment_nrlm_dashboard" />
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.example.convergenceapp.Auth.ForgotPasswordFragment"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password" >
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_otpFragment"
+            app:destination="@id/otpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/otpFragment"
+        android:name="com.example.convergenceapp.Auth.OtpFragment"
+        android:label="fragment_otp"
+        tools:layout="@layout/fragment_otp" >
+        <action
+            android:id="@+id/action_otpFragment_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+    </fragment>
 </navigation>
