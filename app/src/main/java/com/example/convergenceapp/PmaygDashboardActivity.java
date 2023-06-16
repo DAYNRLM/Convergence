@@ -332,10 +332,10 @@ imageView.setOnClickListener(new View.OnClickListener() {
             String surveyCom = Objects.requireNonNull(PreferenceFactory.getInstance()).getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyPmaygsurveycom(), getApplicationContext());
             String surveyPen = Objects.requireNonNull(PreferenceFactory.getInstance()).getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyPmaygsurveypen(), getApplicationContext());
 
-
+            String completed= String.valueOf(Integer.parseInt(memberAlotted)  - Integer.parseInt(surveyPen));
             gpAllottxt.setText(gpAlotted);
             villageAllotttxt.setText(villageAlotted);
-            surveyComtxt.setText(surveyCom);
+            surveyComtxt.setText(completed);
             surveyPentxt.setText(surveyPen);
             locallySavetxt.setText(locallySave);
             memAllottxt.setText(memberAlotted);

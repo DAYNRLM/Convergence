@@ -332,10 +332,11 @@ public class NrlmDashboardActivity extends AppCompatActivity {
             String surveyCom = Objects.requireNonNull(PreferenceFactory.getInstance()).getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyNrlmsurveycom(), getApplicationContext());
             String surveyPen = Objects.requireNonNull(PreferenceFactory.getInstance()).getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyNrlmsurveypen(), getApplicationContext());
 
+            String completed= String.valueOf(Integer.parseInt(memberAlotted)  - Integer.parseInt(surveyPen));
 
             gpAllottxt.setText(gpAlotted);
             villageAllotttxt.setText(villageAlotted);
-            surveyComtxt.setText(surveyCom);
+            surveyComtxt.setText(completed);
             surveyPentxt.setText(surveyPen);
             locallySavetxt.setText(appDatabase.nrlmBenefeciaryMobileDao().getLocalMobileEntry());
             memAllottxt.setText(memberAlotted);

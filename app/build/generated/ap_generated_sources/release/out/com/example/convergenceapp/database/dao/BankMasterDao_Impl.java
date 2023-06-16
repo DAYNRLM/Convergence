@@ -200,7 +200,7 @@ public final class BankMasterDao_Impl implements BankMasterDao {
 
   @Override
   public List<BankNameAndBranchName> getBankNameAndBranchName(final String bankCode) {
-    final String _sql = "select distinct bank_branch_name,bank_name,bank_code from BankMasterEntity where BankMasterEntity.bank_branch_code =? order by bank_branch_name ASC";
+    final String _sql = "select distinct bank_branch_name,bank_name,bank_code,bank_branch_code, ifsc_code from BankMasterEntity where BankMasterEntity.bank_branch_code =? order by bank_branch_name ASC";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
     if (bankCode == null) {
@@ -214,6 +214,8 @@ public final class BankMasterDao_Impl implements BankMasterDao {
       final int _cursorIndexOfBranchName = 0;
       final int _cursorIndexOfBankName = 1;
       final int _cursorIndexOfBankCode = 2;
+      final int _cursorIndexOfBranchCode = 3;
+      final int _cursorIndexOfIfscCode = 4;
       final List<BankNameAndBranchName> _result = new ArrayList<BankNameAndBranchName>(_cursor.getCount());
       while(_cursor.moveToNext()) {
         final BankNameAndBranchName _item;
@@ -239,6 +241,20 @@ public final class BankMasterDao_Impl implements BankMasterDao {
           _tmpBankCode = _cursor.getString(_cursorIndexOfBankCode);
         }
         _item.setBankCode(_tmpBankCode);
+        final String _tmpBranchCode;
+        if (_cursor.isNull(_cursorIndexOfBranchCode)) {
+          _tmpBranchCode = null;
+        } else {
+          _tmpBranchCode = _cursor.getString(_cursorIndexOfBranchCode);
+        }
+        _item.setBranchCode(_tmpBranchCode);
+        final String _tmpIfsc_code;
+        if (_cursor.isNull(_cursorIndexOfIfscCode)) {
+          _tmpIfsc_code = null;
+        } else {
+          _tmpIfsc_code = _cursor.getString(_cursorIndexOfIfscCode);
+        }
+        _item.setIfsc_code(_tmpIfsc_code);
         _result.add(_item);
       }
       return _result;

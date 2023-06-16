@@ -359,16 +359,14 @@ public class LoginFragment extends Fragment {
                                 flag="0";
 
 
-                                AppDatabase.databaseWriteExecutor.execute(new Runnable() {
-                                    @Override
-                                    public void run() {
+
                                         appDatabase.pmaygInfoDao().insert(new PmaygInfoEntity(gp_code,gp_name,village_code,nrlmVillageCode
                                                 ,village_name,scheme,beneficiary_holder_name,beneficiary_id
                                                 ,beneficiary_acc_no,beneficiary_bank_name,beneficiary_branch_name,mobile_no,member_name,holder_sync_flag,mothername
                                                 ,districtname,blockcode,districtcode,statecode,fathername,blockname,sl_no_member,ifsc_code,flag));
 
-                                    }
-                                });
+
+
 
 
                                 String beneficiaryname= pmaygMasterResponse.getData().getAssign_data().get(j).getBeneficiaryname();

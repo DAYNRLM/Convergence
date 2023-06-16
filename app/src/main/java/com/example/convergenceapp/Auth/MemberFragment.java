@@ -502,12 +502,6 @@ public class MemberFragment extends Fragment {
                 }
 
 
-
-
-
-
-
-
                 else if (checkedId == R.id.rbPartOfShgNo) {
                     iPartOfShg=2;
                     binding.llReason.setVisibility(View.VISIBLE);
@@ -539,8 +533,6 @@ public class MemberFragment extends Fragment {
         for (int j=0;j<bankMasterBeans.size();j++){
             bankNameList.add(bankMasterBeans.get(j).getBankName());
             bankCodeList.add(bankMasterBeans.get(j).getBankCode());
-
-
 
         }
 

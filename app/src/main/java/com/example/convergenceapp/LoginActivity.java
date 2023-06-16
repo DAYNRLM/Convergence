@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         NavInflater navInflater=navController.getNavInflater();
         NavGraph navGraph=navInflater.inflate(R.navigation.login_nav_graph);
 
-
         if(!PreferenceFactory.getInstance().getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyMpin(),LoginActivity.this).equalsIgnoreCase(""))   // which fragment has to be reflect will decide on this variable(set Mpin fragmnet, Verify Mpin fragmet)
         {
             Intent intent=new Intent(this, HomeActivity.class);
@@ -48,27 +47,5 @@ public class LoginActivity extends AppCompatActivity {
         navController.setGraph(navGraph);
 
     }
-/*    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        boolean status = false;
-
-
-        switch (item.getItemId()) {
-            case R.id.logOut:
-                //navController.navigate(R.id.loginFragment);
-                Toast.makeText(this, "working", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.changeLanguage:
-                navController.navigate(R.id.changeLanguage);
-        }
-        return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
-    }*/
 
 }

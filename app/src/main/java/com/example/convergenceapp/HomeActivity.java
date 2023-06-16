@@ -118,7 +118,6 @@ List<String> data;
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.changeLanguage) {
 
-             //       Toast.makeText(getApplicationContext(),"Whooooooooooooooo working......",Toast.LENGTH_LONG).show();
                     navGraph.setStartDestination(R.id.changeLanguageFragment);
                     navController.setGraph(navGraph);
 
@@ -131,11 +130,9 @@ List<String> data;
 
 
                 else if (item.getItemId() == R.id.logOut) {
-                   /* navGraph.setStartDestination(R.id.loginFragment);
-                    navController.setGraph(navGraph);*/
+
                     logout();
 
-                    // do something
                 }
                 return false;
             }
@@ -178,19 +175,13 @@ List<String> data;
 
    }
     public void logout(){
-       /* appDatabase.pmaygInfoDao().deleteAll();
-        appDatabase.nrlmInfoDao().deleteAll();
-        appDatabase.loginInfoDao().deleteAll();
-        appDatabase.reasonInfoDao().deleteAll();
-        appDatabase.bankMasterDao().deleteAll();*/
+
         Intent i = new Intent(getApplicationContext(), LoginActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
         startActivity(i);
          PreferenceFactory.getInstance().removeSharedPrefrencesData(PreferenceKeyManager.getPrefKeyMpin(),getApplicationContext());
-       /*  NavDirections navDirections= HomeFragmentDirections.actionHomeFragmentToLoginFragment2();
-        NavController navController=navHostFragment.getNavController();
-        navController.navigate(navDirections);*/
+
     }
 
     public void callUnassignApi(){
@@ -249,20 +240,7 @@ List<String> data;
             } catch (InvalidKeyException e) {
                 e.printStackTrace();
             }
-            // e.printStackTrace();
-            // } catch (InvalidAlgorithmParameterException e) {
-            //  e.printStackTrace();
-            //} catch (IllegalBlockSizeException e) {
-            // e.printStackTrace();
-            // } catch (BadPaddingException e) {
-            //e.printStackTrace();
-            // } catch (UnsupportedEncodingException e) {
-            // e.printStackTrace();
-            //}
-            //   *//**//***********************************************//**//*
 
-            // AppUtils.getInstance().showLog("request of NrlmMaster" +encryptedObject, LoginFragment.class);
-          //  Log.d(TAG, "request of NrlmMaster "+plainData.toString());
             mResultCallBack = new VolleyResult() {
                 @Override
                 public void notifySuccess(String requestType, JSONObject response) {

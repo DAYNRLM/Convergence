@@ -48,12 +48,12 @@
         "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\dialog_bank_details.xml"
     },
     {
-        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\layout_activity_nrlm_dashboard.xml.flat",
-        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\activity_nrlm_dashboard.xml"
-    },
-    {
         "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\drawable_arrow_forward.xml.flat",
         "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\drawable\\arrow_forward.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\layout_activity_nrlm_dashboard.xml.flat",
+        "source": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\src\\main\\res\\layout\\activity_nrlm_dashboard.xml"
     },
     {
         "merged": "C:\\Users\\DELL\\AndroidStudioProjects\\ConvergenceMain\\app\\build\\intermediates\\merged_res\\release\\drawable_ic_baseline_exit_to_app_24.xml.flat",

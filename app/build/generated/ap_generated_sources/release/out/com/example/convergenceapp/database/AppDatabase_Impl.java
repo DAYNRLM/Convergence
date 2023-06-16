@@ -77,7 +77,7 @@ public final class AppDatabase_Impl extends AppDatabase {
       public void createAllTables(SupportSQLiteDatabase _db) {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `LoginInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `login_id` TEXT, `password` TEXT, `mobile_number` TEXT, `state_code` TEXT, `state_short_name` TEXT, `server_date_time` TEXT, `language_id` TEXT, `login_attempt` TEXT, `logout_days` TEXT, `user_name` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `CheckAndDeleteEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `village_code` TEXT)");
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `NrlmInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gp_code` TEXT, `mem_branch_code` TEXT, `mem_bank_code` TEXT, `lgd_gp_code` TEXT, `gp_name` TEXT, `village_code` TEXT, `village_name` TEXT, `shg_name` TEXT, `shg_code` TEXT, `member_name` TEXT, `member_code` TEXT, `user_id` TEXT, `block_name` TEXT, `lgd_state_code` TEXT, `state_name` TEXT, `state_code` TEXT, `block_code` TEXT, `district_name` TEXT, `lgd_district_code` TEXT, `lgd_block_code` TEXT, `mobile_number` TEXT, `belonging_name` TEXT, `act_num` TEXT)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `NrlmInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gp_code` TEXT, `mem_branch_code` TEXT, `mem_bank_code` TEXT, `lgd_gp_code` TEXT, `gp_name` TEXT, `village_code` TEXT, `village_name` TEXT, `shg_name` TEXT, `shg_code` TEXT, `member_name` TEXT, `member_code` TEXT, `user_id` TEXT, `block_name` TEXT, `lgd_state_code` TEXT, `state_name` TEXT, `state_code` TEXT, `block_code` TEXT, `district_name` TEXT, `lgd_district_code` TEXT, `lgd_block_code` TEXT, `mobile_number` TEXT, `belonging_name` TEXT, `act_num` TEXT, `bank_flag` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `PmaygInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gp_code` TEXT, `flag` TEXT, `gp_name` TEXT, `village_code` TEXT, `village_name` TEXT, `scheme` TEXT, `beneficiary_holder_name` TEXT, `beneficiary_id` TEXT, `nrlm_village_code` TEXT, `ifsc_code` TEXT, `beneficiary_acc_no` TEXT, `beneficiary_bank_name` TEXT, `beneficiary_branch_name` TEXT, `mobile_no` TEXT, `member_name` TEXT, `holder_sync_flag` TEXT, `mothername` TEXT, `districtname` TEXT, `blockcode` TEXT, `districtcode` TEXT, `statecode` TEXT, `fathername` TEXT, `blockname` TEXT, `sl_no_member` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `ReasonInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `reason` TEXT, `reasonCode` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `MemberEntryInfoEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gp_Name` TEXT, `scheme_Name` TEXT, `ben_Id` TEXT, `lgd_GpCode` TEXT, `lgd_Villagecode` TEXT, `mobile_no` TEXT, `ben_availability` TEXT, `any_Familyinshg` TEXT, `willing_joinshg` TEXT, `reason` TEXT, `shg_Code` TEXT, `member_Code` TEXT, `village_Code` TEXT, `created_on` TEXT, `appVersion` TEXT, `syncFlag` TEXT)");
@@ -86,7 +86,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `MobileNoBelongsToEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id` TEXT, `type_name` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `MemberReasonEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `reason_id` INTEGER NOT NULL, `reason_name` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9a65cfe2865b0616236039e193ca6153')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9d1c1914887ce91acdcb6c8b2cc9dc34')");
       }
 
       @Override
@@ -172,7 +172,7 @@ public final class AppDatabase_Impl extends AppDatabase {
                   + " Expected:\n" + _infoCheckAndDeleteEntity + "\n"
                   + " Found:\n" + _existingCheckAndDeleteEntity);
         }
-        final HashMap<String, TableInfo.Column> _columnsNrlmInfoEntity = new HashMap<String, TableInfo.Column>(24);
+        final HashMap<String, TableInfo.Column> _columnsNrlmInfoEntity = new HashMap<String, TableInfo.Column>(25);
         _columnsNrlmInfoEntity.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsNrlmInfoEntity.put("gp_code", new TableInfo.Column("gp_code", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsNrlmInfoEntity.put("mem_branch_code", new TableInfo.Column("mem_branch_code", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -197,6 +197,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         _columnsNrlmInfoEntity.put("mobile_number", new TableInfo.Column("mobile_number", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsNrlmInfoEntity.put("belonging_name", new TableInfo.Column("belonging_name", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsNrlmInfoEntity.put("act_num", new TableInfo.Column("act_num", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsNrlmInfoEntity.put("bank_flag", new TableInfo.Column("bank_flag", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysNrlmInfoEntity = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesNrlmInfoEntity = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoNrlmInfoEntity = new TableInfo("NrlmInfoEntity", _columnsNrlmInfoEntity, _foreignKeysNrlmInfoEntity, _indicesNrlmInfoEntity);
@@ -353,7 +354,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "9a65cfe2865b0616236039e193ca6153", "627440fd419dba65acec1beeba8da53a");
+    }, "9d1c1914887ce91acdcb6c8b2cc9dc34", "53a0da8810ba41502ee7075d795c1109");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
