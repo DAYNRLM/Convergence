@@ -27,6 +27,8 @@ import com.example.convergenceapp.R;
 import com.example.convergenceapp.request.BenficiaryDtl;
 import com.example.convergenceapp.request.MemberSyncRequest;
 import com.example.convergenceapp.request.OtpRequest;
+import com.example.convergenceapp.response.NrlmDashboardResponse;
+import com.example.convergenceapp.response.ResetResponse;
 import com.example.convergenceapp.utils.AppUtils;
 import com.example.convergenceapp.utils.Cryptography;
 import com.example.convergenceapp.utils.DialogFactory;
@@ -93,6 +95,8 @@ public class ForgotPasswordFragment extends Fragment {
 
                }
                else{
+                   PreferenceFactory.getInstance().saveSharedPrefrecesData(PreferenceKeyManager.getPREF_KEY_mobileNo(), mobileNo, getContext());
+
                    otpApi(otp,mobileNo);
 
 
@@ -123,6 +127,8 @@ public class ForgotPasswordFragment extends Fragment {
 
             /*******make json object is encrypted and *********/
             JSONObject encryptedObject =new JSONObject();
+            JSONObject plainData=null;
+
             try {
                 Cryptography cryptography = new Cryptography();
 
@@ -132,16 +138,19 @@ public class ForgotPasswordFragment extends Fragment {
 
                 OtpRequest otpRequest=new OtpRequest();
 
-
+             String plnObj;
 
                 otpRequest.setMobileno(mobileno);
                 otpRequest.setMessage(otp);
+                 plnObj=new Gson().toJson(otpRequest);
+                Log.d(TAG, "request Otp "+plnObj.toString());
 
 
 
-
-
-                encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(otpRequest)));
+               // encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(otpRequest)));
+                plnObj=new Gson().toJson(otpRequest);
+                 plainData =new JSONObject(plnObj);
+                //nonencryptedObject.accumulate("data",new Gson().toJson(otpRequest));
 
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
@@ -150,7 +159,7 @@ public class ForgotPasswordFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             } //catch (InvalidKeyException e) {
-            catch (InvalidAlgorithmParameterException e) {
+          /*  catch (InvalidAlgorithmParameterException e) {
                 e.printStackTrace();
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -160,15 +169,20 @@ public class ForgotPasswordFragment extends Fragment {
                 e.printStackTrace();
             } catch (InvalidKeyException e) {
                 e.printStackTrace();
-            }
+            }*/
 
 
-            Log.d(TAG, "request Otp "+encryptedObject.toString());
+            Log.d(TAG, "new Otp "+plainData.toString());
             mResultCallBack = new VolleyResult() {
                 @Override
                 public void notifySuccess(String requestType, JSONObject response) {
 
                     progressDialog.dismiss();
+                    Toast.makeText(getContext(),"Otp Send",Toast.LENGTH_LONG).show();
+                    NavDirections navDirections= ForgotPasswordFragmentDirections.actionForgotPasswordFragment2ToOtpFragment2();
+                    navController.navigate(navDirections);
+
+
                     JSONObject jsonObject = null;    //manish commented
 
 
@@ -194,7 +208,11 @@ public class ForgotPasswordFragment extends Fragment {
                         JSONObject jsonObject1=new JSONObject(objectResponse);
                         objectResponse=jsonObject1.getString("data");
                         //    AppUtils.getInstance().showLog("dashboard"+jsonObject1,LoginFragment.class);
-                        Log.d(TAG, "dashboard: "+jsonObject1.toString());
+
+
+
+                        // String plnObj=new Gson().toJson(resetResponse);
+                       // Log.d(TAG, "responsed: "+status.toString());
 
                     }catch (JSONException e)
                     {
@@ -209,24 +227,14 @@ public class ForgotPasswordFragment extends Fragment {
                             Cryptography cryptography = new Cryptography();
 
                             jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Manish comment
+
                             //if (jsonObject.getString("E200").equalsIgnoreCase("Success"))
                             // AppUtils.getInstance().showLog("responseJSON" + jsonObject.toString(), LoginFragment.class);
                             Log.d(TAG, "responseJSON: "+response.toString());
 
-                            if(jsonObject.getString("message").equalsIgnoreCase("success"))
-                            {
+
 
                                 progressDialog.dismiss();
-                                Toast.makeText(getContext(),"Otp Send",Toast.LENGTH_LONG).show();
-                                NavDirections navDirections= ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToOtpFragment();
-                                navController.navigate(navDirections);
-                            }
-                            else{
-                                Toast.makeText(getContext(),"Mobile no not found",Toast.LENGTH_LONG).show();
-
-
-
-                            }
 
 
 
@@ -236,6 +244,7 @@ public class ForgotPasswordFragment extends Fragment {
                             //    progressDialog.dismiss();
                             // Log.d(TAG, "notifySuccess: "+e);
                             AppUtils.getInstance().showLog("DecryptEx" + e, LoginFragment.class);
+
                         }
                     }
 
@@ -245,6 +254,9 @@ public class ForgotPasswordFragment extends Fragment {
                 @Override
                 public void notifyError(String requestType, VolleyError error) {
                     progressDialog.dismiss();
+                    AppUtils.getInstance().showLog("DecryptEx" + error, LoginFragment.class);
+                    Toast.makeText(getContext(),error.toString(),Toast.LENGTH_LONG).show();
+
 
 
 
@@ -253,7 +265,7 @@ public class ForgotPasswordFragment extends Fragment {
             VolleyService volleyService = VolleyService.getInstance(getContext());
 
             //  volleyService.postDataVolley("dashboardRequest", "http://10.197.183.105:8080/nrlmwebservice/services/convergence/assigndata", encryptedObject, mResultCallBack);
-            volleyService.postDataVolley("Request of sync", AppUtils.buildURL+"convforgot/message", encryptedObject, mResultCallBack);
+            volleyService.postDataVolley("Request of sync", "https://nrlm.gov.in/nrlmwebservice/services/convforgot/message",plainData, mResultCallBack);
 
 
 

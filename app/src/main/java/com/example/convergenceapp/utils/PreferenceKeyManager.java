@@ -165,6 +165,12 @@ public class PreferenceKeyManager {
     private static final String PREF_KEY_SERVERDATE = "serverdate";
     private static final String PREF_KEY_distictcode = "distict";
 
+    public static String getPREF_KEY_mobileNo() {
+        return PREF_KEY_mobileNo;
+    }
+
+    private static final String PREF_KEY_mobileNo = "mobno";
+
     public static String getPREF_KEY_distictcode() {
         return PREF_KEY_distictcode;
     }

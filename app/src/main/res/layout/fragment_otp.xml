@@ -89,7 +89,7 @@
                 tools:ignore="HardcodedText">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_userId"
+                    android:id="@+id/et_userIdd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz"
@@ -108,13 +108,13 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/manrope_regular"
-                android:hint="Enter Password"
+                android:hint="Enter New Password"
                 app:boxStrokeColor="@color/out_line_strok"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_password"
+                    android:id="@+id/et_passwordd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_baseline_lock_24"
@@ -127,31 +127,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/manrope_regular"
-                android:hint="Enter Confirm Password"
-                app:boxStrokeColor="@color/out_line_strok"
-                app:endIconMode="password_toggle"
-                app:errorEnabled="true">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_re_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_baseline_lock_24"
-                    android:fontFamily="@font/manrope_regular"
-                    android:inputType="textPassword"
-                    android:lines="1"
-                    android:longClickable="false"
-                    android:maxLength="15"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 

@@ -284,7 +284,7 @@ public class MemberFragment extends Fragment {
             selectedShg= shgName.get(i);
             selectedShgCode= shgCode.get(i);
 
-            memberBeans = appDatabase.nrlmInfoDao().getMember(selectedShgCode);
+            memberBeans = appDatabase.nrlmInfoDao().getMemberByFlag(selectedShgCode);
             memberName = new ArrayList<String>();
             memberCode = new ArrayList<String>();
             memberSpouseList = new ArrayList<String>();
@@ -697,11 +697,6 @@ public class MemberFragment extends Fragment {
 
                          String userId = appDatabase.loginInfoDao().getLoginId();
 
-
-
-
-
-
                          memberCodeBeanslist=appDatabase.nrlmBenefeciaryMobileDao().getNrlmMemberCode();
                          String element="";
                          Boolean check=false;
@@ -747,6 +742,7 @@ public class MemberFragment extends Fragment {
                                              ));
 
 
+                             appDatabase.nrlmInfoDao().setUpdateSyncFlag(selectedmemberCode);
 
 
 
@@ -814,6 +810,9 @@ public class MemberFragment extends Fragment {
                                                 selectedBankCode, selectedBranchCode,ifscCode ,acNo ,
                                                 userId, enteredDate, "0", ""
                                         ));
+
+                                appDatabase.nrlmInfoDao().setUpdateSyncFlag(selectedmemberCode);
+
                             syncApi();
                         }
 

@@ -2971,6 +2971,7 @@ id action_container
 id action_context_bar
 id action_dashboardFragment_to_homeFragment
 id action_divider
+id action_forgotPasswordFragment2_to_otpFragment2
 id action_forgotPasswordFragment_to_otpFragment
 id action_homeFragment_self
 id action_homeFragment_to_changeLanguageFragment
@@ -2980,12 +2981,14 @@ id action_homeFragment_to_nrlmDashboardFragment
 id action_image
 id action_loginFragment2_self
 id action_loginFragment2_to_forgotPasswordFragment
+id action_loginFragment_to_forgotPasswordFragment2
 id action_memberFragment_to_homeFragment
 id action_menu_divider
 id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_otpFragment2_self
 id action_otpFragment_to_loginFragment2
 id action_setMpinFragment_to_verifyMpinFragment
 id action_text
@@ -3139,8 +3142,9 @@ id etAccountNumber
 id etMobile
 id et_otp
 id et_password
-id et_re_password
+id et_passwordd
 id et_userId
+id et_userIdd
 id et_userMobile
 id exitUntilCollapsed
 id expand_activities_button
@@ -3162,6 +3166,8 @@ id flip
 id floating
 id forever
 id forgotPasswordFragment
+id forgotPasswordFragment2
+id forgotpass
 id fragmentMpin
 id fragment_container_view_tag
 id fragmentlogin
@@ -3350,6 +3356,7 @@ id onDateChanged
 id onInterceptTouchReturnSwipe
 id othermember
 id otpFragment
+id otpFragment2
 id otpvis
 id outline
 id outward

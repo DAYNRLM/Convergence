@@ -7,10 +7,18 @@ import androidx.room.PrimaryKey;
 public class NrlmInfoEntity {
     @PrimaryKey(autoGenerate = true)
     public int id;
-    private String gp_code,mem_branch_code,mem_bank_code, lgd_gp_code, gp_name, village_code, village_name, shg_name, shg_code, member_name, member_code, user_id, block_name, lgd_state_code, state_name, state_code, block_code, district_name, lgd_district_code, lgd_block_code, mobile_number, belonging_name,act_num,bank_flag;
+    private String gp_code,mem_branch_code,mem_bank_code, lgd_gp_code, gp_name, village_code, village_name, shg_name, shg_code, member_name, member_code, user_id, block_name, lgd_state_code, state_name, state_code, block_code, district_name, lgd_district_code, lgd_block_code, mobile_number, belonging_name,act_num,bank_flag,mem_flag;
 
     public String getBank_flag() {
         return bank_flag;
+    }
+
+    public String getMem_flag() {
+        return mem_flag;
+    }
+
+    public void setMem_flag(String mem_flag) {
+        this.mem_flag = mem_flag;
     }
 
     public void setBank_flag(String bank_flag) {
@@ -211,7 +219,7 @@ public class NrlmInfoEntity {
         this.act_num = act_num;
     }
 
-    public NrlmInfoEntity(String gp_code,String mem_branch_code,String mem_bank_code, String lgd_gp_code, String gp_name, String village_code, String village_name, String shg_name, String shg_code, String member_name, String member_code, String user_id, String block_name, String lgd_state_code, String state_name, String state_code, String block_code, String district_name, String lgd_district_code, String lgd_block_code, String mobile_number, String belonging_name, String act_num,String bank_flag) {
+    public NrlmInfoEntity(String gp_code,String mem_branch_code,String mem_bank_code, String lgd_gp_code, String gp_name, String village_code, String village_name, String shg_name, String shg_code, String member_name, String member_code, String user_id, String block_name, String lgd_state_code, String state_name, String state_code, String block_code, String district_name, String lgd_district_code, String lgd_block_code, String mobile_number, String belonging_name, String act_num,String bank_flag,String mem_flag) {
         this.mem_branch_code = mem_branch_code;
         this.gp_code = gp_code;
         this.lgd_gp_code = lgd_gp_code;
@@ -236,5 +244,6 @@ public class NrlmInfoEntity {
         this.belonging_name = belonging_name;
         this.act_num = act_num;
         this.bank_flag = bank_flag;
+        this.mem_flag = mem_flag;
     }
 }

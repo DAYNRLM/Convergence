@@ -65,6 +65,7 @@ font montserrat_regular
 id Local_LanguageTv
 id Spinner_family
 id action_dashboardFragment_to_homeFragment
+id action_forgotPasswordFragment2_to_otpFragment2
 id action_forgotPasswordFragment_to_otpFragment
 id action_homeFragment_self
 id action_homeFragment_to_changeLanguageFragment
@@ -73,7 +74,9 @@ id action_homeFragment_to_loginFragment2
 id action_homeFragment_to_nrlmDashboardFragment
 id action_loginFragment2_self
 id action_loginFragment2_to_forgotPasswordFragment
+id action_loginFragment_to_forgotPasswordFragment2
 id action_memberFragment_to_homeFragment
+id action_otpFragment2_self
 id action_otpFragment_to_loginFragment2
 id action_setMpinFragment_to_verifyMpinFragment
 id any_family_visib
@@ -114,12 +117,15 @@ id etAccountNumber
 id etMobile
 id et_otp
 id et_password
-id et_re_password
+id et_passwordd
 id et_userId
+id et_userIdd
 id et_userMobile
 id father_name
 id fathervis
 id forgotPasswordFragment
+id forgotPasswordFragment2
+id forgotpass
 id fragmentMpin
 id fragmentlogin
 id gp_nrlm_number
@@ -178,6 +184,7 @@ id nrlmDashboardFragment
 id nrlm_vill_vissib
 id othermember
 id otpFragment
+id otpFragment2
 id otpvis
 id pinview_first
 id pinview_getMpin

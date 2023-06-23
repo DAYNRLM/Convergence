@@ -46,7 +46,13 @@ public interface NrlmInfoDao {
     String getDistrictCode();
 
 
+    @Query("update NrlmInfoEntity set mem_flag='1' where member_code=:memberCode")
+    void setUpdateSyncFlag(String memberCode);
 
+
+
+    @Query("select distinct member_code,member_name,mobile_number,belonging_name,act_num from NrlmInfoEntity where NrlmInfoEntity.shg_code =:shgCode and mem_flag= 0 order by member_name ASC")
+    List<MemberBean> getMemberByFlag(String shgCode);
 
 
 }

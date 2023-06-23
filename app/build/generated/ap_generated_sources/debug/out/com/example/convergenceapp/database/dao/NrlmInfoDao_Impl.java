@@ -28,12 +28,14 @@ public final class NrlmInfoDao_Impl implements NrlmInfoDao {
 
   private final SharedSQLiteStatement __preparedStmtOfDeleteAll;
 
+  private final SharedSQLiteStatement __preparedStmtOfSetUpdateSyncFlag;
+
   public NrlmInfoDao_Impl(RoomDatabase __db) {
     this.__db = __db;
     this.__insertionAdapterOfNrlmInfoEntity = new EntityInsertionAdapter<NrlmInfoEntity>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR ABORT INTO `NrlmInfoEntity` (`id`,`gp_code`,`mem_branch_code`,`mem_bank_code`,`lgd_gp_code`,`gp_name`,`village_code`,`village_name`,`shg_name`,`shg_code`,`member_name`,`member_code`,`user_id`,`block_name`,`lgd_state_code`,`state_name`,`state_code`,`block_code`,`district_name`,`lgd_district_code`,`lgd_block_code`,`mobile_number`,`belonging_name`,`act_num`,`bank_flag`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR ABORT INTO `NrlmInfoEntity` (`id`,`gp_code`,`mem_branch_code`,`mem_bank_code`,`lgd_gp_code`,`gp_name`,`village_code`,`village_name`,`shg_name`,`shg_code`,`member_name`,`member_code`,`user_id`,`block_name`,`lgd_state_code`,`state_name`,`state_code`,`block_code`,`district_name`,`lgd_district_code`,`lgd_block_code`,`mobile_number`,`belonging_name`,`act_num`,`bank_flag`,`mem_flag`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -159,12 +161,24 @@ public final class NrlmInfoDao_Impl implements NrlmInfoDao {
         } else {
           stmt.bindString(25, value.getBank_flag());
         }
+        if (value.getMem_flag() == null) {
+          stmt.bindNull(26);
+        } else {
+          stmt.bindString(26, value.getMem_flag());
+        }
       }
     };
     this.__preparedStmtOfDeleteAll = new SharedSQLiteStatement(__db) {
       @Override
       public String createQuery() {
         final String _query = "delete from NrlmInfoEntity";
+        return _query;
+      }
+    };
+    this.__preparedStmtOfSetUpdateSyncFlag = new SharedSQLiteStatement(__db) {
+      @Override
+      public String createQuery() {
+        final String _query = "update NrlmInfoEntity set mem_flag='1' where member_code=?";
         return _query;
       }
     };
@@ -193,6 +207,26 @@ public final class NrlmInfoDao_Impl implements NrlmInfoDao {
     } finally {
       __db.endTransaction();
       __preparedStmtOfDeleteAll.release(_stmt);
+    }
+  }
+
+  @Override
+  public void setUpdateSyncFlag(final String memberCode) {
+    __db.assertNotSuspendingTransaction();
+    final SupportSQLiteStatement _stmt = __preparedStmtOfSetUpdateSyncFlag.acquire();
+    int _argIndex = 1;
+    if (memberCode == null) {
+      _stmt.bindNull(_argIndex);
+    } else {
+      _stmt.bindString(_argIndex, memberCode);
+    }
+    __db.beginTransaction();
+    try {
+      _stmt.executeUpdateDelete();
+      __db.setTransactionSuccessful();
+    } finally {
+      __db.endTransaction();
+      __preparedStmtOfSetUpdateSyncFlag.release(_stmt);
     }
   }
 
@@ -482,6 +516,70 @@ public final class NrlmInfoDao_Impl implements NrlmInfoDao {
         }
       } else {
         _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public List<MemberBean> getMemberByFlag(final String shgCode) {
+    final String _sql = "select distinct member_code,member_name,mobile_number,belonging_name,act_num from NrlmInfoEntity where NrlmInfoEntity.shg_code =? and mem_flag= 0 order by member_name ASC";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    if (shgCode == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, shgCode);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfMemberCode = 0;
+      final int _cursorIndexOfMemberName = 1;
+      final int _cursorIndexOfMobileNumber = 2;
+      final int _cursorIndexOfBelongingName = 3;
+      final int _cursorIndexOfActNum = 4;
+      final List<MemberBean> _result = new ArrayList<MemberBean>(_cursor.getCount());
+      while(_cursor.moveToNext()) {
+        final MemberBean _item;
+        final String _tmpMemberCode;
+        if (_cursor.isNull(_cursorIndexOfMemberCode)) {
+          _tmpMemberCode = null;
+        } else {
+          _tmpMemberCode = _cursor.getString(_cursorIndexOfMemberCode);
+        }
+        final String _tmpMemberName;
+        if (_cursor.isNull(_cursorIndexOfMemberName)) {
+          _tmpMemberName = null;
+        } else {
+          _tmpMemberName = _cursor.getString(_cursorIndexOfMemberName);
+        }
+        _item = new MemberBean(_tmpMemberCode,_tmpMemberName);
+        final String _tmpMobile_number;
+        if (_cursor.isNull(_cursorIndexOfMobileNumber)) {
+          _tmpMobile_number = null;
+        } else {
+          _tmpMobile_number = _cursor.getString(_cursorIndexOfMobileNumber);
+        }
+        _item.setMobile_number(_tmpMobile_number);
+        final String _tmpBelonging_name;
+        if (_cursor.isNull(_cursorIndexOfBelongingName)) {
+          _tmpBelonging_name = null;
+        } else {
+          _tmpBelonging_name = _cursor.getString(_cursorIndexOfBelongingName);
+        }
+        _item.setBelonging_name(_tmpBelonging_name);
+        final String _tmpActNum;
+        if (_cursor.isNull(_cursorIndexOfActNum)) {
+          _tmpActNum = null;
+        } else {
+          _tmpActNum = _cursor.getString(_cursorIndexOfActNum);
+        }
+        _item.setActNum(_tmpActNum);
+        _result.add(_item);
       }
       return _result;
     } finally {

@@ -148,21 +148,19 @@ public class LoginFragment extends Fragment {
         navController = NavHostFragment.findNavController(this);
         loginBtn = (Button) view.findViewById(R.id.btn_login);
         loginIdEt = (TextInputEditText) view.findViewById(R.id.et_userId);
-      //  TextView forgotPassword = (TextView) view.findViewById(R.id.forgotpass);
+       TextView forgotPassword = (TextView) view.findViewById(R.id.forgotpass);
         loginPassEt = (TextInputEditText) view.findViewById(R.id.et_password);
         navController = NavHostFragment.findNavController(this);
         // String mPin =   PreferenceFactory.getInstance().getSharedPrefrencesData(PreferenceKeyManager.getPrefKeyMpin(), getContext());
 
-/*
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavDirections navDirections= LoginFragmentDirections.actionLoginFragment2ToForgotPasswordFragment();
+                NavDirections navDirections= LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment2();
                 navController.navigate(navDirections);
             }
         });
-*/
 
 
 
@@ -216,6 +214,227 @@ public class LoginFragment extends Fragment {
 
 
 
+       @SuppressLint("HardwareIds")
+    public void getLoginAPI(String userId, String password)
+    {
+        if(NetworkFactory.isInternetOn(getContext()))
+        {
+
+
+
+
+
+            /*******make json object is encrypted and *********/
+            JSONObject encryptedObject =new JSONObject();
+            JSONObject plainData=null;
+            try {
+                Cryptography cryptography = new Cryptography();
+
+
+
+
+                imeiNo = Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+                AppUtils.getInstance().showLog("IMEI"+imeiNo, LoginFragment.class);
+                Objects.requireNonNull(PreferenceFactory.getInstance()).saveSharedPrefrecesData(PreferenceKeyManager.getPrefImeiNo(),imeiNo,getContext());
+
+
+                LoginRequest loginRequest=new LoginRequest();
+
+
+                loginRequest.setUser_id(userId);
+               // loginRequest.setUser_id("MPKASKUMARI");
+                loginRequest.setUser_password(AppUtils.getInstance().getSha256(password));
+                loginRequest.setImei_no(imeiNo);
+                loginRequest.setDevice_name(AppUtils.getInstance().getDeviceInfo());
+                loginRequest.setApp_version(BuildConfig.VERSION_NAME);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    loginRequest.setDate(AppUtils.getInstance().getCurrentDate());
+                }
+                loginRequest.setAndroid_version(BuildConfig.VERSION_NAME);
+                loginRequest.setLocation_coordinate("1232323");
+                loginRequest.setAndroid_api_version("30");
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    loginRequest.setLogout_time(AppUtils.getInstance().getCurrentDateAndTime());
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    loginRequest.setApp_login_time(AppUtils.getInstance().getCurrentDateAndTime());
+                }
+
+
+                String data=new Gson().toJson(loginRequest);
+             //   plainData=new JSONObject(data);
+                encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(loginRequest)));
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (NoSuchPaddingException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } //catch (InvalidKeyException e) {
+            catch (InvalidAlgorithmParameterException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            }
+
+            /***********************************************/
+
+            Log.d(TAG, "request of LoginApi "+encryptedObject.toString());
+            mResultCallBack = new VolleyResult() {
+                @Override
+                public void notifySuccess(String requestType, JSONObject response) {
+
+
+                  //  progressDialog.dismiss();
+                    JSONObject jsonObject = null;  //manish comment
+
+                    String objectResponse="";
+                    if(response.has("data")){
+                        try {
+                            objectResponse=response.getString("data");
+                            Log.d(TAG, "response encrupt "+objectResponse.toString());
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    try {
+                        JSONObject jsonObject1=new JSONObject(objectResponse);
+                        objectResponse=jsonObject1.getString("data");
+                        Log.d(TAG, "dashboard: "+jsonObject1.toString());
+
+                    }catch (JSONException e)
+                    {
+                        Log.d(TAG, "exceptionDataOfBlock: "+e.toString());
+
+                    }
+
+                    Objects.requireNonNull(PreferenceFactory.getInstance()).saveSharedPrefrecesData(PreferenceKeyManager.getPrefLoginId(),userId,getContext());
+
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        try {
+                            Cryptography cryptography = new Cryptography();
+                            jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Manish comment
+
+                            JSONObject viewData=response;
+                            Log.d(TAG, "responseJSON: "+viewData.toString());
+
+                            // appDatabase.nrlmInfoDao().deleteAll();
+                          //  int size=response.length();
+                            JSONObject data=jsonObject.getJSONObject("data");
+                            JSONObject userData=data.getJSONObject("user_data");
+
+                            if (!(userData.has("Errorstatus"))) {
+
+
+
+                                for (int i = 0; i < 1; i++) {
+                                    try {
+                                        //   JSONObject data=response.getJSONObject("data");
+                                        JSONArray reason = data.getJSONArray("reason");
+                                        //    JSONObject userData=data.getJSONObject("user_data");
+                                        JSONArray mobBelongsToJsonArray = data.getJSONArray("mob_belongs_to");
+                                        JSONArray memberReasonJsonArray = data.getJSONArray("MemberReason");
+
+                                        appDatabase.loginInfoDao().insert(new LoginInfoEntity(userData.getString("user_id"), "123456", userData.getString("mobile_number")
+                                                , userData.getString("state_code"), userData.getString("state_short_name"), userData.getString("server_date_time"), userData.getString("language_id")
+                                                , userData.getString("login_attempt"), userData.getString("logout_days"), userData.getString("user_name")));
+                                        appDatabase.reasonInfoDao().deleteAll();
+                                        for (int j = 0; j < reason.length(); j++) {
+                                            JSONObject reasonObject = reason.getJSONObject(j);
+                                            String reasonName = reasonObject.getString("reason_name");
+                                            String reasonCode = reasonObject.getString("reason_id");
+                                            appDatabase.reasonInfoDao().insert(new ReasonInfoEntity(reasonName, reasonCode));
+                                        }
+
+                                        appDatabase.mobileNoBelongsToDao().deleteAll();
+
+                                        for (int k = 0; k < mobBelongsToJsonArray.length(); k++) {
+                                            JSONObject mobBelongsToObject = mobBelongsToJsonArray.getJSONObject(k);
+                                            String typeId = mobBelongsToObject.getString("type_id");
+                                            String typeName = mobBelongsToObject.getString("type_name");
+                                            appDatabase.mobileNoBelongsToDao().insert(new MobileNoBelongsToEntity(typeId, typeName));
+                                        }
+
+                                        appDatabase.memberReasonDao().deleteAll();
+                                        for (int k = 0; k < memberReasonJsonArray.length(); k++) {
+                                            JSONObject memberReasonObject = memberReasonJsonArray.getJSONObject(k);
+                                            int reasonId = memberReasonObject.getInt("reason_id");
+                                            String reasonName = memberReasonObject.getString("reason");
+                                            appDatabase.memberReasonDao().insert(new MemberReasonEntity(reasonId, reasonName));
+                                        }
+
+
+                                    } catch (JSONException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }
+                                callPmaygMasterAPI();
+                               /* progressDialog.dismiss();
+                                intentToMpin();*/
+                            }
+                            else {
+                                progressDialog.dismiss();
+                             //   callPmaygMasterAPI();
+                                DialogFactory.getInstance().showAlertDialog(getContext(),1,"Alert!",userData.getString("Errorstatus"),"Ok",true);
+
+                            }
+
+                            // nrlmMasterResponse.getData();
+
+
+
+
+                        } catch (Exception e) {
+                            //progressDialog.dismiss();
+                            Log.d(TAG, "notifySuccess: "+e);
+                            //AppUtils.getInstance().showLog("DecryptEx" + e, LoginFragment.class);
+                        }
+
+                        // progressDialog.dismiss();
+                        // intentToMpin();
+                        //callNrlmMasterAPI();
+
+
+                    }
+
+//progressDialog.dismiss();
+                }
+
+                @Override
+                public void notifyError(String requestType, VolleyError error) {
+                          progressDialog.dismiss();
+                    Toast.makeText(getContext(), "No Internet"+error, Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "getLoginAPI: "+error);
+
+                }
+            };
+            VolleyService  volleyService = VolleyService.getInstance(getContext());
+
+            volleyService.postDataVolley("loginAPI", AppUtils.buildURL+"login", encryptedObject, mResultCallBack);
+
+
+
+        }else {
+            progressDialog.dismiss();
+            Toast.makeText(getContext(), "No Internet", Toast.LENGTH_SHORT).show();
+
+
+
+        }
+
+    }
+
     private void callPmaygMasterAPI () {
 
 
@@ -246,8 +465,8 @@ public class LoginFragment extends Fragment {
 
 
                 encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(pmaygMasterRequest)));
-               // String plnObj=new Gson().toJson(pmaygMasterRequest);
-               // plainData =new JSONObject(plnObj);
+                // String plnObj=new Gson().toJson(pmaygMasterRequest);
+                // plainData =new JSONObject(plnObj);
 
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
@@ -284,13 +503,13 @@ public class LoginFragment extends Fragment {
                     if(response.has("data")){
                         try {
                             objectResponse=response.getString("data");
-                          //   AppUtils.getInstance().showLog("response encrupt"+objectResponse,LoginFragment.class);
+                            //   AppUtils.getInstance().showLog("response encrupt"+objectResponse,LoginFragment.class);
                             Log.d(TAG, "response encrupt "+objectResponse.toString());
 
 
                         }catch (JSONException e)
                         {
-                        //    AppUtils.getInstance().showLog("objjjjjjj"+objectResponse,LoginFragment.class);
+                            //    AppUtils.getInstance().showLog("objjjjjjj"+objectResponse,LoginFragment.class);
                             Log.d(TAG, "objjjjjjj: "+objectResponse.toString());
                         }
 
@@ -302,12 +521,12 @@ public class LoginFragment extends Fragment {
                     try {               //manish commented
                         JSONObject jsonObject1=new JSONObject(objectResponse);
                         objectResponse=jsonObject1.getString("data");
-                    //    AppUtils.getInstance().showLog("dashboard"+jsonObject1,LoginFragment.class);
+                        //    AppUtils.getInstance().showLog("dashboard"+jsonObject1,LoginFragment.class);
                         Log.d(TAG, "dashboard: "+jsonObject1.toString());
 
                     }catch (JSONException e)
                     {
-                       // AppUtils.getInstance().showLog("exceptionDataOfBlock"+e,LoginFragment.class);
+                        // AppUtils.getInstance().showLog("exceptionDataOfBlock"+e,LoginFragment.class);
                         Log.d(TAG, "exceptionDataOfBlock: "+e.toString());
 
                     }
@@ -318,7 +537,7 @@ public class LoginFragment extends Fragment {
                             List<String> memberBenIds=new ArrayList<>();
 
                             Cryptography cryptography = new Cryptography();
-                             jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Manish comment
+                            jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Manish comment
                             //if (jsonObject.getString("E200").equalsIgnoreCase("Success"))
                             // AppUtils.getInstance().showLog("responseJSON" + jsonObject.toString(), LoginFragment.class);
                             Log.d(TAG, "responseJSON: "+jsonObject.toString());
@@ -355,7 +574,7 @@ public class LoginFragment extends Fragment {
                                 blockname=pmaygMasterResponse.getData().getAssign_data().get(j).getBlockname();
                                 sl_no_member=pmaygMasterResponse.getData().getAssign_data().get(j).getSl_no_member();
                                 ifsc_code=pmaygMasterResponse.getData().getAssign_data().get(j).getIfsc_code();
-                             String   nrlmVillageCode=pmaygMasterResponse.getData().getAssign_data().get(j).getNrlm_village_code();
+                                String   nrlmVillageCode=pmaygMasterResponse.getData().getAssign_data().get(j).getNrlm_village_code();
                                 flag="0";
 
 
@@ -364,7 +583,6 @@ public class LoginFragment extends Fragment {
                                                 ,village_name,scheme,beneficiary_holder_name,beneficiary_id
                                                 ,beneficiary_acc_no,beneficiary_bank_name,beneficiary_branch_name,mobile_no,member_name,holder_sync_flag,mothername
                                                 ,districtname,blockcode,districtcode,statecode,fathername,blockname,sl_no_member,ifsc_code,flag));
-
 
 
 
@@ -422,7 +640,7 @@ public class LoginFragment extends Fragment {
 
         if(NetworkFactory.isInternetOn(getContext()))
         {
-          //  JSONObject plainData=null;
+            //  JSONObject plainData=null;
             JSONObject encryptedObject =new JSONObject();
 
             try {
@@ -440,8 +658,8 @@ public class LoginFragment extends Fragment {
                 nrlmMasterRequest.setDevice_name(deviceInfo);
                 nrlmMasterRequest.setLocation_coordinate("1232323");
                 nrlmMasterRequest.setDistrict_code(districtCode);
-             //   String data=new Gson().toJson(nrlmMasterRequest);
-             //   plainData=new JSONObject(data);
+                //   String data=new Gson().toJson(nrlmMasterRequest);
+                //   plainData=new JSONObject(data);
                 encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(nrlmMasterRequest)));
 
             } catch (NoSuchAlgorithmException e) {
@@ -466,7 +684,7 @@ public class LoginFragment extends Fragment {
                 @Override
                 public void notifySuccess(String requestType, JSONObject jsonObject) throws JSONException {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    String  objectResponse=jsonObject.getString("data");
+                        String  objectResponse=jsonObject.getString("data");
 
                         Cryptography cryptography = null;
                         try {
@@ -579,7 +797,7 @@ public class LoginFragment extends Fragment {
 
 
 
-               // plainData=new JSONObject(data);
+                // plainData=new JSONObject(data);
                 encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(nrlmMasterRequest)));
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
@@ -704,7 +922,7 @@ public class LoginFragment extends Fragment {
                                 appDatabase.nrlmInfoDao().insert(new NrlmInfoEntity(nrlmgp_code,memBranchCode,nrlm_mem_bank_code,nrlmlgd_gp_code,nrlmgp_name
                                         ,nrlmvillage_code,nrlmvillage_name,nrlmshg_name,nrlmshg_code
                                         ,nrlmmember_name,nrlmmember_code,nrlmuser_id,nrlmblock_name,nrlmlgd_state_code,nrlmstate_name
-                                        ,nrlmstate_code,nrlmblock_code,nrlmdistrict_name,nrlmlgd_district_code,nrlmlgd_block_code,nrlm_mobile_number,nrlm_belonging_name,actNum,bankFlag));
+                                        ,nrlmstate_code,nrlmblock_code,nrlmdistrict_name,nrlmlgd_district_code,nrlmlgd_block_code,nrlm_mobile_number,nrlm_belonging_name,actNum,bankFlag,"0"));
 
 
 
@@ -752,226 +970,6 @@ public class LoginFragment extends Fragment {
         }
         else {
             Log.d(TAG, "Internet: ");
-
-        }
-
-    }
-
-    @SuppressLint("HardwareIds")
-    public void getLoginAPI(String userId, String password)
-    {
-        if(NetworkFactory.isInternetOn(getContext()))
-        {
-
-
-
-
-
-            /*******make json object is encrypted and *********/
-            JSONObject encryptedObject =new JSONObject();
-            JSONObject plainData=null;
-            try {
-                Cryptography cryptography = new Cryptography();
-
-
-
-
-                imeiNo = Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-                AppUtils.getInstance().showLog("IMEI"+imeiNo, LoginFragment.class);
-                Objects.requireNonNull(PreferenceFactory.getInstance()).saveSharedPrefrecesData(PreferenceKeyManager.getPrefImeiNo(),imeiNo,getContext());
-
-
-                LoginRequest loginRequest=new LoginRequest();
-
-
-                loginRequest.setUser_id(userId);
-                loginRequest.setUser_password(AppUtils.getInstance().getSha256(password));
-                loginRequest.setImei_no(imeiNo);
-                loginRequest.setDevice_name(AppUtils.getInstance().getDeviceInfo());
-                loginRequest.setApp_version(BuildConfig.VERSION_NAME);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    loginRequest.setDate(AppUtils.getInstance().getCurrentDate());
-                }
-                loginRequest.setAndroid_version(BuildConfig.VERSION_NAME);
-                loginRequest.setLocation_coordinate("1232323");
-                loginRequest.setAndroid_api_version("30");
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    loginRequest.setLogout_time(AppUtils.getInstance().getCurrentDateAndTime());
-                }
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    loginRequest.setApp_login_time(AppUtils.getInstance().getCurrentDateAndTime());
-                }
-
-
-                String data=new Gson().toJson(loginRequest);
-             //   plainData=new JSONObject(data);
-                encryptedObject.accumulate("data",cryptography.encrypt(new Gson().toJson(loginRequest)));
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (NoSuchPaddingException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } //catch (InvalidKeyException e) {
-            catch (InvalidAlgorithmParameterException e) {
-                e.printStackTrace();
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (IllegalBlockSizeException e) {
-                e.printStackTrace();
-            } catch (BadPaddingException e) {
-                e.printStackTrace();
-            } catch (InvalidKeyException e) {
-                e.printStackTrace();
-            }
-
-            /***********************************************/
-
-            Log.d(TAG, "request of LoginApi "+encryptedObject.toString());
-            mResultCallBack = new VolleyResult() {
-                @Override
-                public void notifySuccess(String requestType, JSONObject response) {
-
-
-                  //  progressDialog.dismiss();
-                    JSONObject jsonObject = null;  //manish comment
-
-                    String objectResponse="";
-                    if(response.has("data")){
-                        try {
-                            objectResponse=response.getString("data");
-                            Log.d(TAG, "response encrupt "+objectResponse.toString());
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    try {
-                        JSONObject jsonObject1=new JSONObject(objectResponse);
-                        objectResponse=jsonObject1.getString("data");
-                        Log.d(TAG, "dashboard: "+jsonObject1.toString());
-
-                    }catch (JSONException e)
-                    {
-                        Log.d(TAG, "exceptionDataOfBlock: "+e.toString());
-
-                    }
-
-                    Objects.requireNonNull(PreferenceFactory.getInstance()).saveSharedPrefrecesData(PreferenceKeyManager.getPrefLoginId(),userId,getContext());
-
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        try {
-                            Cryptography cryptography = new Cryptography();
-                            jsonObject = new JSONObject(cryptography.decrypt(objectResponse)); //Manish comment
-
-                            JSONObject viewData=response;
-                            Log.d(TAG, "responseJSON: "+viewData.toString());
-
-                            // appDatabase.nrlmInfoDao().deleteAll();
-                          //  int size=response.length();
-                            JSONObject data=jsonObject.getJSONObject("data");
-                            JSONObject userData=data.getJSONObject("user_data");
-
-                            if (!(userData.has("Errorstatus"))) {
-
-
-
-                                for (int i = 0; i < 1; i++) {
-                                    try {
-                                        //   JSONObject data=response.getJSONObject("data");
-                                        JSONArray reason = data.getJSONArray("reason");
-                                        //    JSONObject userData=data.getJSONObject("user_data");
-                                        JSONArray mobBelongsToJsonArray = data.getJSONArray("mob_belongs_to");
-                                        JSONArray memberReasonJsonArray = data.getJSONArray("MemberReason");
-
-                                        appDatabase.loginInfoDao().insert(new LoginInfoEntity(userData.getString("user_id"), "123456", userData.getString("mobile_number")
-                                                , userData.getString("state_code"), userData.getString("state_short_name"), userData.getString("server_date_time"), userData.getString("language_id")
-                                                , userData.getString("login_attempt"), userData.getString("logout_days"), userData.getString("user_name")));
-
-
-                                        appDatabase.reasonInfoDao().deleteAll();
-                                        for (int j = 0; j < reason.length(); j++) {
-                                            JSONObject reasonObject = reason.getJSONObject(j);
-                                            String reasonName = reasonObject.getString("reason_name");
-                                            String reasonCode = reasonObject.getString("reason_id");
-                                            appDatabase.reasonInfoDao().insert(new ReasonInfoEntity(reasonName, reasonCode));
-                                        }
-
-                                        appDatabase.mobileNoBelongsToDao().deleteAll();
-
-                                        for (int k = 0; k < mobBelongsToJsonArray.length(); k++) {
-                                            JSONObject mobBelongsToObject = mobBelongsToJsonArray.getJSONObject(k);
-                                            String typeId = mobBelongsToObject.getString("type_id");
-                                            String typeName = mobBelongsToObject.getString("type_name");
-                                            appDatabase.mobileNoBelongsToDao().insert(new MobileNoBelongsToEntity(typeId, typeName));
-                                        }
-
-                                        appDatabase.memberReasonDao().deleteAll();
-                                        for (int k = 0; k < memberReasonJsonArray.length(); k++) {
-                                            JSONObject memberReasonObject = memberReasonJsonArray.getJSONObject(k);
-                                            int reasonId = memberReasonObject.getInt("reason_id");
-                                            String reasonName = memberReasonObject.getString("reason");
-                                            appDatabase.memberReasonDao().insert(new MemberReasonEntity(reasonId, reasonName));
-                                        }
-
-
-                                    } catch (JSONException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }
-                                callPmaygMasterAPI();
-                            }
-                            else {
-                                progressDialog.dismiss();
-                             //   callPmaygMasterAPI();
-                                DialogFactory.getInstance().showAlertDialog(getContext(),1,"Alert!",userData.getString("Errorstatus"),"Ok",true);
-
-                            }
-
-                            // nrlmMasterResponse.getData();
-
-
-
-
-                        } catch (Exception e) {
-                            //progressDialog.dismiss();
-                            Log.d(TAG, "notifySuccess: "+e);
-                            //AppUtils.getInstance().showLog("DecryptEx" + e, LoginFragment.class);
-                        }
-
-                        // progressDialog.dismiss();
-                        // intentToMpin();
-                        //callNrlmMasterAPI();
-
-
-                    }
-
-//progressDialog.dismiss();
-                }
-
-                @Override
-                public void notifyError(String requestType, VolleyError error) {
-                          progressDialog.dismiss();
-                    Toast.makeText(getContext(), "No Internet"+error, Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "getLoginAPI: "+error);
-
-                }
-            };
-            VolleyService  volleyService = VolleyService.getInstance(getContext());
-
-            volleyService.postDataVolley("loginAPI", AppUtils.buildURL+"login", encryptedObject, mResultCallBack);
-
-
-
-        }else {
-            progressDialog.dismiss();
-            Toast.makeText(getContext(), "No Internet", Toast.LENGTH_SHORT).show();
-
-
 
         }
 
