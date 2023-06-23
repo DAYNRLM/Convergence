@@ -77,6 +77,7 @@ id action_loginFragment2_to_forgotPasswordFragment
 id action_loginFragment_to_forgotPasswordFragment2
 id action_memberFragment_to_homeFragment
 id action_otpFragment2_self
+id action_otpFragment2_to_loginFragment
 id action_otpFragment_to_loginFragment2
 id action_setMpinFragment_to_verifyMpinFragment
 id any_family_visib

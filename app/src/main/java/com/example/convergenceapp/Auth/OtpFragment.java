@@ -3,12 +3,14 @@ package com.example.convergenceapp.Auth;
 import static android.content.ContentValues.TAG;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.provider.Settings;
 import android.util.Log;
@@ -75,6 +77,7 @@ public class OtpFragment extends Fragment {
         useridet = (EditText) view.findViewById(R.id.et_userIdd);
         passwordet = (EditText) view.findViewById(R.id.et_passwordd);
          mobileno = PreferenceFactory.getInstance().getSharedPrefrencesData(PreferenceKeyManager.getPREF_KEY_mobileNo(),getContext());
+        navController = NavHostFragment.findNavController(this);
 
 
         verifyBtn.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +127,7 @@ public class OtpFragment extends Fragment {
 
 
                 else {
-                    callResetPasswordAPI(userId,password,mobileno);
+                    callResetPasswordAPI(userId,AppUtils.getInstance().getSha256(password),mobileno);
 
                 }
 
@@ -246,9 +249,21 @@ public class OtpFragment extends Fragment {
                                 ResetResponse resetResponse = ResetResponse.jsonToJava(response.toString());
                                 String status= resetResponse.getStatus();
 
-                                DialogFactory.getInstance().showAlertDialog(getContext(),1,"Alert!",status.toString(),"Ok",true);
+                             /*   if (status.equalsIgnoreCase("Updated Successfully!!!")){
+                                    NavDirections navDirections= OtpFragmentDirections.actionOtpFragment2ToLoginFragment();
+                                    navController.navigate(navDirections);
 
 
+                                }*/
+                                DialogFactory.getInstance().showAlertDialog(getContext(), 1, "Alert!", status.toString(), "ok", new DialogInterface.OnClickListener() {
+
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        goToLogin();
+                                    }
+                                },null,null,true);
 
 
 
@@ -293,5 +308,10 @@ public class OtpFragment extends Fragment {
 
         }
 
+    }
+
+    public void goToLogin(){
+        NavDirections navDirections= OtpFragmentDirections.actionOtpFragment2ToLoginFragment();
+        navController.navigate(navDirections);
     }
 }

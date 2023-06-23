@@ -31,5 +31,8 @@
         <action
             android:id="@+id/action_otpFragment2_self"
             app:destination="@id/otpFragment2" />
+        <action
+            android:id="@+id/action_otpFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>
